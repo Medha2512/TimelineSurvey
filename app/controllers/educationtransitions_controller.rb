@@ -1,13 +1,13 @@
 class EducationtransitionsController < ApplicationController
-  before_filter :save_login_state, :only => [:new, :create]
+  before_filter :current_user , :only => [:new, :create]
+
   def new    
-    @user = User.find session[:user_id] 
+    @user = current_user
     @education = @user.educationtransitions.build
   end
 
   def create
-    
-    @user = User.find session[:user_id] 
+    @user = current_user
     @education = @user.educationtransitions.build(education_params)
     @count = @user.event_count + 1
     @user.update_attributes(:event_count => @count)

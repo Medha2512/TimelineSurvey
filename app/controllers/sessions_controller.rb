@@ -2,7 +2,8 @@ class SessionsController < ApplicationController
 
   before_filter :authenticate_user, :except => [:index, :login, :login_attempt, :logout]
   before_filter :save_login_state, :only => [:index, :login, :login_attempt]
-  before_filter :current_user, :only => [:index, :login, :login_attempt]
+  before_filter :current_user, :only => [:likertItems, :ed_exp_response, :likert_response,
+    :trigger_startdate, :consent_decision]
 
   helper_method :destroyItem
   def login_attempt
@@ -109,7 +110,6 @@ class SessionsController < ApplicationController
     cookies.delete(:auth_token)
     redirect_to :action => 'login'
   end
-
 
   def destroyItem
     @item = params[:item]
