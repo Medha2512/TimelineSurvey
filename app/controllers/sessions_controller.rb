@@ -90,9 +90,7 @@ class SessionsController < ApplicationController
   def trigger_startdate
     @user = current_user
     @undergrad_date = convert_date(params[:user], :undergrad_end)
-    @user.event_count = 1;
-    @user.update_attributes( :undergrad_end => @undergrad_date, :current_page => 'setting')
-    @user.save
+    @user.update_attributes( :undergrad_end => @undergrad_date, :current_page => 'setting', :event_count => 1)
     redirect_to :action => 'setting'
   end
 
