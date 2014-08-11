@@ -54,8 +54,11 @@ class UsersController < ApplicationController
     if @user.destroy
       flash[:color] = "valid"
       flash[:notice] = "Profile successfully deleted"
-      redirect_to :action => 'login'
+    else
+      flash[:color] = "invalid"
+      flash[:notice] = "Profile not deleted"
     end
+    redirect_to :action => 'login'
   end
   private
 
