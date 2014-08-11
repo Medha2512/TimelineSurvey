@@ -162,10 +162,13 @@ body {
 	top: 140px;
 }
 
-table.LikeRTtable {
-	border: 5px solid black;
+.LikeRTtable {
 	border-collapse: collapse;
-	width: auto;
+    padding-bottom:2px;                    
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    height: 100px;
 }
 
 .LikeRTtable th, td {
