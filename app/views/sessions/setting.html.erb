@@ -1,0 +1,214 @@
+<% @page_title = "Alumni Survey | Ed Bg" -%>
+<style type="text/css">
+	body, html {
+		font-family: sans-serif;
+	}
+</style>
+<p> Go To Date: <%= text_field_tag 'datepickerData', nil, :class => 'datepicker' %>
+<img src="/assets/question.png" class="tooltip" title="In case of date uncertainity, please select 1st of that month" /></p>
+<div id="visualization"></div>
+<p></p>
+<div id="log"  style="position:relative">
+<div id= "Sign_Up" class = "EventPopUp">
+	<p> On <input type="text" id="mytext" readonly>  </p>
+	<p>	Your transition would best be described as :
+	<%= select_tag "event", options_for_select(["Career", "Education"]),:include_blank => true, :onchange => "populateData(this.value)"%></br>
+	</p>
+</div>
+<div id = "CareerForm" class = "EventPopUp">
+	<p>Oh Career event!!!</p>
+	<%= form_for(:careertransition, :url => {:controller => 'careertransitions', :action => 'create'}) do |f| %>
+	<%= f.hidden_field :event_time, :id => 'event_time' %>
+	<ol class="questions">
+		<li><p>Your new career/job is best categorized as: 
+				<%= f.select :new_career_field, [ "Consulting engineer in private industry", 
+				"Engineering in the public sector", "Engineering research lab","Non-engineering",
+				"Began my own engineering practice","NGO/non-profit related to engineering",
+				"Military","Academic/education position related to engineering","Unemployed",
+				"Working at the same company, but moved from full time to part time/part time to full time",
+				"Environmental","Leaving work to take care of family","Leaving work for other reasons"]%></br></p>
+		</li>
+	</ol>	
+	<%= f.submit :Submit %>
+	<% end %>
+</div>
+<div id = "EducationForm" class = "EventPopUp">
+	<p>Oh Education event!!!</p>
+	<%= form_for(:educationtransition, :url => {:controller => 'educationtransitions', :action => 'create'}) do |f| %>
+	<%= f.hidden_field :event_time, :id => 'event_time' %>
+
+	<ol class="questions">
+		<li><p>Your new education element is best characterized as: 
+				<%= f.select :new_education_field, [ "MS in an engineering related field", 
+				"PhD in an engineering related field", "BS/MS/PhD in non-engineering related field"],
+				:onClick => "updateActivity(this)"%></br></p>
+				If other, Please specify : <%= text_field_tag 'non_engineering_field', '', disabled: true %>
+		</li>
+	</ol>	
+	<%= f.submit :Submit %>
+	<% end %>
+</div>
+
+
+	<%= button_to "Complete >>", action: "likertItems" %>
+
+<script type="text/javascript">
+	
+	var modified, mouseXpos;
+	var count = 1;
+    var startDate = '<%= @current_user.undergrad_end %>' ;
+	document.getElementById("Sign_Up").style.display = "none";
+	document.getElementById("CareerForm").style.display = "none";
+	document.getElementById("EducationForm").style.display = "none";
+
+	// note that months are zero-based in the JavaScript Date object, so month 3 is April
+	var items = new vis.DataSet([
+		{id : 1, content : 'Graduated from undergrad', start : startDate, type: 'point'}
+	]);
+	
+	
+	<% if @current_user.careertransitions.exists? %>
+	<% for item in @current_user.careertransitions %>
+	count++;
+	items.add({id : count, content : '<%= item.new_career_field %>', start: '<%= item.event_time %>', type: 'point'});
+	<% end %>
+	<% end %>
+	
+	<% if @current_user.educationtransitions.exists? %>
+	<% for item in @current_user.educationtransitions %>
+	count++;
+	items.add({id : count, content : '<%= item.new_education_field %>', start: '<%= item.event_time %>', type: 'point'});
+	<% end %>
+	<% end %>
+	
+	
+ 	$(function() {
+    	$('.datepicker').datepicker({
+    	changeMonth: true,
+    	changeYear: true,
+    	onSelect: function() {
+        	var goToDate = new Date($(this).val());   
+        	count++;    	
+			items.add({id : count, content : 'Loading...', start: goToDate});
+			mouseXpos = getMouseXPosition(items.get(count));
+			displayRequiredDiv("Sign_Up");
+			modified = formatDate(goToDate);
+			document.getElementById("mytext").value = modified;		
+        	$('.datepicker').val('');
+    	}});
+  	});
+  	
+	var container = document.getElementById('visualization');
+	var options = {
+		editable : true,
+		onAdd : function(item, callback) {
+		
+			document.getElementById("CareerForm").style.display = "none";
+			document.getElementById("EducationForm").style.display = "none";
+			mouseXpos = getMouseXPosition(item);
+			displayRequiredDiv("Sign_Up");			
+			modified = formatDate(item.start);
+			document.getElementById("mytext").value = modified;			
+			document.getElementById("event_time").value = modified;
+			item.content = "Loading...";
+			if (item.content != null) {
+				callback(item);
+				// send back adjusted new item
+			} else {
+				callback(null);
+				// cancel item creation
+			}
+		},
+
+		onMove : function(item, callback) {
+			if (confirm('Do you really want to move the item to\n' + 'start: ' + item.start + '\n' + 'end: ' + item.end + '?')) {
+				
+				callback(item);
+				// send back item as confirmation (can be changed
+			} else {
+				callback(null);
+				// cancel editing item
+			}
+		},
+
+		onUpdate : function(item, callback) {
+			item.content = prompt('Edit items text:', item.content);
+			if (item.content != null) {
+				callback(item);
+				// send back adjusted item
+			} else {
+				callback(null);
+				// cancel updating the item
+			}
+		},
+
+		onRemove : function(item, callback) {
+			if (confirm('Remove item ' + item.content + '?')) {
+				$.ajax({
+					data: {item: item},
+					dataType: 'json',
+  					type: 'POST',
+  					url: '/sessions_controller/destroyItem'
+				});
+				callback(item);
+				// confirm deletion
+			} else {
+				callback(null);
+				// cancel deletion
+			}
+		}
+	};
+	var timeline = new vis.Timeline(container, items, options);
+
+	var start = new Date(startDate);
+	start.setMonth(start.getMonth() - 1);
+	var end = new Date();
+	timeline.setWindow(start, end); 
+	
+	function formatDate(d)
+	{
+		var m_names = new Array("January", "February", "March",
+		"April", "May", "June", "July", "August", "September",
+		"October", "November", "December");
+		var curr_date = d.getDate();
+		var curr_month = d.getMonth();
+		var curr_year = d.getFullYear();
+		modifiedDate = curr_date + ", " + m_names[curr_month]+ " " + curr_year;
+		return modifiedDate;
+	}
+	
+	function populateData(value){
+	    if(value=="Career"){	
+	    	displayRequiredDiv("CareerForm");
+	    	document.getElementById("Sign_Up").style.display = "none";
+	    }else if(value=="Education"){	
+	    	displayRequiredDiv("EducationForm");
+	    	document.getElementById("Sign_Up").style.display = "none";
+	    }else {
+	    	alert("Please select a valid option to proceed!!!");
+	    }
+    }
+    
+	function displayRequiredDiv(id)
+	{
+		var obj = document.getElementById(id);
+		obj.style.position = "absolute";
+		obj.style.left = (mouseXpos - 40) + 'px';
+		obj.style.top = '20px';
+		obj.style.display = 'block';
+	}
+	
+	function getMouseXPosition(item)
+	{
+		var window = timeline.getWindow();
+		var ratio = (item.start - window.start) / (window.end - window.start);
+		x = ratio * container.offsetWidth;
+		return x;
+	}
+	
+	function updateActivity(oSelect) {
+		if (oSelect.options[oSelect.selectedIndex].value == 'BS/MS/PhD in non-engineering related field') {
+			document.getElementById("non_engineering_field").disabled = false;
+		}
+	}
+</script>

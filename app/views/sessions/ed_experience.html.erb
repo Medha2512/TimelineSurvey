@@ -1,0 +1,187 @@
+<% @page_title = "Alumni Survey | Ed Exp" -%>
+
+<h2 class = "Page_Title"> Educational Experience Classification </h2>
+<div class= "EdExperiencePage">
+
+	<p>
+		Characterize your engineering service experience(s) that you engaged in as a student
+	</p>
+
+	<%= form_for(:ed_exp_classification, :url => {:controller => 'sessions', :action => 'ed_exp_response'}) do |f| %>
+	<ol class="questions">
+		<li>
+			Did you engage in any forms of service through engineering as a student (undergrad or grad)?</br>
+			<%= f.radio_button :service , "yes" %> Yes
+			<%= f.radio_button :service , "no" %> No
+		</li>
+		<div id = "ServiceDiv">
+			<li>
+				How many separate engineering service experiences did you have? (Type in number)
+				<%= f.text_field :no_of_engg_service %>
+			</li>
+			<li>
+				Your engineering service experience(s) as a college student could be best described as (check all that apply): </br>
+				<table>
+					<tr>
+						<td><%= check_box_tag "ed_exp_classification[service_exp][]", "Engineers Without Borders, Engineers for a Sustainable World, Bridges 2 Prosperity or similar" %>
+						Engineers Without Borders, Engineers for a Sustainable World, Bridges 2 Prosperity or similar </td>
+						<td><%= check_box_tag "ed_exp_classification[service_exp][]", "Extracurricular, non-EWB-like (examples: unpaid student tutoring, K-12 outreach, etc.)"%>
+						Extracurricular, non-EWB-like (examples: unpaid student tutoring, K-12 outreach, etc.) </td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "ed_exp_classification[service_exp][]", "Certificate Program (series of related classes, such as Engineering in Developing Communities)"%>
+						Certificate Program (series of related classes, such as Engineering in Developing Communities) </td>
+						<td><%= check_box_tag "ed_exp_classification[service_exp][]", "Service-Learning (in-class service experience tied to engineering content)"%>
+						Service-Learning (in-class service experience tied to engineering content) </td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "ed_exp_classification[service_exp][]", "Integrated Degree Program (engineering service was in many classes for your degree)"%>
+						Integrated Degree Program (engineering service was in many classes for your degree) </td>
+						<td><%= check_box_tag "ed_exp_classification[service_exp][]", "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)"%>
+						Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)</td>
+					</tr>
+				</table>
+				If other, Please specify : <%= f.text_field 'non_engineering_field' %>
+			</li>
+			<li>
+				Did you participate as an undergrad, graduate student or both?</br>
+				<%= f.radio_button :participate_as , "undergraduate" %> Undergraduate
+				<%= f.radio_button :participate_as , "graduate" %> Graduate
+				<%= f.radio_button :participate_as , "both undergraduate and graduate" %> Both
+			</li>
+			<li>
+				Did you travel (multi-day experience outside of your local community) as part of one of these projects?</br>
+				<%= f.radio_button :travel_decision , "yes" %> Yes
+				<%= f.radio_button :travel_decision , "no" %> No
+			</li>
+
+			<div id = "TravelDiv">
+				<li>
+					Was the travel domestic or international or both?</br>
+					<%= f.radio_button :travel_type , "domestic" %> Domestic
+					<%= f.radio_button :travel_type , "international" %> International
+					<%= f.radio_button :travel_type , "both domestic and international" %> Both
+				</li>
+				<li>
+					Was that travel short term (2 weeks or less) or longer term (more than 2 weeks)?</br>
+					<%= f.radio_button :travel_term , "short" %> Short Term (2 weeks or less)
+					<%= f.radio_button :travel_term , "long" %> Longer Term (more than 2 weeks)
+				</li>
+			</div>
+
+			<li>
+				Did you hold a formal leadership role in the service project?</br>
+				<%= f.radio_button :formal_leadership , "yes" %> Yes
+				<%= f.radio_button :formal_leadership , "no" %> No
+			</li>
+			<li>
+				How long were you involved, collectively across your engineering service experiences?</br>
+				<%= f.radio_button :service_period , "Less than one quarter/semester" %> Less than one quarter/semester
+				<%= f.radio_button :service_period , "One quarter/semester" %> One quarter/semester
+				<%= f.radio_button :service_period , "More than one quarter/semester, up to one year" %> More than one quarter/semester, up to one year
+				<%= f.radio_button :service_period , "More than one year" %> More than one year
+			</li>
+			<li>
+				In what ways, if any, was your college-based engineering service experience beneficial to you personally or in your work?
+				<%= f.text_field :engg_beneficial_experience%>
+			</li>
+		</div>
+		<li>
+			Did you engage in any forms of non-engineering service as a student (undergrad or grad)? </br>
+			<%= f.radio_button :non_engg_service , "yes" %> Yes
+			<%= f.radio_button :non_engg_service , "no" %> No
+		</li>
+		<div id = "NonEnggService">
+			<li>
+				Your non-engineering service experience(s) as a college student could best be described as (check all that apply):
+				<table>
+					<tr>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Service-learning in non-engineering courses" %>
+						Service-learning in non-engineering courses</td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Habitat for Humanity Build"%>
+						Habitat for Humanity Build</td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Tutoring elementary or secondary children"%>
+						Tutoring elementary or secondary children</td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Donated Blood"%>
+						Donated Blood </td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]", "Disaster Relief Volunteer "%>
+						Disaster Relief Volunteer </td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]", "Short term on-site service project (i.e. 1-2 week service trip, non-engineering)"%>
+						Short term on-site service project (i.e. 1-2 week service trip, non-engineering)</td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]", "International Humanitarian Volunteer"%>
+						International Humanitarian Volunteer </td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]", "Food Bank Volunteer"%>
+						Food Bank Volunteer </td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]", "Meals on Wheels Volunteer"%>
+						Meals on Wheels Volunteer</td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Nursing Home Volunteer"%>
+						Nursing Home Volunteer</td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Political Campaign Volunteer"%>
+						Political Campaign Volunteer</td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Big Brother/Big Sister, Boys & Girls Club, Boy/Girl Scouts"%>
+						Big Brother/Big Sister, Boys & Girls Club, Boy/Girl Scouts</td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Soup Kitchen Volunteer"%>
+						Soup Kitchen Volunteer </td>
+						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Sports Camp, Coaching, etc. (unpaid)"%>
+						Sports Camp, Coaching, etc. (unpaid)</td>
+
+						<td><%= check_box_tag "other_non_engg_service_check", "Other" %>
+						Other <%= text_field_tag 'other_non_engg_services', '', disabled: true %> </td>
+					</tr>
+				</table>
+			</li>
+			<li>
+				In what ways, if any, was your college-based non-engineering service experience beneficial to you personally or in your work?
+				<%= f.text_field :nonengg_beneficial_experience %>
+			</li>
+		</div>
+	</ol>
+
+	<%= f.submit "Continue >>" %>
+	<% end %>
+
+</div>
+
+<script>
+	$(document).ready(function() {
+		document.getElementById("ServiceDiv").style.display = "none";
+		document.getElementById("TravelDiv").style.display = "none";
+		document.getElementById("NonEnggService").style.display = "none";
+
+		$("input[name=other_non_engg_service_check]").click(function() {
+			if (document.getElementById("other_non_engg_services").disabled)
+				document.getElementById("other_non_engg_services").disabled = false;
+			else {
+
+				document.getElementById("other_non_engg_services").value = "";
+				document.getElementById("other_non_engg_services").disabled = true;
+			}
+		});
+		$("input[name='ed_exp_classification[service]']").click(function() {
+			if (this.id == 'ed_exp_classification_service_yes')
+				document.getElementById("ServiceDiv").style.display = "block";
+			else
+				document.getElementById("ServiceDiv").style.display = "none";
+		});
+		$("input[name='ed_exp_classification[travel_decision]']").click(function() {
+			if (this.id == 'ed_exp_classification_travel_decision_yes')
+				document.getElementById("TravelDiv").style.display = "block";
+			else
+				document.getElementById("TravelDiv").style.display = "none";
+		});
+		$("input[name='ed_exp_classification[non_engg_service]']").click(function() {
+			if (this.id == 'ed_exp_classification_non_engg_service_yes')
+				document.getElementById("NonEnggService").style.display = "block";
+			else
+				document.getElementById("NonEnggService").style.display = "none";
+		});
+	}); 
+</script>

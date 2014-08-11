@@ -1,0 +1,183 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require vis
+ */
+
+body {
+	background-color: #C4C1BD;
+}
+.Sign_Form {
+	text-align: center;
+	margin: auto;
+	margin-top: 10px;
+	width: 500px;
+	background-color: rgba(0, 0, 0, .2);
+	padding-bottom: 20px;
+	padding-top: 2px;
+	border-radius: 18px;
+	box-shadow: 5px 5px 5px #888888;
+}
+.Consent_Form {
+	text-align: center;
+	margin: auto;
+	margin-top: 10px;
+	width: 1250px;
+	padding-bottom: 20px;
+	padding-top: 2px;
+	border-radius: 18px;
+	font-size: 20px;
+}
+.Signup_Errors {
+	list-style-type: none;
+	text-align: left;
+	margin-left: 66px;
+	color: red;
+}
+
+.Main_Header {
+	background-image: url('header_bg.png');
+	height: 60px;
+	padding: 0 20px;
+	border-radius: 18px;
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.Main_Header h1 {
+	float: left;
+	margin-top: 8px;
+	color: #C4C1BD;
+	height: 43px;
+}
+.radio li {
+	list-style-type: none;
+	margin-right: 40px;
+	display: inline;
+}
+.nav {
+	list-style-type: none;
+	margin-right: 35px;
+}
+.nav li {
+	display: inline;
+}
+.nav_links {
+	color: blue;
+	text-decoration: underline;
+}
+
+.submit {
+	font-size: 20px;
+	padding: 5px 15px;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.header_links {
+	color: #C4C1BD;
+	float: right;
+	margin-top: 15px;
+	margin-right: 15px;
+	text-decoration: underline;
+}
+
+.notice, .valid_notice, .invalid_notice {
+	height: 35px;
+	width: 400px;
+	margin: auto;
+	margin-top: 20px;
+}
+.notice, .invalid_notice p, .valid_notice p {
+	text-align: center;
+	margin-top: 6px;
+}
+
+.notice {
+	background-color: transparent;
+}
+
+.invalid_notice {
+	background-color: #FFCCCC;
+	border: 1px solid red;
+}
+.valid_notice {
+	background-color: #CCFFCC;
+	border: 1px solid green;
+}
+
+.User_Header {
+	border-radius: 18px;
+	margin: auto;
+	text-align: center;
+}
+
+.Page_Title {
+	border-radius: 18px;
+	margin: auto;
+	text-align: center;
+}
+
+.Ed_Bg {
+	padding-top: 10px;
+	font-size: 17px;
+	text-decoration: none;
+}
+
+.EventPopUp {
+	background: #D5DDF6;
+	box-shadow: 5px 5px 20px rgba(128,128,128, 0.5);
+	padding: 5px 15px;
+	border: 1px solid #97B0F8;
+	margin: auto;
+	font-size: 15px;
+}
+
+.LikeRTtable table{
+    border: 1px solid black;
+    table-layout: fixed;
+    width: auto;
+}
+
+.LikeRTtable th, td {
+	text-align: center;
+    border: 1px solid black;
+    overflow: hidden;
+    width: 100px;
+}
+
+.LikeRTtable tr td:first-child{
+	text-align: left;
+    width: 600px;
+}
+
+.LikeRT_Page
+{
+	width:auto;
+}
+.checkBoxTable th, td 
+{
+	text-align: left;
+	border: none;
+	width: auto;	
+	padding: 5px 5px;
+}
+
+.tooltip {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+    top: 140px;
+}

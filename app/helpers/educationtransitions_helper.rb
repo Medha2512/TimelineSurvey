@@ -1,0 +1,2 @@
+module EducationtransitionsHelper
+end

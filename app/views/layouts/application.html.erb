@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Alumni Survey</title>
+		<%= stylesheet_link_tag "application", :media => "all" %>
+		<%= javascript_include_tag "application" %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="Main_Header">
+			<h1>Alumni Career Path Survey</h1>
+			<%if cookies[:auth_token]%>
+			<ul class="nav">
+				<li><%= link_to "Delete Profile" , :delete, class: "header_links" %></li>
+				<li><%= link_to "Logout" , :logout, class: "header_links" %></li> 
+			</ul>
+			<%end%>
+		</div>
+		<% if flash[:color]== "valid" %>
+		<div class="valid_notice">
+			<p>
+				<%= flash[:notice]%>
+			</p>
+		</div>
+		<% elsif flash[:color]== "invalid"%>
+		<div class="invalid_notice">
+			<p>
+				<%= flash[:notice]%>
+			</p>
+		</div>
+		<%else%>
+		<div class="notice">
+			<p>
+				<%= flash[:notice]%>
+			</p>
+		</div>
+		<%end%>
+		<%= yield %>
+
+	</body>
+</html>

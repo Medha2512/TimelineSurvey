@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  undergrad_start: 2014-07-19 23:26:33
+
+two:
+  undergrad_start: 2014-07-19 23:26:33

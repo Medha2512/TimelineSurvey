@@ -1,0 +1,40 @@
+<% @page_title = "Alumni Survey | Consent Form" -%>
+<h2 class='User_Header'>Welcome <%= @current_user.username%>!!!</h2>
+<div class= "Consent_Form">
+	<p>
+		The purpose of this research project is ...This is a research project being conducted by..... at Seattle University.
+		You are invited to participate in this research project because you are.....Your participation in this research study is voluntary.
+		You may choose not to participate. If you decide to participate in this research survey, you may withdraw at any time.
+		If you decide not to participate in this study or if you withdrawl from participating at any time, you will not be penalized.
+		The procedure involves filling an online survey that will take approximately 30 minutes.
+		Your responses will be confidential. The survey questions will be about.....We will do our best to keep your information confidential.
+		All data is stored in a password protected electronic format.
+		To help protect your confidentiality, the surveys will not contain information that will personally identify you.
+		The results of this study will be used for scholarly purposes only and may be shared with Seattle University representatives.
+		If you have any questions about the research study, please contact.....
+		This research has been reviewed according to Seattle University IRB procedures for research involving human subjects.
+	</p>
+	<div class="consent">
+		<%= form_tag(:action => 'consent_decision', remote: true) do %>
+		<ul class="radio">
+			<li>
+				<%= radio_button_tag(:decision , "accept") %> <%= label_tag(:decision_accept , "Accept")%>
+				<%= radio_button_tag(:decision , "decline") %> <%= label_tag(:decision_decline, "Decline")%>
+			</li>
+		</ul>
+		<%= submit_tag("Submit" , class: "submit", disabled: "true", :id => "submit_button", :onClick => 'updateActivity()')%>
+		<% end %>
+	</div>
+</div>
+<script>
+	function updateActivity() {
+		if (document.getElementById('decision_decline').checked) {
+			window.confirm("Do you really want to leave?");
+		}
+	}
+	$(document).ready(function() {
+		$("input[name=decision]").click(function() {
+			document.getElementById("submit_button").disabled = false;
+		});
+	}); 
+</script>
