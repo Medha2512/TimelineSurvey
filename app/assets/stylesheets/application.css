@@ -163,6 +163,7 @@ body {
 }
 
 .LikeRT_Page {
+	border:5px solid #990000;
 	border-collapse: collapse;
 	table-layout: fixed;
 	width: auto;
