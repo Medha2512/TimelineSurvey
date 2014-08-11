@@ -19,21 +19,6 @@
 				If other, Please specify : <%= text_field_tag 'other_major', '', disabled: true %>
 			</p>
 		</li>
-		<li>
-			<p>
-				How would you classify your institution? (1: Bad, 10: Excellent)</br>
-				<%= radio_button_tag(:decision , "1") %> <%= label_tag(:decision_1 , "1")%>
-				<%= radio_button_tag(:decision , "2") %> <%= label_tag(:decision_2 , "2")%>
-				<%= radio_button_tag(:decision , "3") %> <%= label_tag(:decision_1 , "3")%>
-				<%= radio_button_tag(:decision , "4") %> <%= label_tag(:decision_2 , "4")%>
-				<%= radio_button_tag(:decision , "5") %> <%= label_tag(:decision_1 , "5")%>
-				<%= radio_button_tag(:decision , "6") %> <%= label_tag(:decision_2 , "6")%>
-				<%= radio_button_tag(:decision , "7") %> <%= label_tag(:decision_1 , "7")%>
-				<%= radio_button_tag(:decision , "8") %> <%= label_tag(:decision_2 , "8")%>
-				<%= radio_button_tag(:decision , "9") %> <%= label_tag(:decision_1 , "9")%>
-				<%= radio_button_tag(:decision , "10") %> <%= label_tag(:decision_2 , "10")%>
-			</p>
-		</li>
 	</ol>
 	<%= submit_tag("Continue>>") %>
 	<% end %>
