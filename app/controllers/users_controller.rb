@@ -50,8 +50,7 @@ class UsersController < ApplicationController
   end
 
   def delete
-    @user = current_user
-    cookies.delete(:auth_token)
+    @user = User.find(params[:id])
     if @user.destroy
       flash[:color] = "valid"
       flash[:notice] = "Profile successfully deleted"

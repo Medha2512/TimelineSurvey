@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   match "login", :to => "sessions#login", via: :get
   match "logout", :to => "sessions#logout", via: :get
-  match "delete", :to => "sessions#delete", via: :get
+  match "delete", :to => "users#delete", via: :get
   match "consent", :to => "sessions#consent", via: :get
   match "profile", :to => "sessions#profile", via: :get
   match "setting", :to => "sessions#setting", via: :get
