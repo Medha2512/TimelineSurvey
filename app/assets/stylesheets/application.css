@@ -162,13 +162,14 @@ body {
 	top: 140px;
 }
 
-table.LikeRT_Page {
-	border: 1px solid black;
+.LikeRT_Page {
+	border-collapse: collapse;
 	table-layout: fixed;
 	width: auto;
 }
 
-.LikeRTtable th, td {
+.LikeRTtable th, td, tr{
+	border: 1px solid black;
 	text-align: center;
 	overflow: hidden;
 	width: 100px;
