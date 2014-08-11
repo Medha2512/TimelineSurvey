@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       flash[:color] = "invalid"
       flash[:notice] = "Profile not deleted"
     end
-    redirect_to :action => 'admin_page'
+    redirect_to(:controller => 'sessions', :action => 'admin_page')
   end
   private
 
