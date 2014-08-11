@@ -49,6 +49,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def delete
+    @user = current_user
+    cookies.delete(:auth_token)
+    if @user.destroy
+      flash[:color] = "valid"
+      flash[:notice] = "Profile successfully deleted"
+      redirect_to :action => 'login'
+    end
+  end
   private
 
   def user_params

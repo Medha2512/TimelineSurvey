@@ -110,15 +110,6 @@ class SessionsController < ApplicationController
     redirect_to :action => 'login'
   end
 
-  def delete
-    @user = current_user
-    cookies.delete(:auth_token)
-    if @user.destroy
-      flash[:color] = "valid"
-      flash[:notice] = "Profile successfully deleted"
-      redirect_to :action => 'login'
-    end
-  end
 
   def destroyItem
     @item = params[:item]
