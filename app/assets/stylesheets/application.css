@@ -164,7 +164,7 @@ body {
     top: 140px;
 }
 
-.LikeRTtable table{
+.LikeRTtable{
     border: 1px solid black;
     table-layout: fixed;
     width: auto;
