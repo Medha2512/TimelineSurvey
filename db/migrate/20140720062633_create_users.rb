@@ -9,7 +9,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :current_page
       t.string :undergrad_major
       t.boolean :is_admin
-      t.integer :event_count
       t.timestamps
     end
   end

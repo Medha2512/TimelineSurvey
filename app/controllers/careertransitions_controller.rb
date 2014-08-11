@@ -1,6 +1,5 @@
 class CareertransitionsController < ApplicationController
   before_filter :current_user , :only => [:new, :create]
-
   def new
     @user = current_user
     @career = @user.careertransitions.build
@@ -10,9 +9,6 @@ class CareertransitionsController < ApplicationController
 
     @user = current_user
     @career = @user.careertransitions.build(career_params)
-
-    @count = @user.event_count + 1
-    @user.update_attributes(:event_count => @count)
     if @career.save
       flash[:notice] = "Career event logged"
       flash[:color]= "valid"

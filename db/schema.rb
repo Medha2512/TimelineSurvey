@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20140810231710) do
   end
 
   create_table "users", force: true do |t|
-    t.integer  "event_count"
     t.string   "username"
     t.string   "email"
     t.string   "encrypted_password"

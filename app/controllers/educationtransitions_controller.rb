@@ -1,7 +1,6 @@
 class EducationtransitionsController < ApplicationController
   before_filter :current_user , :only => [:new, :create]
-
-  def new    
+  def new
     @user = current_user
     @education = @user.educationtransitions.build
   end
@@ -9,8 +8,6 @@ class EducationtransitionsController < ApplicationController
   def create
     @user = current_user
     @education = @user.educationtransitions.build(education_params)
-    @count = @user.event_count + 1
-    @user.update_attributes(:event_count => @count)
     if @education.save
       flash[:notice] = "Education event logged"
       flash[:color]= "valid"
@@ -23,6 +20,7 @@ class EducationtransitionsController < ApplicationController
   end
 
   private
+
   def education_params
     params.require(:educationtransition).permit(:new_education_field, :motivation, :eng_service_through_program,
     :eng_service_through_extra, :education_service_satisfaction, :initial_new_education_service_satisfaction,
