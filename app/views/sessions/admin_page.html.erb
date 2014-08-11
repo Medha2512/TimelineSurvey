@@ -24,11 +24,11 @@
 			<td><%= user.created_at %></td>
 			<td><%= user.is_admin %></td>
 			<td><%= link_to "Excel", download_xls_path( format: "xls", :id => user.id)  %></td>
-			<%= if user.is_admin %>
+			<% if user.is_admin %>
 			<td><%= "" %></td>
-			<%= else %>
+			<% else %>
 			<td><%= link_to "Delete" , delete_path(:id => user.id) ,  data: { confirm: "Are you sure?" }%></td>
-			<%= end%>
+			<% end%>
 		</tr>
 		<% end %>
 	</table>
