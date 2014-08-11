@@ -162,7 +162,7 @@ body {
 	top: 140px;
 }
 
-.LikeRTtable {
+table.LikeRT_Page {
 	border: 1px solid black;
 	table-layout: fixed;
 	width: auto;
@@ -170,13 +170,11 @@ body {
 
 .LikeRTtable th, td {
 	text-align: center;
-	border: 1px solid black;
 	overflow: hidden;
 	width: 100px;
 }
 
 .LikeRTtable tr td:first-child {
-	border: 1px solid black;
 	text-align: left;
 	width: 600px;
 }
