@@ -162,8 +162,9 @@ body {
 	top: 140px;
 }
 
-.LikeRT_Page {
-	table-layout: fixed;
+.LikeRT_Page table {
+	border: 1px solid black;
+	border-collapse: collapse;
 	width: auto;
 }
 
