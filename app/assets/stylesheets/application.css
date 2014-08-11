@@ -145,24 +145,6 @@ body {
 	font-size: 15px;
 }
 
-.LikeRTtable table{
-    border: 1px solid black;
-    table-layout: fixed;
-    width: auto;
-}
-
-.LikeRTtable th, td {
-	text-align: center;
-    border: 1px solid black;
-    overflow: hidden;
-    width: 100px;
-}
-
-.LikeRTtable tr td:first-child{
-	text-align: left;
-    width: 600px;
-}
-
 .LikeRT_Page
 {
 	width:auto;
@@ -180,4 +162,22 @@ body {
 	height: 25px;
 	position: absolute;
     top: 140px;
+}
+
+.LikeRTtable table{
+    border: 1px solid black;
+    table-layout: fixed;
+    width: auto;
+}
+
+.LikeRTtable th, td {
+	text-align: center;
+    border: 1px solid black;
+    overflow: hidden;
+    width: 100px;
+}
+
+.LikeRTtable tr td:first-child{
+	text-align: left;
+    width: 600px;
 }
