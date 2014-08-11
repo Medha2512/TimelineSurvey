@@ -145,15 +145,13 @@ body {
 	font-size: 15px;
 }
 
-.LikeRT_Page
-{
-	width:auto;
+.LikeRT_Page {
+	width: auto;
 }
-.checkBoxTable th, td 
-{
+.checkBoxTable th, td {
 	text-align: left;
 	border: none;
-	width: auto;	
+	width: auto;
 	padding: 5px 5px;
 }
 
@@ -161,23 +159,24 @@ body {
 	width: 25px;
 	height: 25px;
 	position: absolute;
-    top: 140px;
+	top: 140px;
 }
 
-.LikeRTtable{
-    border: 1px solid black;
-    table-layout: fixed;
-    width: auto;
+.LikeRTtable {
+	border: 1px solid black;
+	table-layout: fixed;
+	width: auto;
 }
 
 .LikeRTtable th, td {
 	text-align: center;
-    border: 1px solid black;
-    overflow: hidden;
-    width: 100px;
+	border: 1px solid black;
+	overflow: hidden;
+	width: 100px;
 }
 
-.LikeRTtable tr td:first-child{
+.LikeRTtable tr td:first-child {
+	border: 1px solid black;
 	text-align: left;
-    width: 600px;
+	width: 600px;
 }
