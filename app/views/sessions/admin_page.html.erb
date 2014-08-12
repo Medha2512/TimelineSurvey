@@ -29,7 +29,7 @@
 		</tr>
 		<tr>
 			<td>Completed surveys</td>
-			<td><%= User.where(:is_admin => false and :current_page => "thank_you").count %></td>
+			<td><%= User.where(:is_admin => false, :current_page => "thank_you").count %></td>
 		</tr>
 	</table>
 	<p>
