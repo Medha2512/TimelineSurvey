@@ -165,7 +165,6 @@ body {
 .LikeRTtable table {
 	border-collapse: collapse;
 	border: 1px solid black;
-	table-layout: fixed;
 	width: auto;
 }
 
