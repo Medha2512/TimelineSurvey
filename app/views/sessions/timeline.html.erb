@@ -4,20 +4,17 @@
 		font-family: sans-serif;
 	}
 </style>
-<p>	
-	The following is a timeline, focused on transitions between jobs, careers, and educational pursuits. 
+<p>The following is a timeline, focused on transitions between jobs, careers, and educational pursuits. 
 	First, we will ask you about what you transitioned to after graduating from undergraduate school. 
 	After that, please click on the timeline or input a date or month and year where a transition 
 	of significance occurred. Then, we will ask you a series of questions to try and categorize that transition.
 	Note that questions about the transition will mainly look forward, focusing on what you transitioned to, 
 	rather than what you transitioned from. If your life has gone through many transitions, 
-	please give up to five significant transitions.
-</p>
-	
+	please give up to five significant transitions.</p>
 <p> Go To Date: <%= text_field_tag 'datepickerData', nil, :class => 'datepicker' %>
 <img src="/assets/question.png" class="tooltip" title="In case of date uncertainity, please select 1st of that month" /></p>
 <div id="visualization"></div>
-</p>
+<p></p>
 <div id="log"  style="position:relative">
 <div id= "Sign_Up" class = "EventPopUp">
 	<p> On <input type="text" id="mytext" readonly>  </p>
@@ -100,6 +97,7 @@
         	var goToDate = new Date($(this).val());   
         	count++;    	
 			items.add({id : count, content : 'Loading...', start: goToDate});
+			mouseXpos = getMouseXPosition(items.get(count));
 			displayRequiredDiv("Sign_Up");
 			modified = formatDate(goToDate);
 			document.getElementById("mytext").value = modified;		
@@ -201,7 +199,18 @@
 	function displayRequiredDiv(id)
 	{
 		var obj = document.getElementById(id);
+		obj.style.position = "absolute";
+		obj.style.left = (mouseXpos - 40) + 'px';
+		obj.style.top = '20px';
 		obj.style.display = 'block';
+	}
+	
+	function getMouseXPosition(item)
+	{
+		var window = timeline.getWindow();
+		var ratio = (item.start - window.start) / (window.end - window.start);
+		x = ratio * container.offsetWidth;
+		return x;
 	}
 	
 	function updateActivity(oSelect) {
