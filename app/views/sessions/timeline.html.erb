@@ -72,21 +72,21 @@
     ]);
 	// note that months are zero-based in the JavaScript Date object, so month 3 is April
 	var items = new vis.DataSet([
-		{id : 1, content : 'Graduated from undergrad', start : startDate, type: 'point'}
+		{id : 1, group: 2,content : 'Graduated from undergrad', start : startDate, type: 'point'}
 	]);
 	
 	
 	<% if @current_user.careertransitions.exists? %>
 	<% for item in @current_user.careertransitions %>
 	count++;
-	items.add({id : count, group: 'Career', content : '<%= item.new_career_field %>', start: '<%= item.event_time %>', type: 'point'});
+	items.add({id : count, group: 1, content : '<%= item.new_career_field %>', start: '<%= item.event_time %>', type: 'point'});
 	<% end %>
 	<% end %>
 	
 	<% if @current_user.educationtransitions.exists? %>
 	<% for item in @current_user.educationtransitions %>
 	count++;
-	items.add({id : count, group: 'Education', content : '<%= item.new_education_field %>', start: '<%= item.event_time %>', type: 'point'});
+	items.add({id : count, group: 2, content : '<%= item.new_education_field %>', start: '<%= item.event_time %>', type: 'point'});
 	<% end %>
 	<% end %>
 	
