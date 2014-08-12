@@ -79,14 +79,14 @@
 	<% if @current_user.careertransitions.exists? %>
 	<% for item in @current_user.careertransitions %>
 	count++;
-	items.add({id : count, group: 1, content : '<%= item.new_career_field %>', start: '<%= item.event_time %>', type: 'point'});
+	items.add({id : count, group: 1, content : '<%= item.content %>', start: '<%= item.event_time %>', type: 'point'});
 	<% end %>
 	<% end %>
 	
 	<% if @current_user.educationtransitions.exists? %>
 	<% for item in @current_user.educationtransitions %>
 	count++;
-	items.add({id : count, group: 2, content : '<%= item.new_education_field %>', start: '<%= item.event_time %>', type: 'point'});
+	items.add({id : count, group: 2, content : '<%= item.content %>', start: '<%= item.event_time %>', type: 'point'});
 	<% end %>
 	<% end %>
 	

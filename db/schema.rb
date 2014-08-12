@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140810231710) do
+ActiveRecord::Schema.define(version: 20140812232116) do
 
   create_table "careertransitions", force: true do |t|
     t.integer  "user_id"
@@ -23,26 +23,27 @@ ActiveRecord::Schema.define(version: 20140810231710) do
     t.string   "ways_service_outside"
     t.integer  "job_length"
     t.string   "service_job_satisfaction"
-    t.string   "previous_dissatisfaction"
+    t.string   "previous_dissaticfaction"
     t.string   "dissatisfaction_source"
     t.string   "event_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "content"
   end
 
   create_table "ed_exp_classifications", force: true do |t|
     t.integer  "user_id"
-    t.boolean  "service"
+    t.string   "service"
     t.integer  "no_of_engg_service"
     t.text     "service_exp"
     t.string   "participate_as"
-    t.boolean  "travel"
+    t.string   "travel"
     t.string   "travel_type"
     t.string   "travel_term"
-    t.boolean  "formal_leadership"
+    t.string   "formal_leadership"
     t.string   "service_period"
     t.string   "engg_beneficial_experience"
-    t.boolean  "non_engg_service"
+    t.string   "non_engg_service"
     t.text     "non_engg_ser_exp"
     t.string   "nonengg_beneficial_experience"
     t.datetime "created_at"
@@ -57,11 +58,12 @@ ActiveRecord::Schema.define(version: 20140810231710) do
     t.boolean  "eng_service_through_extra"
     t.string   "education_service_satisfaction"
     t.string   "initial_new_education_service_satisfaction"
-    t.string   "previous_dissatisfaction"
+    t.string   "previous_dissaticfaction"
     t.string   "dissatisfaction_source"
     t.string   "event_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "content"
   end
 
   create_table "like_rt_responses", force: true do |t|
@@ -90,13 +92,13 @@ ActiveRecord::Schema.define(version: 20140810231710) do
     t.datetime "undergrad_end"
     t.string   "current_page"
     t.string   "undergrad_major"
+    t.boolean  "is_admin"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "salt"
-    t.boolean  "is_admin"
   end
 
 end
