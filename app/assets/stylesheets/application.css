@@ -145,14 +145,23 @@ body {
 	font-size: 15px;
 }
 
+.checkBoxTable th, td {
+	text-align: left;
+	border: none;
+	width: auto;
+	padding: 5px 5px;
+}
+
 .LikeRT_Page {
-	width: auto;table {
+	width: auto;
+	table {
 	border-collapse: collapse;
 	border: 1px solid black;
 	width: auto;
 }
 th, td {
 	text-align: center;
+	border-collapse: collapse;
 	border: 1px solid black;
 	overflow: hidden;
 	width: 100px;
@@ -167,12 +176,5 @@ tr td:first-child {
 	width: 25px;
 	height: 25px;
 	position: absolute;
-	top: 250px;
-}
-
-.checkBoxTable th, td {
-	text-align: left;
-	border: none;
-	width: auto;
-	padding: 5px 5px;
+	top: 235px;
 }
