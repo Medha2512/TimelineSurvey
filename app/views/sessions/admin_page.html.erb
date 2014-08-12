@@ -25,11 +25,11 @@
 	<table>
 		<tr>
 			<td>Total no. of users</td>
-			<td><%= User.count(:conditions => {:is_admin => "false"}) %></td>
+			<td><%= User.where(:is_admin => false).count %></td>
 		</tr>
 		<tr>
 			<td>Completed surveys</td>
-			<td><%= User.count(:conditions => {:is_admin => "false" and :current_page => "thank_you"}) %></td>
+			<td><%= User.where(:is_admin => false and :current_page => "thank_you").count %></td>
 		</tr>
 	</table>
 	<p>
