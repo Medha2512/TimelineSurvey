@@ -164,6 +164,21 @@ tr td:first-child {
 }
 
 
+.Admin_Page {
+	width: auto;
+	table {
+	border-collapse: collapse;
+	border: 1px solid black;
+	width: auto;
+}
+th, td {
+	text-align: center;
+	border: 1px solid black;
+	overflow: hidden;
+	width: 100px;
+}
+}
+
 .tooltip {
 	width: 25px;
 	height: 25px;
