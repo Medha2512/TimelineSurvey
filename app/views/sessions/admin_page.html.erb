@@ -16,13 +16,26 @@
 		font-weight: bold;
 		background-color: #555555;
 	}
-	td:first-child {
-		text-align: left;
-		text-decoration: none;
-	}
 </style>
 <div class = "Admin_Page">
 	<h2 class='User_Header'>Welcome <%= @current_user.username%>!!!</h2>
+	<p>
+		Statistics
+	</p>
+	<table>
+		<tr>
+			<td>Total no. of users</td>
+			<td><%= User.count%></td>
+		</tr>
+		<tr>
+			<td>Username</td>
+			<td>Email</td>
+		</tr>
+		<tr>
+			<td>Username</td>
+			<td>Email</td>
+		</tr>
+	</table>
 	<p>
 		List of all users
 	</p>
@@ -31,7 +44,7 @@
 			<th>Username</th>
 			<th>Email</th>
 			<th>Consent Decision</th>
-			<th>Current Page</th>
+			<th>Status</th>
 			<th>Date created</th>
 			<th>Is Admin?</th>
 			<th>Excel</th>
@@ -42,7 +55,11 @@
 			<td><%= user.username %></td>
 			<td><%= user.email %></td>
 			<td><%= user.accepted %></td>
-			<td><%= user.current_page %></td>
+			<% if user.current_page == "thank_you" or user.current_page == "admin_page"%>
+			<td> <%= "Completed"%></td>
+			<% else %>
+			<td> <%= "In Progress"%></td>
+			<% end %>
 			<td><%= user.created_at %></td>
 			<td><%= user.is_admin %></td>
 			<td><%= link_to "Download", download_xls_path( format: "xls", :id => user.id)  %></td>
