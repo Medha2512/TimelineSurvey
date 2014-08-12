@@ -29,7 +29,7 @@
 		</tr>
 		<tr>
 			<td>Completed surveys</td>
-			<td><%= User.count(:conditions => "is_admin = 'false' and current_page = "thank_you") %></td>
+			<td><%= User.count(:conditions => "is_admin = 'false' and current_page = 'thank_you'") %></td>
 		</tr>
 	</table>
 	<p>
