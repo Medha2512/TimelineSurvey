@@ -146,7 +146,21 @@ body {
 }
 
 .LikeRT_Page {
+	width: auto;table {
+	border-collapse: collapse;
+	border: 1px solid black;
 	width: auto;
+}
+th, td {
+	text-align: center;
+	border: 1px solid black;
+	overflow: hidden;
+	width: 100px;
+}
+tr td:first-child {
+	text-align: left;
+	width: 600px;
+}
 }
 
 .tooltip {
@@ -154,24 +168,6 @@ body {
 	height: 25px;
 	position: absolute;
 	top: 140px;
-}
-
-.LikeRTtable table {
-	border-collapse: collapse;
-	border: 1px solid black;
-	width: auto;
-}
-
-.LikeRTtable th, td {
-	text-align: center;
-	border: 1px solid black;
-	overflow: hidden;
-	width: 100px;
-}
-
-.LikeRTtable tr td:first-child {
-	text-align: left;
-	width: 600px;
 }
 
 .checkBoxTable th, td {
