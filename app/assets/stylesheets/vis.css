@@ -136,7 +136,7 @@
 .vis.timeline  .foreground .group {
   position: relative;
   box-sizing: border-box;
-  border-bottom: 1px solid #bfbfbf;
+  border-bottom: 1px solid #000000;
 }
 
 .vis.timeline  .foreground .group:last-child {
