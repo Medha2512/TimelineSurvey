@@ -21,7 +21,7 @@
 			</li>
 			<li>
 				Your engineering service experience(s) as a college student could be best described as (check all that apply): </br>
-				<table>
+				<table class = "checkBoxTable">
 					<tr>
 						<td><%= check_box_tag "ed_exp_classification[service_exp][]", "Engineers Without Borders, Engineers for a Sustainable World, Bridges 2 Prosperity or similar" %>
 						Engineers Without Borders, Engineers for a Sustainable World, Bridges 2 Prosperity or similar </td>
@@ -94,7 +94,7 @@
 		<div id = "NonEnggService">
 			<li>
 				Your non-engineering service experience(s) as a college student could best be described as (check all that apply):
-				<table>
+				<table class = "checkBoxTable">
 					<tr>
 						<td><%= check_box_tag "ed_exp_classification[non_engg_ser_exp][]" , "Service-learning in non-engineering courses" %>
 						Service-learning in non-engineering courses</td>

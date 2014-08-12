@@ -148,12 +148,6 @@ body {
 .LikeRT_Page {
 	width: auto;
 }
-.checkBoxTable th, td {
-	text-align: left;
-	border: none;
-	width: auto;
-	padding: 5px 5px;
-}
 
 .tooltip {
 	width: 25px;
@@ -178,4 +172,11 @@ body {
 .LikeRTtable tr td:first-child {
 	text-align: left;
 	width: 600px;
+}
+
+.checkBoxTable th, td {
+	text-align: left;
+	border: none;
+	width: auto;
+	padding: 5px 5px;
 }
