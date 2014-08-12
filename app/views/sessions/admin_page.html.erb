@@ -1,4 +1,27 @@
 <% @page_title = "Alumni Survey | Admin Page" -%>
+<style type="text/css">
+	table {
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	td {
+		border: 1px solid black;
+		text-align: center;
+		width: 100px;
+	}
+	th {
+		border: 1px solid black;
+		text-align: center;
+		text-decoration: underline;
+		font-weight: bold;
+		background-color: #555555;
+	}
+	td:first-child {
+		text-align: left;
+		text-decoration: none;
+		width: 600px;
+	}
+</style>
 <div class = "Admin_Page">
 	<h2 class='User_Header'>Welcome <%= @current_user.username%>!!!</h2>
 	<p>
