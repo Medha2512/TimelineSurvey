@@ -59,7 +59,7 @@
 
 <script type="text/javascript">
 	
-	var modified, mouseXpos;
+	var modified;
 	var count = 1;
     var startDate = '<%= @current_user.undergrad_end %>' ;
 	document.getElementById("Sign_Up").style.display = "none";
@@ -72,7 +72,7 @@
     ]);
 	// note that months are zero-based in the JavaScript Date object, so month 3 is April
 	var items = new vis.DataSet([
-		{id : 1, group: 2,content : 'Graduated from undergrad', start : startDate, type: 'point'}
+		{id : 1, group: 2, content : 'Undergrad', start : startDate, type: 'point'}
 	]);
 	
 	
@@ -99,7 +99,6 @@
         	var goToDate = new Date($(this).val());   
         	count++;    	
 			items.add({id : count, content : 'Loading...', start: goToDate});
-			mouseXpos = getMouseXPosition(items.get(count));
 			displayRequiredDiv("Sign_Up");
 			modified = formatDate(goToDate);
 			document.getElementById("mytext").value = modified;		
@@ -114,7 +113,6 @@
 		
 			document.getElementById("CareerForm").style.display = "none";
 			document.getElementById("EducationForm").style.display = "none";
-			mouseXpos = getMouseXPosition(item);
 			displayRequiredDiv("Sign_Up");			
 			modified = formatDate(item.start);
 			document.getElementById("mytext").value = modified;			
@@ -202,9 +200,6 @@
 	function displayRequiredDiv(id)
 	{
 		var obj = document.getElementById(id);
-		obj.style.position = "absolute";
-		obj.style.left = (mouseXpos - 40) + 'px';
-		obj.style.top = '20px';
 		obj.style.display = 'block';
 	}
 	
