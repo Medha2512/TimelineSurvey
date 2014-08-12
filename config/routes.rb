@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   match "delete", :to => "users#delete", via: :get
   match "consent", :to => "sessions#consent", via: :get
   match "profile", :to => "sessions#profile", via: :get
-  match "setting", :to => "sessions#setting", via: :get
+  match "timeline", :to => "sessions#timeline", via: :get
   match "login_attempt", :to => "sessions#login_attempt", via: :post
   match "consent_decision", :to => "sessions#consent_decision", via: :post
   match "trigger_startdate", :to => "sessions#trigger_startdate", via: :post

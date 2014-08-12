@@ -16,7 +16,7 @@ class CareertransitionsController < ApplicationController
       flash[:notice] = "Career event incorrect"
       flash[:color]= "invalid"
     end
-    redirect_to(:controller => 'sessions', :action => 'setting')
+    redirect_to(:controller => 'sessions', :action => 'timeline')
   end
 
   private

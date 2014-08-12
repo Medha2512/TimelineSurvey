@@ -15,7 +15,7 @@ class EducationtransitionsController < ApplicationController
       flash[:notice] = "Education event incorrect"
       flash[:color]= "invalid"
     end
-    redirect_to(:controller => 'sessions', :action => 'setting')
+    redirect_to(:controller => 'sessions', :action => 'timeline')
 
   end
 

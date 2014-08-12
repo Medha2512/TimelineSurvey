@@ -31,8 +31,8 @@ class SessionsController < ApplicationController
     #Profile Page
   end
 
-  def setting
-    #Setting Page
+  def timeline
+    #Timeline Page
   end
 
   def login
@@ -90,8 +90,7 @@ class SessionsController < ApplicationController
   def trigger_startdate
     @user = current_user
     @undergrad_date = convert_date(params[:user], :undergrad_end)
-    @user.update_attributes( :undergrad_end => @undergrad_date, :current_page => 'setting')
-    redirect_to :action => 'setting'
+    redirect_to :action => 'timeline'
   end
 
   def consent_decision
