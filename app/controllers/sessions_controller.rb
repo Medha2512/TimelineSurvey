@@ -90,6 +90,7 @@ class SessionsController < ApplicationController
   def trigger_startdate
     @user = current_user
     @undergrad_date = convert_date(params[:user], :undergrad_end)
+    @user.update_attributes( :undergrad_end => @undergrad_date, :current_page => 'timeline')
     redirect_to :action => 'timeline'
   end
 
