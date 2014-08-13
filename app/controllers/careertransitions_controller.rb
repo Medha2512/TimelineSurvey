@@ -10,6 +10,8 @@ class CareertransitionsController < ApplicationController
   @user = current_user
   @career = @user.careertransitions.build(career_params)  
   set_career_content
+  puts "****************************************************"
+  puts @career.content
   if @career.save
    flash[:notice] = "Career event logged"
    flash[:color]= "valid"
