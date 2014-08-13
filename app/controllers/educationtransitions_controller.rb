@@ -8,7 +8,7 @@ class EducationtransitionsController < ApplicationController
   def create
     @user = current_user
     @education = @user.educationtransitions.build(education_params)
-    @education.content = set_education_content()
+    @education.content = set_education_content(@education.new_education_field)
     if @education.save
       flash[:notice] = "Education event logged"
       flash[:color]= "valid"
@@ -28,13 +28,12 @@ class EducationtransitionsController < ApplicationController
     :previous_dissatisfaction, :dissatisfaction_source, :created_at, :updated_at)
   end
 
-  def set_education_content
-    @new_education_field = params[:new_education_field]
-    if @new_education_field == "MS in an engineering field"
+  def set_education_content(new_education_field)
+    if new_education_field == "MS in an engineering field"
       return "Engr: MS"
-    elsif     @new_education_field == "PhD in an engineering field"
+    elsif new_education_field == "PhD in an engineering field"
       return "Engr: PhD"
-    elsif     @new_education_field == "BS/MS/PhD in non engineering field"
+    elsif new_education_field == "BS/MS/PhD in non engineering field"
       return "Non-Engr"
     end
   end
