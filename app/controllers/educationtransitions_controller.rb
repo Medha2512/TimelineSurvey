@@ -8,7 +8,7 @@ class EducationtransitionsController < ApplicationController
   def create
     @user = current_user
     @education = @user.educationtransitions.build(education_params)
-    @education.content = set_education_content
+    @education.content = set_education_content()
     if @education.save
       flash[:notice] = "Education event logged"
       flash[:color]= "valid"
