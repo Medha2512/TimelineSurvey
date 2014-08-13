@@ -11,24 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140812232116) do
+ActiveRecord::Schema.define(version: 20140813033307) do
 
   create_table "careertransitions", force: true do |t|
     t.integer  "user_id"
     t.string   "new_career_field"
     t.string   "motivation"
-    t.string   "service_through"
+    t.integer  "service_through"
     t.string   "ways_service_through"
-    t.string   "service_outside"
+    t.integer  "service_outside"
     t.string   "ways_service_outside"
     t.integer  "job_length"
-    t.string   "service_job_satisfaction"
-    t.string   "previous_dissaticfaction"
-    t.string   "dissatisfaction_source"
+    t.integer  "service_job_satisfaction"
+    t.integer  "initial_job_satisfaction"
+    t.integer  "previous_dissatisfaction"
+    t.text     "dissatisfaction_source"
+    t.string   "other_dissatisfaction_source"
     t.string   "event_time"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "content"
+  end
+
+  create_table "demographics", force: true do |t|
+    t.string   "gender"
+    t.string   "race"
+    t.string   "religious"
+    t.string   "religious_active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ed_exp_classifications", force: true do |t|
@@ -56,14 +67,15 @@ ActiveRecord::Schema.define(version: 20140812232116) do
     t.string   "motivation"
     t.boolean  "eng_service_through_program"
     t.boolean  "eng_service_through_extra"
-    t.string   "education_service_satisfaction"
-    t.string   "initial_new_education_service_satisfaction"
-    t.string   "previous_dissaticfaction"
-    t.string   "dissatisfaction_source"
+    t.integer  "education_service_satisfaction"
+    t.integer  "initial_new_education_service_satisfaction"
+    t.integer  "previous_dissatisfaction"
+    t.text     "dissatisfaction_source"
+    t.string   "ed_other_dissatisfaction_source"
     t.string   "event_time"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "content"
   end
 
   create_table "like_rt_responses", force: true do |t|
@@ -93,12 +105,12 @@ ActiveRecord::Schema.define(version: 20140812232116) do
     t.string   "current_page"
     t.string   "undergrad_major"
     t.boolean  "is_admin"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

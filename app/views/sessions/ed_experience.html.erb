@@ -40,8 +40,11 @@
 						<td><%= check_box_tag "ed_exp_classification[service_exp][]", "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)"%>
 						Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)</td>
 					</tr>
+					<tr>					
+						<td><%= check_box_tag "other_service_exp_check", "Other" %>
+						Other <%= text_field_tag 'other_service_exp', '', disabled: true %> </td>
+					</tr>
 				</table>
-				If other, Please specify : <%= f.text_field 'non_engineering_field' %>
 			</li>
 			<li>
 				Did you participate as an undergrad, graduate student or both?</br>
@@ -156,6 +159,15 @@
 		document.getElementById("TravelDiv").style.display = "none";
 		document.getElementById("NonEnggService").style.display = "none";
 
+		$("input[name=other_service_exp_check]").click(function() {
+			if (document.getElementById("other_service_exp").disabled)
+				document.getElementById("other_service_exp").disabled = false;
+			else {
+
+				document.getElementById("other_service_exp").value = "";
+				document.getElementById("other_service_exp").disabled = true;
+			}
+		});
 		$("input[name=other_non_engg_service_check]").click(function() {
 			if (document.getElementById("other_non_engg_services").disabled)
 				document.getElementById("other_non_engg_services").disabled = false;
@@ -165,6 +177,7 @@
 				document.getElementById("other_non_engg_services").disabled = true;
 			}
 		});
+		
 		$("input[name='ed_exp_classification[service]']").click(function() {
 			if (this.id == 'ed_exp_classification_service_yes')
 				document.getElementById("ServiceDiv").style.display = "block";

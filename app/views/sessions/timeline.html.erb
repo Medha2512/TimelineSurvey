@@ -34,8 +34,97 @@
 				"Began my own engineering practice","NGO/non-profit related to engineering",
 				"Military","Academic/education position related to engineering","Unemployed",
 				"Same company, but full time to part time/part time to full time",
-				"Environmental","Leaving work to take care of family","Leaving work for other reasons"]%></br></p>
+				"Environmental","Leaving work to take care of family","Leaving work for other reasons"]%></p>
 		</li>
+		<li><p>Was this transition motivated by life or personal elements 
+				(i.e. moving for a spouse’s job, having children, family needs, etc.)?
+				<%= f.radio_button :motivation , "Not at all" %> Not at all
+				<%= f.radio_button :motivation , "One of many factors" %> One of many factors
+				<%= f.radio_button :motivation , "A main factor" %> A main factor </p>
+		</li>
+		<li><p>To what degree did you engage in service through this new career/job?: 
+				<%= f.radio_button :service_through , "1" %> 1: None
+				<%= f.radio_button :service_through , "2" %> 2
+				<%= f.radio_button :service_through , "3" %> 3
+				<%= f.radio_button :service_through , "4" %> 4
+				<%= f.radio_button :service_through , "5" %> 5
+				<%= f.radio_button :service_through , "6" %> 6
+				<%= f.radio_button :service_through , "7" %> 7: Substantial </p>
+		</li>
+		<li><p>Describe the ways in which you engage in service through this new career/job.: 
+				<%= f.text_field :ways_service_through %> </p>
+		</li>
+		<li><p>To what degree did you engage in service outside of this new career/job?: 
+				<%= f.radio_button :service_outside , "1" %> 1: None
+				<%= f.radio_button :service_outside , "2" %> 2
+				<%= f.radio_button :service_outside , "3" %> 3
+				<%= f.radio_button :service_outside , "4" %> 4
+				<%= f.radio_button :service_outside , "5" %> 5
+				<%= f.radio_button :service_outside , "6" %> 6
+				<%= f.radio_button :service_outside , "7" %> 7: Substantial </p>
+		</li>
+		<li><p>Describe the ways in which you engage in service outside of this new career/job.: 
+				<%= f.text_field :ways_service_outside %> </p>
+		</li>
+		<li><p>How long did you stay in this career/job? 
+				<%= f.radio_button :job_length , "< 3 months" %> < 3 months
+				<%= f.radio_button :job_length , "3-12 months" %> 3-12 months
+				<%= f.radio_button :job_length , "1-3 years" %> 1-3 years
+				<%= f.radio_button :job_length , "3-5 years" %> 3-5 years
+				<%= f.radio_button :job_length , "5 years" %> > 5 years</p>
+		</li>
+		<li><p>How satisfied were you with your ability to engage in service through 
+			your job/career at the end of your previous career/job, right before this transition?
+				<%= f.radio_button :service_job_satisfaction , "1" %> 1: Very Dissatisfied
+				<%= f.radio_button :service_job_satisfaction , "2" %> 2
+				<%= f.radio_button :service_job_satisfaction , "3" %> 3
+				<%= f.radio_button :service_job_satisfaction , "4" %> 4: Neutral
+				<%= f.radio_button :service_job_satisfaction , "5" %> 5
+				<%= f.radio_button :service_job_satisfaction , "6" %> 6
+				<%= f.radio_button :service_job_satisfaction , "7" %> 7: Satisfied </p>
+			</li>
+			<li><p>How satisfied were you with your ability to engage in service, initially, 
+			in your new job/career?
+				<%= f.radio_button :initial_job_satisfaction , "1" %> 1: Very Dissatisfied
+				<%= f.radio_button :initial_job_satisfaction , "2" %> 2
+				<%= f.radio_button :initial_job_satisfaction , "3" %> 3
+				<%= f.radio_button :initial_job_satisfaction , "4" %> 4: Neutral
+				<%= f.radio_button :initial_job_satisfaction , "5" %> 5
+				<%= f.radio_button :initial_job_satisfaction , "6" %> 6
+				<%= f.radio_button :initial_job_satisfaction , "7" %> 7: Satisfied </p>
+			</li>
+			<li><p>How much was this career transition due to dissatisfaction with your previous job/career??
+				<%= f.radio_button :previous_dissatisfaction , "1" %> 1: None
+				<%= f.radio_button :previous_dissatisfaction , "2" %> 2
+				<%= f.radio_button :previous_dissatisfaction , "3" %> 3
+				<%= f.radio_button :previous_dissatisfaction , "4" %> 4
+				<%= f.radio_button :previous_dissatisfaction , "5" %> 5
+				<%= f.radio_button :previous_dissatisfaction , "6" %> 6
+				<%= f.radio_button :previous_dissatisfaction , "7" %> 7: Substantial </p>
+			</li>
+			<li><p>Which of the following elements best describe the source of your dissatisfaction 
+				that led to your transition (check the main factors)
+				<table class = "checkBoxTable">
+					<tr>
+						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Work-life balance conflict" %>
+						Work-life balance conflict </td>
+						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Personal values did not align with the company/work"%>
+						Personal values did not align with the company/work</td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Didn’t like who you were working with (your colleagues)"%>
+						Didn’t like who you were working with (your colleagues)) </td>
+						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Lack of service engagement through my job"%>
+						Lack of service engagement through my job</td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Lack of service engagement outside of my job" %>
+						Lack of service engagement outside of my job</td>
+						<td><%= check_box_tag "careertransition_dissatisfaction_source_check", "Other" %>
+						Other <%= text_field_tag 'other_dissatisfaction_source', '', disabled: true %> </td>
+					</tr>
+				</table>
+			</li>
 	</ol>	
 	<%= f.submit :Submit %>
 	<% end %>
@@ -50,7 +139,76 @@
 				<%= f.select :new_education_field, [ "MS in an engineering related field", 
 				"PhD in an engineering related field", "BS/MS/PhD in non-engineering related field"],
 				:onClick => "updateActivity(this)"%></br></p>
-				If other, Please specify : <%= text_field_tag 'non_engineering_field', '', disabled: true %>
+				If so, which field? <%= text_field_tag 'other_non_engineering_field', '', disabled: true %>
+		</li>
+		<li><p>Was this transition motivated by life or personal elements 
+				(i.e. moving for a spouse’s job, having children, family needs, etc.)?
+				<%= f.radio_button :motivation , "Not at all" %> Not at all
+				<%= f.radio_button :motivation , "One of many factors" %> One of many factors
+				<%= f.radio_button :motivation , "A main factor" %> A main factor </p>
+		</li>
+		<li><p>Did you participate in engineering service while in school through this program 
+			(Service-learning, development oriented studies, etc.)?
+				<%= f.radio_button :eng_service_through_program , "Yes" %> Yes
+				<%= f.radio_button :eng_service_through_program , "No" %> No </p>
+		</li>		
+		<li><p>Did you participate in engineering service while at this school 
+			through extracurricular activities (EWB, etc.)??
+				<%= f.radio_button :eng_service_through_extra , "Yes" %> Yes
+				<%= f.radio_button :eng_service_through_extra , "No" %> No </p>
+		</li>			
+		<li><p>How satisfied were you with your ability to engage in service through your previous career/job or 
+				educational element at the end, right before this transition?				
+				<%= f.radio_button :education_service_satisfaction , "1" %> 1: Very Dissatisfied
+				<%= f.radio_button :education_service_satisfaction , "2" %> 2
+				<%= f.radio_button :education_service_satisfaction , "3" %> 3
+				<%= f.radio_button :education_service_satisfaction , "4" %> 4: Neutral
+				<%= f.radio_button :education_service_satisfaction , "5" %> 5
+				<%= f.radio_button :education_service_satisfaction , "6" %> 6
+				<%= f.radio_button :education_service_satisfaction , "7" %> 7: Satisfied </p>
+		</li>
+		<li><p>How satisfied were you with your ability to engage in service, initially, 
+				in your new educational element?				
+				<%= f.radio_button :initial_new_education_service_satisfaction , "1" %> 1: Very Dissatisfied
+				<%= f.radio_button :initial_new_education_service_satisfaction , "2" %> 2
+				<%= f.radio_button :initial_new_education_service_satisfaction , "3" %> 3
+				<%= f.radio_button :initial_new_education_service_satisfaction , "4" %> 4: Neutral
+				<%= f.radio_button :initial_new_education_service_satisfaction , "5" %> 5
+				<%= f.radio_button :initial_new_education_service_satisfaction , "6" %> 6
+				<%= f.radio_button :initial_new_education_service_satisfaction , "7" %> 7: Satisfied </p>
+		</li>
+		<li><p>How much was this education transition due to dissatisfaction with your 
+				previous career/job or educational element?				
+				<%= f.radio_button :previous_dissatisfaction , "1" %> 1: None
+				<%= f.radio_button :previous_dissatisfaction , "2" %> 2
+				<%= f.radio_button :previous_dissatisfaction , "3" %> 3
+				<%= f.radio_button :previous_dissatisfaction , "4" %> 4
+				<%= f.radio_button :previous_dissatisfaction , "5" %> 5
+				<%= f.radio_button :previous_dissatisfaction , "6" %> 6
+				<%= f.radio_button :previous_dissatisfaction , "7" %> 7: Substantial </p>
+		</li>
+		<li>Which of the following elements best describe the source of your dissatisfaction 
+				that led to your transition (check the main factors)
+				<table class = "checkBoxTable">
+					<tr>
+						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Work-life balance conflict" %>
+						Work-life balance conflict </td>
+						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Personal values did not align with the company/work"%>
+						Personal values did not align with the company/work</td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Didn’t like who you were working with (your colleagues)"%>
+						Didn’t like who you were working with (your colleagues)) </td>
+						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Lack of service engagement through my job"%>
+						Lack of service engagement through my job</td>
+					</tr>
+					<tr>
+						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Lack of service engagement outside of my job" %>
+						Lack of service engagement outside of my job</td>
+						<td><%= check_box_tag "edtransition_dissatisfaction_source_check", "Other" %>
+						Other <%= text_field_tag 'ed_other_dissatisfaction_source', '', disabled: true %> </td>
+					</tr>
+				</table>
 		</li>
 	</ol>	
 	<%= f.submit :Submit %>
@@ -93,6 +251,27 @@
 	
 	
  	$(function() {
+ 		
+    	$("input[name=careertransition_dissatisfaction_source_check]").click(function() {
+			if (document.getElementById("other_dissatisfaction_source").disabled)
+				document.getElementById("other_dissatisfaction_source").disabled = false;
+			else {
+
+				document.getElementById("other_dissatisfaction_source").value = "";
+				document.getElementById("other_dissatisfaction_source").disabled = true;
+			}
+		});
+		
+    	$("input[name=edtransition_dissatisfaction_source_check]").click(function() {
+			if (document.getElementById("ed_other_dissatisfaction_source").disabled)
+				document.getElementById("ed_other_dissatisfaction_source").disabled = false;
+			else {
+
+				document.getElementById("ed_other_dissatisfaction_source").value = "";
+				document.getElementById("ed_other_dissatisfaction_source").disabled = true;
+			}
+		});
+ 		
     	$('.datepicker').datepicker({
     	changeMonth: true,
     	changeYear: true,
@@ -214,7 +393,7 @@
 	
 	function updateActivity(oSelect) {
 		if (oSelect.options[oSelect.selectedIndex].value == 'BS/MS/PhD in non-engineering related field') {
-			document.getElementById("non_engineering_field").disabled = false;
+			document.getElementById("other_non_engineering_field").disabled = false;
 		}
 	}
 </script>

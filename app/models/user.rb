@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :educationtransitions, :dependent => :destroy
   has_one :like_rt_response, :dependent => :destroy
   has_one :ed_exp_classification, :dependent => :destroy
+  has_one :demographic, :dependent => :destroy
 
   before_save :encrypt_password
   after_save :clear_password
