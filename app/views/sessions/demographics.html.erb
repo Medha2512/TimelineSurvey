@@ -1,0 +1,67 @@
+<% @page_title = "Alumni Survey | Demographics" -%>
+
+<h2 class = "Page_Title"> Demographics </h2>
+<div class= "DemographicsPage">
+
+	<p>
+		Please enter the below information -
+	</p>
+
+	<%= form_for(:demographic, :url => {:controller => 'sessions', :action => 'thank_you'}) do |f| %>
+	<ol class="questions">
+		<li>
+			Gender :
+			<%= f.radio_button :gender , "Male" %> Male
+			<%= f.radio_button :gender , "Female" %> Female
+			<%= f.radio_button :gender , "Prefer not to say" %> Prefer not to say
+		</li>
+		<li>
+			Race :
+			<%= f.radio_button :race , "African american or black" %> African american or black
+			<%= f.radio_button :race , "Hispanic or Latino" %> Hispanic or Latino
+			<%= f.radio_button :race , "Asian" %> Asian
+			<%= f.radio_button :race , "Native American or Alaska Native" %> Native American or Alaska Native
+			<%= f.radio_button :race , "Native Hawaiian or Pacific Islander" %> Native Hawaiian or Pacific Islander
+			<%= f.radio_button :race , "White" %> White
+			<%= f.radio_button :race , "Multiracial" %> Multiracial
+			<%= f.radio_button :race , "Prefer not to say" %> Prefer not to say
+			<%= f.radio_button :race , "Other" %> Other
+			<%= f.text_field :other_race, '', disabled: true %>
+		</li>
+		<li>
+			How would you describe your religious preference?
+			<%= f.radio_button :religious , "Religious and affiliated" %> Religious, affiliated with an organized religion (i.e. Christian, Muslim, Jewish, Hindu, Buddhist, etc.)
+			<%= f.radio_button :religious , "Spiritual but not affiliated" %> Spiritual but not affiliated with an organized religion (i.e. Humanist, Agnostic, etc.)
+			<%= f.radio_button :religious , "Atheist" %> Atheist
+			<%= f.radio_button :religious , "Indifferent or not religious" %> Indifferent or not religious
+		</li>
+		<li>
+			How active do you consider yourself in the practice of your religious preference?
+			<%= f.radio_button :religious_active , "Very active" %> Very active
+			<%= f.radio_button :religious_active , "Somewhat active" %> Somewhat active
+			<%= f.radio_button :religious_active , "Not very active" %> Not very active
+			<%= f.radio_button :religious_active , "Not active" %> Not active
+			<%= f.radio_button :religious_active , "Does not apply/Prefer not to say" %> Does not apply/Prefer not to say
+		</li>
+	</ol>
+</div>
+
+<%= f.submit "Continue >>" %>
+<% end %>
+
+</div>
+
+<script>
+	$(document).ready(function() {
+		$("input[name='demographic[race]']").click(function() {
+			if (this.id == 'Other')
+				document.getElementById("other_race").disabled = false;
+			else
+			{
+				document.getElementById("other_race").value = "";
+				document.getElementById("other_race").disabled = true;
+				
+			}
+		});
+	}); 
+</script>

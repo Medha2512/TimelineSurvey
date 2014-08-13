@@ -7,7 +7,7 @@
 		Characterize your engineering service experience(s) that you engaged in as a student
 	</p>
 
-	<%= form_for(:ed_exp_classification, :url => {:controller => 'sessions', :action => 'ed_exp_response'}) do |f| %>
+	<%= form_for(:ed_exp_classification, :url => {:controller => 'sessions', :action => 'demographic'}) do |f| %>
 	<ol class="questions">
 		<li>
 			Did you engage in any forms of service through engineering as a student (undergrad or grad)?</br>
@@ -42,7 +42,7 @@
 					</tr>
 					<tr>					
 						<td><%= check_box_tag "other_service_exp_check", "Other" %>
-						Other <%= text_field_tag 'other_service_exp', '', disabled: true %> </td>
+						Other <%= f.text_field 'other_service_exp', '', disabled: true %> </td>
 					</tr>
 				</table>
 			</li>
@@ -137,7 +137,7 @@
 						Sports Camp, Coaching, etc. (unpaid)</td>
 
 						<td><%= check_box_tag "other_non_engg_service_check", "Other" %>
-						Other <%= text_field_tag 'other_non_engg_services', '', disabled: true %> </td>
+						Other <%= f.text_field 'other_non_engg_services', '', disabled: true %> </td>
 					</tr>
 				</table>
 			</li>

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   match "thank_you", :to => "sessions#thank_you", via: :get
   match "admin_page", :to => "sessions#admin_page", via: :get
   match "download_xls", :to => "users#download_xls", via: :get
+  match "demographic", :to => "sessions#demographic", via: :post
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
