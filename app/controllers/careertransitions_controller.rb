@@ -57,5 +57,6 @@ class CareertransitionsController < ApplicationController
   elsif params[:new_career_field] == "Leaving work for other reasons"
     @new_content = "Left: for other"
   end
+  return @new_content
  end
 end
