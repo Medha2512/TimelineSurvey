@@ -1,6 +1,5 @@
 class CareertransitionsController < ApplicationController
  before_filter :current_user , :only => [:new, :create]
- before_filter :set_career_content , :only => [:create]
  def new
   @user = current_user
   @career = @user.careertransitions.build
@@ -10,7 +9,7 @@ class CareertransitionsController < ApplicationController
 
   @user = current_user
   @career = @user.careertransitions.build(career_params)  
-  @career.content = set_career_content
+  set_career_content
   if @career.save
    flash[:notice] = "Career event logged"
    flash[:color]= "valid"
@@ -29,31 +28,31 @@ class CareertransitionsController < ApplicationController
 
  def set_career_content
   if params[:new_career_field] == "Consulting engineer in private industry"
-   @new_career_field = "Private Engr"
+   @career.content = "Private Engr"
   elsif params[:new_career_field] == "Engineering in the public sector"
-   @new_career_field = "Public Engr"
+    @career.content = "Public Engr"
   elsif params[:new_career_field] == "Engineering research lab"
-   @new_career_field = "Engr Research"
+    @career.content = "Engr Research"
   elsif params[:new_career_field] == "Non-engineering"
-   @new_career_field = "Non Engr"
+    @career.content = "Non Engr"
   elsif params[:new_career_field] == "Began my own engineering practice"
-   @new_career_field = "Own Engr Firm"
+    @career.content = "Own Engr Firm"
   elsif params[:new_career_field] == "NGO/non-profit related to engineering"
-   @new_career_field = "Engr NGO"
+    @career.content = "Engr NGO"
   elsif params[:new_career_field] == "Military"
-   @new_career_field = "Military"
+    @career.content = "Military"
   elsif params[:new_career_field] == "Academic/education position related to engineering"
-   @new_career_field = "Academic"
+    @career.content = "Academic"
   elsif params[:new_career_field] == "Unemployed"
-   @new_career_field = "Unemployed"
+    @career.content = "Unemployed"
   elsif params[:new_career_field] ==  "Working at the same company, but moved from full time to part time/part time to full time"
-   @new_career_field = "Same Co."
+    @career.content = "Same Co."
   elsif params[:new_career_field] ==  "Environmental"
-   @new_career_field = "Environmental"
+    @career.content = "Environmental"
   elsif params[:new_career_field] == "Leaving work to take care of family"
-   @new_career_field = "Left: for family"
+    @career.content = "Left: for family"
   elsif params[:new_career_field] == "Leaving work for other reasons"
-   @new_career_field = "Left: for other"
+    @career.content = "Left: for other"
   end
  end
 end
