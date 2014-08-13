@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.username == 'abcAdmin'
+    if @user.username == 'onlinecareersurvey'
       @user.is_admin = true
       @user.current_page = "admin_page"
     else
