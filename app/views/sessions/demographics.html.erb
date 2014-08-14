@@ -7,7 +7,7 @@
 		Please enter the below information -
 	</p>
 
-	<%= form_for(:demographic, :url => {:controller => 'sessions', :action => 'demographic_response'}) do |f| %>
+	<%= form_for(:demographic, :html => {:id => 'demoForm'}, :url => {:controller => 'sessions', :action => 'demographic_response'}) do |f| %>
 	<ol class="questions">
 		<li>
 			Gender : </br>
@@ -76,5 +76,21 @@
 				document.getElementById("other_race").disabled = true;
 			}
 		});
+		$('#demoForm').on('submit', function(e) {
+			var noneFilled = checkFields($(this));
+			if (noneFilled) {
+				alert('Please fill atleast one field to proceed');
+				e.preventDefault();
+			}
+		});
 	}); 
+	
+	function checkFields(form) {
+		var checks_radios = form.find(':radio');
+		var checked = checks_radios.filter(':checked');
+		if (checked.length === 0) {
+			return true;
+		}
+		return false;
+	}
 </script>

@@ -42,7 +42,7 @@
 				"Military","Academic/education position related to engineering","Unemployed",
 				"Same company, but full time to part time/part time to full time",
 				"Environmental","Leaving work to take care of family","Leaving work for other reasons"], 
-				:include_blank => true, %>
+				:include_blank => true %>
 		</li>
 		<li>Was this transition motivated by life or personal elements 
 				(i.e. moving for a spouse's job, having children, family needs, etc.)? </br>
@@ -144,6 +144,7 @@
 		</p>
 		<%= form_for(:educationtransition, :url => {:controller => 'educationtransitions', :action => 'create'}) do |f| %>
 		<%= f.hidden_field :event_time, :id => 'ed_event_time' %>
+		
 
 		<ol class="questions">
 			<li>

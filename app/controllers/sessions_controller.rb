@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
   end
 
   def ed_experience
+
     @ed_exp_classification = EdExpClassification.new
     @all_engg_service_exp = ["Engineers Without Borders, Engineers for a Sustainable World, Bridges 2 Prosperity or similar",
       "Extracurricular, Non-EWB-like (examples: unpaid student tutoring, K-12 outreach, etc.)",
@@ -113,7 +114,6 @@ class SessionsController < ApplicationController
       render 'timeline'
     else
       @user = current_user
-      populate_all_engg_service_exp
       @likert = @user.build_like_rt_response(likert_response_params)
       if @likert.save
         @user.update_attributes(:current_page => 'ed_experience')
@@ -130,6 +130,19 @@ class SessionsController < ApplicationController
     @user = current_user
     if params[:back]
       @ed_exp_classification = @user.ed_exp_classification
+      @all_engg_service_exp = ["Engineers Without Borders, Engineers for a Sustainable World, Bridges 2 Prosperity or similar",
+      "Extracurricular, Non-EWB-like (examples: unpaid student tutoring, K-12 outreach, etc.)",
+      "Certificate Program (series of related classes, such as Engineering in Developing Communities)",
+      "Service-Learning (in-class service experience tied to engineering content)",
+      "Integrated Degree Program (engineering service was in many classes for your degree)",
+      "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)"]
+
+      @all_non_engg_service_exp = ["Service-learning in Non-engineering courses",
+      "Habitat for Humanity Build","Tutoring elementary or secondary children", "Donated Blood",
+      "Disaster Relief Volunteer", "Short term on-site service project (i.e. 1-2 week service trip, Non-engineering)",
+      "International Humanitarian Volunteer","Food Bank Volunteer","Meals on Wheels Volunteer",
+      "Nursing Home Volunteer","Political Campaign Volunteer","Big Brother/Big Sister, Boys & Girls Club, Boy/Girl Scouts",
+      "Soup Kitchen Volunteer","Sports Camp, Coaching, etc. (unpaid)"]
       render "ed_experience"
     else
       @demographic = @user.build_demographic(demographic_params)

@@ -1,4 +1,4 @@
-<% @page_title = "Alumni Survey | Likert Items" -%>
+<% @page_title = "Alumni Survey | Timeline" -%>
 
 <h3 class='User_Header'> Likert Items from EPRA : <%= @current_user.username%></h3>
 <style type="text/css">
@@ -30,7 +30,7 @@
 		Rate the level to which you agree/disagree with the following statements using the following scale:
 	</p>
 
-	<%= form_for(:like_rt_response,  :url => {:controller => 'sessions', :action => 'likert_response'}) do |f| %>
+	<%= form_for(:like_rt_response,:html => { :id => "likertForm" } ,:url => {:controller => 'sessions', :action => 'likert_response'}) do |f| %>
 
 	<table>
 		<tr>
@@ -169,3 +169,24 @@
 	<% end %>
 
 </div>
+<script type="text/javascript">
+	$(function() {
+		$('#likertForm').on('submit', function(e) {
+			var noneFilled = checkFields($(this));
+			if (noneFilled) {
+				alert('Please fill atleast one field to proceed');
+				e.preventDefault();
+			}
+		});
+	});
+
+	function checkFields(form) {
+		var checks_radios = form.find(':radio');
+		var checked = checks_radios.filter(':checked');
+		if (checked.length === 0) {
+			return true;
+		}
+		return false;
+	}
+
+</script>
