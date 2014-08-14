@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   before_filter :save_login_state, :only => [:index, :login, :login_attempt]
   before_filter :current_user, :only => [:likertItems, :ed_exp_response, :likert_response,
     :trigger_startdate, :consent_decision]
-  before_filter :populate_all_engg_service_exp, :only => [:likert_response,:demographic_response]
 
   helper_method :destroyItem
   def consent
@@ -29,7 +28,20 @@ class SessionsController < ApplicationController
   end
 
   def ed_experience
-    #Login Form
+    @ed_exp_classification = EdExpClassification.new
+    @all_engg_service_exp = ["Engineers Without Borders, Engineers for a Sustainable World, Bridges 2 Prosperity or similar",
+      "Extracurricular, Non-EWB-like (examples: unpaid student tutoring, K-12 outreach, etc.)",
+      "Certificate Program (series of related classes, such as Engineering in Developing Communities)",
+      "Service-Learning (in-class service experience tied to engineering content)",
+      "Integrated Degree Program (engineering service was in many classes for your degree)",
+      "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)"]
+
+    @all_non_engg_service_exp = ["Service-learning in Non-engineering courses",
+      "Habitat for Humanity Build","Tutoring elementary or secondary children", "Donated Blood",
+      "Disaster Relief Volunteer", "Short term on-site service project (i.e. 1-2 week service trip, Non-engineering)",
+      "International Humanitarian Volunteer","Food Bank Volunteer","Meals on Wheels Volunteer",
+      "Nursing Home Volunteer","Political Campaign Volunteer","Big Brother/Big Sister, Boys & Girls Club, Boy/Girl Scouts",
+      "Soup Kitchen Volunteer","Sports Camp, Coaching, etc. (unpaid)"]
   end
 
   def thank_you
@@ -101,6 +113,7 @@ class SessionsController < ApplicationController
       render 'timeline'
     else
       @user = current_user
+      populate_all_engg_service_exp
       @likert = @user.build_like_rt_response(likert_response_params)
       if @likert.save
         @user.update_attributes(:current_page => 'ed_experience')
@@ -185,23 +198,6 @@ class SessionsController < ApplicationController
   def convert_date(hash, date_symbol_or_string)
     attribute = date_symbol_or_string.to_s
     return Date.new(hash[attribute + '(1i)'].to_i, hash[attribute + '(2i)'].to_i, hash[attribute + '(3i)'].to_i)
-  end
-
-  def populate_all_engg_service_exp
-
-    @all_engg_service_exp = ["Engineers Without Borders, Engineers for a Sustainable World, Bridges 2 Prosperity or similar",
-      "Extracurricular, Non-EWB-like (examples: unpaid student tutoring, K-12 outreach, etc.)",
-      "Certificate Program (series of related classes, such as Engineering in Developing Communities)",
-      "Service-Learning (in-class service experience tied to engineering content)",
-      "Integrated Degree Program (engineering service was in many classes for your degree)",
-      "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)"]
-
-    @all_non_engg_service_exp = ["Service-learning in Non-engineering courses",
-      "Habitat for Humanity Build","Tutoring elementary or secondary children", "Donated Blood",
-      "Disaster Relief Volunteer", "Short term on-site service project (i.e. 1-2 week service trip, Non-engineering)",
-      "International Humanitarian Volunteer","Food Bank Volunteer","Meals on Wheels Volunteer",
-      "Nursing Home Volunteer","Political Campaign Volunteer","Big Brother/Big Sister, Boys & Girls Club, Boy/Girl Scouts",
-      "Soup Kitchen Volunteer","Sports Camp, Coaching, etc. (unpaid)"]
   end
 
   def profile_params

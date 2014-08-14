@@ -17,7 +17,7 @@
 				<%= f.select :undergrad_major, [ "Aerospace", "Architectural", "Biological/Biomedical",
             "Biomechanical","Chemical","Chem/Bio","Civil","Computer/Computer Science/ Software","Construction Management",
             "Electrical","Environmental","Mechanical","Math or Natural Science related","Humanities or social science related",
-            "Other" ],{} , :onchange => "updateActivity(this.value)"%></br>
+            "Other" ],:include_blank => true, :onchange => "updateActivity(this.value)"%></br>
 				If other, Please specify : <%= f.text_field :other_undergrad_major, :id=> 'other_undergrad_major', :disabled => true %>
 			</p>
 		</li>

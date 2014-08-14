@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean  :accepted, :default => false
       t.datetime :undergrad_end
       t.string   :current_page, :default => "consent"
-      t.string   :undergrad_major, :default => "None"
+      t.string   :undergrad_major, :default => ""
       t.string   :other_undergrad_major
       t.boolean  :is_admin, :default => false
       t.string   :auth_token
