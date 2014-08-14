@@ -31,7 +31,7 @@
 	</div>
 	<div id = "CareerForm" class = "EventPopUp">
 	<p>Please enter details for your career transition: </p>
-	<%= form_for(:careertransition,:remote => true,:html => {:'data-type' => 'json'}, :url => {:controller => 'careertransitions', :action => 'create'}) do |f| %>
+	<%= form_for(:careertransition, :url => {:controller => 'careertransitions', :action => 'create'}) do |f| %>
 	<%= f.hidden_field :event_time, :id => 'career_event_time' %>
 	
 	<ol class="questions">
