@@ -7,24 +7,27 @@ class CareertransitionsController < ApplicationController
 
   def create
 
-    @user = current_user
-    @career = @user.careertransitions.build(career_params)
-    @career.content = set_career_content(@career.new_career_field)
+    if params[:submit]
+      @user = current_user
+      @career = @user.careertransitions.build(career_params)
+      @career.content = set_career_content(@career.new_career_field)
 
-    if @career.save
-      flash[:notice] = "Career event logged"
-      flash[:color]= "valid"
-    else
-      flash[:notice] = "Career event incorrect"
-      flash[:color]= "invalid"
+      if not @career.save
+        flash[:notice] = "Career event : " + @career.errors.full_messages.join(",") + " for that date"
+        flash[:color]= "invalid"
+      end
     end
     redirect_to(:controller => 'sessions', :action => 'timeline')
+
   end
 
   private
 
   def career_params
-    params.require(:careertransition).permit(:new_career_field, :event_time)
+    params.require(:careertransition).permit(:new_career_field, :motivation, :service_through,
+    :ways_service_through, :service_outside, :ways_service_outside,:job_length,
+    :service_job_satisfaction, :initial_job_satisfaction, :previous_dissatisfaction,
+    :other_dissatisfaction_source, :event_time, :dissatisfaction_source => [])
   end
 
   def set_career_content(new_career_field)

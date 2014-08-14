@@ -9,7 +9,9 @@
 	<ul class="nav">
 		<li><%= link_to "Signup" , :signup, class: "nav_links"%></li> |
 		<li><%= link_to "Forgot Password" , :new_password_reset , class: "nav_links"%></li> |
-		<li><%= link_to "Sign in as guest" , :login, class: "nav_links"%></li>
+		<li><%= link_to "Sign in as guest" , :sign_in_guest, class: "nav_links"%>	
+		<img src="/assets/question.png" class="tooltip" title="By signing in as guest you wont be able to save your progress" />
+		</li>		
 	</ul>
 	<%= submit_tag("Log In") %>
 	<% end %>

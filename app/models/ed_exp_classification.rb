@@ -1,5 +1,5 @@
 class EdExpClassification < ActiveRecord::Base
-  serialize :service_exp
-  serialize :non_engg_ser_exp
+  serialize :engg_service_exp
+  serialize :nonengg_service_exp
   belongs_to :user
 end

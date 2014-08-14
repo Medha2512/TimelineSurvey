@@ -1,4 +1,6 @@
-<% @page_title = "Alumni Survey | Likert Items" -%> <h2 class='User_Header'><%= @current_user.username%></h2>
+<% @page_title = "Alumni Survey | Likert Items" -%>
+
+<h3 class='User_Header'> Likert Items from EPRA : <%= @current_user.username%></h3>
 <style type="text/css">
 	table {
 		border: 1px solid black;
@@ -7,7 +9,7 @@
 	td {
 		border: 1px solid black;
 		text-align: center;
-		width: 100px;
+		width: 70px;
 	}
 	th {
 		border: 1px solid black;
@@ -19,7 +21,7 @@
 	td:first-child {
 		text-align: left;
 		text-decoration: none;
-		width: 600px;
+		width: 650px;
 	}
 </style>
 
@@ -43,126 +45,127 @@
 		</tr>
 		<tr>
 			<td>1. I would not change my engineering design because it conflicted with community feedback </td>
-			<td><%= f.radio_button :question1 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question1 , "Disagree" %> </td>
-			<td><%= f.radio_button :question1 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question1 , "Neutral" %> </td>
-			<td><%= f.radio_button :question1 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question1 , "Agree" %> </td>
-			<td><%= f.radio_button :question1 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Disagree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Neutral" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Agree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>2. It is important to me personally to have a career that involves helping people</td>
-			<td><%= f.radio_button :question2 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question2 , "Disagree" %> </td>
-			<td><%= f.radio_button :question2 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question2 , "Neutral" %> </td>
-			<td><%= f.radio_button :question2 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question2 , "Agree" %> </td>
-			<td><%= f.radio_button :question2 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :helping_people , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :helping_people , "Disagree" %> </td>
+			<td><%= f.radio_button :helping_people , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :helping_people , "Neutral" %> </td>
+			<td><%= f.radio_button :helping_people , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :helping_people , "Agree" %> </td>
+			<td><%= f.radio_button :helping_people , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>3. It is important for engineers to consider the potential broader impacts of technical solutions to problems </td>
-			<td><%= f.radio_button :question3 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question3 , "Disagree" %> </td>
-			<td><%= f.radio_button :question3 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question3 , "Neutral" %> </td>
-			<td><%= f.radio_button :question3 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question3 , "Agree" %> </td>
-			<td><%= f.radio_button :question3 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :technical_soln_impact , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :technical_soln_impact , "Disagree" %> </td>
+			<td><%= f.radio_button :technical_soln_impact , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :technical_soln_impact , "Neutral" %> </td>
+			<td><%= f.radio_button :technical_soln_impact , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :technical_soln_impact , "Agree" %> </td>
+			<td><%= f.radio_button :technical_soln_impact , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>4. Service should not be an expected part of the engineering profession </td>
-			<td><%= f.radio_button :question4 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question4 , "Disagree" %> </td>
-			<td><%= f.radio_button :question4 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question4 , "Neutral" %> </td>
-			<td><%= f.radio_button :question4 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question4 , "Agree" %> </td>
-			<td><%= f.radio_button :question4 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :service_not_part , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :service_not_part , "Disagree" %> </td>
+			<td><%= f.radio_button :service_not_part , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :service_not_part , "Neutral" %> </td>
+			<td><%= f.radio_button :service_not_part , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :service_not_part , "Agree" %> </td>
+			<td><%= f.radio_button :service_not_part , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>5. I would be willing to have a career that earns less money if I were serving society </td>
-			<td><%= f.radio_button :question5 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question5 , "Disagree" %> </td>
-			<td><%= f.radio_button :question5 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question5 , "Neutral" %> </td>
-			<td><%= f.radio_button :question5 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question5 , "Agree" %> </td>
-			<td><%= f.radio_button :question5 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :less_money_for_society , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :less_money_for_society , "Disagree" %> </td>
+			<td><%= f.radio_button :less_money_for_society , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :less_money_for_society , "Neutral" %> </td>
+			<td><%= f.radio_button :less_money_for_society , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :less_money_for_society , "Agree" %> </td>
+			<td><%= f.radio_button :less_money_for_society , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>6. I view engineering and community service work as unconnected </td>
-			<td><%= f.radio_button :question6 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question6 , "Disagree" %> </td>
-			<td><%= f.radio_button :question6 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question6 , "Neutral" %> </td>
-			<td><%= f.radio_button :question6 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question6 , "Agree" %> </td>
-			<td><%= f.radio_button :question6 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :unconnected , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :unconnected , "Disagree" %> </td>
+			<td><%= f.radio_button :unconnected , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :unconnected , "Neutral" %> </td>
+			<td><%= f.radio_button :unconnected , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :unconnected , "Agree" %> </td>
+			<td><%= f.radio_button :unconnected , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>7. It is important to incorporate societal constraints into engineering decisions </td>
-			<td><%= f.radio_button :question7 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question7 , "Disagree" %> </td>
-			<td><%= f.radio_button :question7 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question7 , "Neutral" %> </td>
-			<td><%= f.radio_button :question7 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question7 , "Agree" %> </td>
-			<td><%= f.radio_button :question7 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :incorporate_societal , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :incorporate_societal , "Disagree" %> </td>
+			<td><%= f.radio_button :incorporate_societal , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :incorporate_societal , "Neutral" %> </td>
+			<td><%= f.radio_button :incorporate_societal , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :incorporate_societal , "Agree" %> </td>
+			<td><%= f.radio_button :incorporate_societal , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>8. I felt called by the needs of society to pursue a career in engineering </td>
-			<td><%= f.radio_button :question8 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question8 , "Disagree" %> </td>
-			<td><%= f.radio_button :question8 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question8 , "Neutral" %> </td>
-			<td><%= f.radio_button :question8 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question8 , "Agree" %> </td>
-			<td><%= f.radio_button :question8 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :call_by_society , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :call_by_society , "Disagree" %> </td>
+			<td><%= f.radio_button :call_by_society , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :call_by_society , "Neutral" %> </td>
+			<td><%= f.radio_button :call_by_society , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :call_by_society , "Agree" %> </td>
+			<td><%= f.radio_button :call_by_society , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>9. Engineering firms should take on some pro bono work </td>
-			<td><%= f.radio_button :question9 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question9 , "Disagree" %> </td>
-			<td><%= f.radio_button :question9 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question9 , "Neutral" %> </td>
-			<td><%= f.radio_button :question9 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question9 , "Agree" %> </td>
-			<td><%= f.radio_button :question9 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :pro_brono_work , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :pro_brono_work , "Disagree" %> </td>
+			<td><%= f.radio_button :pro_brono_work , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :pro_brono_work , "Neutral" %> </td>
+			<td><%= f.radio_button :pro_brono_work , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :pro_brono_work , "Agree" %> </td>
+			<td><%= f.radio_button :pro_brono_work , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>10. I think it is important to use my engineering to serve others </td>
-			<td><%= f.radio_button :question10 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question10 , "Disagree" %> </td>
-			<td><%= f.radio_button :question10 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question10 , "Neutral" %> </td>
-			<td><%= f.radio_button :question10 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question10 , "Agree" %> </td>
-			<td><%= f.radio_button :question10 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :serve_others , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :serve_others , "Disagree" %> </td>
+			<td><%= f.radio_button :serve_others , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :serve_others , "Neutral" %> </td>
+			<td><%= f.radio_button :serve_others , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :serve_others , "Agree" %> </td>
+			<td><%= f.radio_button :serve_others , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>11. I believe my life will be positively affected by the volunteering that I do </td>
-			<td><%= f.radio_button :question11 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question11 , "Disagree" %> </td>
-			<td><%= f.radio_button :question11 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question11 , "Neutral" %> </td>
-			<td><%= f.radio_button :question11 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question11 , "Agree" %> </td>
-			<td><%= f.radio_button :question11 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :positive_volunteering , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :positive_volunteering , "Disagree" %> </td>
+			<td><%= f.radio_button :positive_volunteering , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :positive_volunteering , "Neutral" %> </td>
+			<td><%= f.radio_button :positive_volunteering , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :positive_volunteering , "Agree" %> </td>
+			<td><%= f.radio_button :positive_volunteering , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>12. I believe that extra time spent on community service is worthwhile </td>
-			<td><%= f.radio_button :question12 , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :question12 , "Disagree" %> </td>
-			<td><%= f.radio_button :question12 , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :question12 , "Neutral" %> </td>
-			<td><%= f.radio_button :question12 , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :question12 , "Agree" %> </td>
-			<td><%= f.radio_button :question12 , "Strongly Agree" %> </td>
+			<td><%= f.radio_button :extra_time , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :extra_time , "Disagree" %> </td>
+			<td><%= f.radio_button :extra_time , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :extra_time , "Neutral" %> </td>
+			<td><%= f.radio_button :extra_time , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :extra_time , "Agree" %> </td>
+			<td><%= f.radio_button :extra_time , "Strongly Agree" %> </td>
 		</tr>
 	</table>
-	<%= f.submit "Continue >>" %>
+	<%= f.submit "<< Back" , :name => 'back', class: "submit" %>
+	<%= f.submit "Next >>" , class: "submit"  %>
 	<% end %>
 
 </div>

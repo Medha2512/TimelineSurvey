@@ -1,32 +1,57 @@
-<% @page_title = "Alumni Survey | Ed Bg" -%> <h2 class='User_Header'><%= @current_user.username%></h2>
+<% @page_title = "Alumni Survey | Ed Bg" -%>
+
+<h3 class = "User_Header"> Educational Backgroud : <%= @current_user.username%></h3>
 <div class= "Ed_Bg">
-	<%= form_tag(:action => 'trigger_startdate') do %>
+	<%= form_for(:user, :url => {:controller => 'sessions', :action => 'trigger_startdate'}) do |f| %>
 	<ol class="questions">
 		<li>
 			<p>
-				When did you finish your undergraduate degree?
-				<br>
-				<%= date_select("user", "undergrad_end", start_year: 1995, end_year: Date.current.year, discard_day: true) %>
+				When did you finish your undergraduate degree?</br>
+				<%= f.text_field :undergrad_end, :class => 'datepicker' %>
+				<img src="/assets/question.png" class="tooltip" title="In case of date uncertainity, please select 1st of that month" />
 			</p>
 		</li>
 		<li>
-		<p>
+			<p>
 				What was your primary major?:
-				<%= select_tag "major", options_for_select([ "Aerospace", "Architectural", "Biological/Biomedical",
-				"Biomechanical","Chemical","Chem/Bio","Civil","Computer/Computer Science/ Software","Construction Management",
-				"Electrical","Environmental","Mechanical","Math or Natural Science related","Humanities or social science related",
-				"Other" ]), :onClick => "updateActivity(this)"%></br>
-				If other, Please specify : <%= text_field_tag 'other_major', '', disabled: true %>
+				<%= f.select :undergrad_major, [ "Aerospace", "Architectural", "Biological/Biomedical",
+            "Biomechanical","Chemical","Chem/Bio","Civil","Computer/Computer Science/ Software","Construction Management",
+            "Electrical","Environmental","Mechanical","Math or Natural Science related","Humanities or social science related",
+            "Other" ],{} , :onchange => "updateActivity(this.value)"%></br>
+				If other, Please specify : <%= f.text_field :other_undergrad_major, :id=> 'other_undergrad_major', :disabled => true %>
 			</p>
 		</li>
 	</ol>
-	<%= submit_tag("Continue>>") %>
+
+	<%= f.submit "Next >>", class: "submit" , :onClick => 'updateSubmit()'%>
 	<% end %>
 </div>
 <script>
-	function updateActivity(oSelect) {
-		if (oSelect.options[oSelect.selectedIndex].value == 'Other') {
-			document.getElementById("other_major").disabled = false;
+	$(document).ready(function() {
+
+		if (document.getElementById("other_undergrad_major").value != "")
+			document.getElementById("other_undergrad_major").disabled = false;
+
+		$('.datepicker').datepicker({
+			dateFormat : "yy-mm-dd",
+			changeMonth : true,
+			changeYear : true,
+			minDate: -6010,
+			yearRange: "-20:+0",
+			maxDate: 'today',
+			onSelect : function() {
+				var selectedDate = new Date($(this).val());
+				var todayDate = new Date();
+			}
+		});
+	});
+
+	function updateActivity(value) {
+		if (value == 'Other')
+			document.getElementById("other_undergrad_major").disabled = false;
+		else {
+			document.getElementById("other_undergrad_major").value = "";
+			document.getElementById("other_undergrad_major").disabled = true;
 		}
 	}
 </script>

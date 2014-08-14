@@ -1,30 +1,93 @@
 <% @page_title = "Alumni Survey | Consent Form" -%>
-<h2 class='User_Header'>Welcome <%= @current_user.username%>!!!</h2>
-<div class= "Consent_Form">
-	<p>
-		The purpose of this research project is ...This is a research project being conducted by..... at Seattle University.
-		You are invited to participate in this research project because you are.....Your participation in this research study is voluntary.
-		You may choose not to participate. If you decide to participate in this research survey, you may withdraw at any time.
-		If you decide not to participate in this study or if you withdrawl from participating at any time, you will not be penalized.
-		The procedure involves filling an online survey that will take approximately 30 minutes.
-		Your responses will be confidential. The survey questions will be about.....We will do our best to keep your information confidential.
-		All data is stored in a password protected electronic format.
-		To help protect your confidentiality, the surveys will not contain information that will personally identify you.
-		The results of this study will be used for scholarly purposes only and may be shared with Seattle University representatives.
-		If you have any questions about the research study, please contact.....
-		This research has been reviewed according to Seattle University IRB procedures for research involving human subjects.
-	</p>
-	<div class="consent">
-		<%= form_tag(:action => 'consent_decision', remote: true) do %>
-		<ul class="radio">
-			<li>
-				<%= radio_button_tag(:decision , "accept") %> <%= label_tag(:decision_accept , "Accept")%>
-				<%= radio_button_tag(:decision , "decline") %> <%= label_tag(:decision_decline, "Decline")%>
-			</li>
-		</ul>
-		<%= submit_tag("Submit" , class: "submit", disabled: "true", :id => "submit_button", :onClick => 'updateActivity()')%>
-		<% end %>
-	</div>
+
+<h3 class='User_Header'>Welcome <%= @current_user.username%></h2> <h4>Permission to Take Part in a Human Research Study Page</h4>
+<p>
+	Title of research study: Assessing Alumni's Pathways through and Reasons for
+	Involvement in Engineering Service Activities, Protocol 11-0414
+</p>
+<p>
+	Investigator: Gregory Rulifson
+</p>
+<p>
+	Frequently Asked Questions:
+</p><textarea id='consent-textarea' readonly="">
+1. Why am I being invited to take part in a research study?
+
+We invite you to take part in a research study because you were involved in engineering service activities during college
+and have finished your undergraduate degree.
+		
+2. What should I know about a research study?
+
+This research study will be explained to you below. Whether or not you take part is up to you.
+- You can choose not to take part.
+- You can agree to take part and later change your mind.
+- Your decision will not be held against you.
+- You can ask all the questions you want before you decide.
+
+3. Who can I talk to?
+			
+If you have questions, concerns, or complaints, or think the research has hurt you, talk to the research team by phone at 
+303-492-8433 or email Angela.Bielefeldt@colorado.edu for Dr. Bielefeldt. This research has been reviewed and approved by 
+an Institutional Review Board ("IRB"). You may talk to them at (303) 735-3702 or irbadmin@colorado.edu if:
+- Your questions, concerns, or complaints are not being answered by the research team.
+- You cannot reach the research team.
+- You want to talk to someone besides the research team.
+- You have questions about your rights as a research subject.
+- You want to get information or provide input about this research.
+
+4. Why is this research being done?
+
+This research study is about understanding the pathways of engineering service alumni following their academic careers 
+as students. This research is trying to determine where these alumni have gone, regionally and in their occupations, 
+as well as the reasons	for these pathways. Further, the ways in which alumni are engaged in service currently is of 
+interest. It is not well known how much engineering service affects future career choices and values.
+
+5. How long will the research last?
+
+We expect that the survey will take 10-15 minutes. Additionally, you may be asked to participate in an exit interview
+ to get your feedback and thoughts on the goals of the survey related to the questions asked.
+
+6. How many people will be studied?
+
+We expect about 650 people in the entire study nationally.
+
+7. What happens if I say yes, I want to be in this research?
+
+Through the online survey tool, Qualtrics, you will be asked a series of multiple choice and free response questions. 
+These relate to your recent educational, occupational, and service histories as well as your reasons for and against 
+involvement in service. Brief demographic questions are also asked. Following the survey, you may be contacted to 
+participate in a short exit interview about your responses. There is no obligation to	participate in the interview 
+due to completing the survey.
+
+8. What happens if I do not want to be in this research?
+
+You can leave the research at any time and it will not be held against you.
+
+9. What happens if I say yes, but I change my mind later?
+
+You can leave the research at any time; it will not be held against you.
+
+10. What happens to the information collected for the research?
+
+We plan to publish the results of the study. None of the published information will be traceable to individual respondents.
+Results will be presented as an aggregate from the respondents or de-identified. Efforts will be made to limit the use and
+disclosure of your personal information to people who have a need to review this information. We cannot promise complete 
+secrecy. Organizations that may inspect and copy your information include the IRB and other representatives of this 
+organization, and members of the research team including the principal investigator (Rulifson) and the advising 
+professor (Bielefeldt).
+
+11. What else do I need to know?
+
+This research is being funded by the National Science Foundation.
+</textarea>
+<div class="consent">
+	<%= form_tag(:action => 'consent_decision', remote: true) do %>
+	</br>
+	<%= radio_button_tag(:decision , "accept") %> <%= label_tag(:decision_accept , "By checking this box, I give my permission to take part in this research.")%> </br>
+	<%= radio_button_tag(:decision , "decline") %> <%= label_tag(:decision_decline, "By checking this box, I do not give my permission to take part in this research and wish to exit the survey.")%> </br>
+	</br>
+	<%= submit_tag("Submit" , class: "submit", disabled: "true", :id => "submit_button", :onClick => 'updateActivity()')%>
+	<% end %>
 </div>
 <script>
 	function updateActivity() {

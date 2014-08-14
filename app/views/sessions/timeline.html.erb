@@ -1,194 +1,212 @@
-<% @page_title = "Alumni Survey | Ed Bg" -%>
+<% @page_title = "Alumni Survey | Timeline" -%>
 
-<p>The following is a timeline, focused on transitions between jobs, careers, and educational pursuits. 
-	First, we will ask you about what you transitioned to after graduating from undergraduate school. 
-	After that, please click on the timeline or input a date or month and year where a transition 
+<h3 class = "User_Header"> Timeline  : <%= @current_user.username%> </h3>
+<p>
+	The following is a timeline, focused on transitions between jobs, careers, and educational pursuits.
+	First, we will ask you about what you transitioned to after graduating from undergraduate school.
+	After that, please click on the timeline or input a date or month and year where a transition
 	of significance occurred. Then, we will ask you a series of questions to try and categorize that transition.
-	Note that questions about the transition will mainly look forward, focusing on what you transitioned to, 
-	rather than what you transitioned from. If your life has gone through many transitions, 
-	please give up to five significant transitions.</p>
-	
-<p> Go To Date: <%= text_field_tag 'datepickerData', nil, :class => 'datepicker' %>
+	Note that questions about the transition will mainly look forward, focusing on what you transitioned to,
+	rather than what you transitioned from. If your life has gone through many transitions,
+	please give up to five significant transitions.
+</p>
 
-<img src="/assets/question.png" class="tooltip" title="In case of date uncertainity, please select 1st of that month" /></p>
-
+<p>
+	Go To Date: <%= text_field_tag 'datepickerData', nil, :class => 'datepicker' %>
+	<img src="/assets/question.png" class="tooltip" title="In case of date uncertainity, please select 1st of that month" />
+</p>
 <div id="visualization"></div>
 <div id="log"  style="position:relative">
-
-
-<%= button_to "Complete >>", action: "likertItems" %>
-<div id= "Sign_Up" class = "EventPopUp">
-	<p> On <input type="text" id="mytext" readonly>  </p>
-	<p>	Your transition would best be described as :
-	<%= select_tag "event", options_for_select(["Career", "Education"]),:include_blank => true, :onchange => "populateData(this.value)"%></br>
-	</p>
-</div>
-<div id = "CareerForm" class = "EventPopUp">
-	<p>Oh Career event!!!</p>
-	<%= form_for(:careertransition, :url => {:controller => 'careertransitions', :action => 'create'}) do |f| %>
-	<%= f.hidden_field :event_time, :id => 'event_time' %>
+	</br>
+	<%= button_to "<< Back", {:action => "profile"} , {:class => "submit"}%>
+	<%= button_to "Next >>", {:action => "likertItems"} , {:class => "submit"} %>
+</br> </br>
+	
+	<div id= "Sign_Up" class = "EventPopUp">
+		<p>	On <input type="text" id="mytext" readonly></p>
+		<p>
+			Your transition would best be described as :
+			<%= select_tag "event", options_for_select(["Career", "Education"]),:include_blank => true, :onchange => "populateData(this.value)"%></br>
+		</p>
+	</div>
+	<div id = "CareerForm" class = "EventPopUp">
+	<p>Please enter details for your career transition: </p>
+	<%= form_for(:careertransition,:remote => true,:html => {:'data-type' => 'json'}, :url => {:controller => 'careertransitions', :action => 'create'}) do |f| %>
+	<%= f.hidden_field :event_time, :id => 'career_event_time' %>
+	
 	<ol class="questions">
-		<li><p>Your new career/job is best categorized as: 
+		<li>Your new career/job is best categorized as: 
 				<%= f.select :new_career_field, [ "Consulting engineer in private industry", 
 				"Engineering in the public sector", "Engineering research lab","Non-engineering",
 				"Began my own engineering practice","NGO/non-profit related to engineering",
 				"Military","Academic/education position related to engineering","Unemployed",
 				"Same company, but full time to part time/part time to full time",
-				"Environmental","Leaving work to take care of family","Leaving work for other reasons"]%></p>
+				"Environmental","Leaving work to take care of family","Leaving work for other reasons"]%>
 		</li>
-		<li><p>Was this transition motivated by life or personal elements 
-				(i.e. moving for a spouse’s job, having children, family needs, etc.)?
+		<li>Was this transition motivated by life or personal elements 
+				(i.e. moving for a spouse's job, having children, family needs, etc.)? </br>
 				<%= f.radio_button :motivation , "Not at all" %> Not at all
 				<%= f.radio_button :motivation , "One of many factors" %> One of many factors
-				<%= f.radio_button :motivation , "A main factor" %> A main factor </p>
+				<%= f.radio_button :motivation , "A main factor" %> A main factor
 		</li>
-		<li><p>To what degree did you engage in service through this new career/job?: 
+		<li>To what degree did you engage in service through this new career/job?: </br>
 				<%= f.radio_button :service_through , "1" %> 1: None
 				<%= f.radio_button :service_through , "2" %> 2
 				<%= f.radio_button :service_through , "3" %> 3
 				<%= f.radio_button :service_through , "4" %> 4
 				<%= f.radio_button :service_through , "5" %> 5
 				<%= f.radio_button :service_through , "6" %> 6
-				<%= f.radio_button :service_through , "7" %> 7: Substantial </p>
+				<%= f.radio_button :service_through , "7" %> 7: Substantial
 		</li>
-		<li><p>Describe the ways in which you engage in service through this new career/job.: 
-				<%= f.text_field :ways_service_through %> </p>
+		<li>Describe the ways in which you engage in service through this new career/job.: </br>
+				<%= f.text_area :ways_service_through %>
 		</li>
-		<li><p>To what degree did you engage in service outside of this new career/job?: 
+		<li>To what degree did you engage in service outside of this new career/job?:  </br>
 				<%= f.radio_button :service_outside , "1" %> 1: None
 				<%= f.radio_button :service_outside , "2" %> 2
 				<%= f.radio_button :service_outside , "3" %> 3
 				<%= f.radio_button :service_outside , "4" %> 4
 				<%= f.radio_button :service_outside , "5" %> 5
 				<%= f.radio_button :service_outside , "6" %> 6
-				<%= f.radio_button :service_outside , "7" %> 7: Substantial </p>
+				<%= f.radio_button :service_outside , "7" %> 7: Substantial
 		</li>
-		<li><p>Describe the ways in which you engage in service outside of this new career/job.: 
-				<%= f.text_field :ways_service_outside %> </p>
+		<li>Describe the ways in which you engage in service outside of this new career/job.: </br>
+				<%= f.text_area :ways_service_outside %>
 		</li>
-		<li><p>How long did you stay in this career/job? 
-				<%= f.radio_button :job_length , "< 3 months" %> < 3 months
+		<li>How long did you stay in this career/job? </br>
+				<%= f.radio_button :job_length , "less than 3 months" %> less than 3 months
 				<%= f.radio_button :job_length , "3-12 months" %> 3-12 months
 				<%= f.radio_button :job_length , "1-3 years" %> 1-3 years
 				<%= f.radio_button :job_length , "3-5 years" %> 3-5 years
-				<%= f.radio_button :job_length , "5 years" %> > 5 years</p>
+				<%= f.radio_button :job_length , "greater than 5 years" %> greater than 5 years
 		</li>
-		<li><p>How satisfied were you with your ability to engage in service through 
-			your job/career at the end of your previous career/job, right before this transition?
+		<li>How satisfied were you with your ability to engage in service through 
+			your job/career at the end of your previous career/job, right before this transition? </br>
 				<%= f.radio_button :service_job_satisfaction , "1" %> 1: Very Dissatisfied
 				<%= f.radio_button :service_job_satisfaction , "2" %> 2
 				<%= f.radio_button :service_job_satisfaction , "3" %> 3
 				<%= f.radio_button :service_job_satisfaction , "4" %> 4: Neutral
 				<%= f.radio_button :service_job_satisfaction , "5" %> 5
 				<%= f.radio_button :service_job_satisfaction , "6" %> 6
-				<%= f.radio_button :service_job_satisfaction , "7" %> 7: Satisfied </p>
-			</li>
-			<li><p>How satisfied were you with your ability to engage in service, initially, 
-			in your new job/career?
+				<%= f.radio_button :service_job_satisfaction , "7" %> 7: Satisfied
+		</li>
+		<li>How satisfied were you with your ability to engage in service, initially, 
+			in your new job/career? </br>
 				<%= f.radio_button :initial_job_satisfaction , "1" %> 1: Very Dissatisfied
 				<%= f.radio_button :initial_job_satisfaction , "2" %> 2
 				<%= f.radio_button :initial_job_satisfaction , "3" %> 3
 				<%= f.radio_button :initial_job_satisfaction , "4" %> 4: Neutral
 				<%= f.radio_button :initial_job_satisfaction , "5" %> 5
 				<%= f.radio_button :initial_job_satisfaction , "6" %> 6
-				<%= f.radio_button :initial_job_satisfaction , "7" %> 7: Satisfied </p>
-			</li>
-			<li><p>How much was this career transition due to dissatisfaction with your previous job/career??
+				<%= f.radio_button :initial_job_satisfaction , "7" %> 7: Satisfied
+		</li>
+		<li>How much was this career transition due to dissatisfaction with your previous job/career? </br>
 				<%= f.radio_button :previous_dissatisfaction , "1" %> 1: None
 				<%= f.radio_button :previous_dissatisfaction , "2" %> 2
 				<%= f.radio_button :previous_dissatisfaction , "3" %> 3
 				<%= f.radio_button :previous_dissatisfaction , "4" %> 4
 				<%= f.radio_button :previous_dissatisfaction , "5" %> 5
 				<%= f.radio_button :previous_dissatisfaction , "6" %> 6
-				<%= f.radio_button :previous_dissatisfaction , "7" %> 7: Substantial </p>
-			</li>
-			<li><p>Which of the following elements best describe the source of your dissatisfaction 
-				that led to your transition (check the main factors)
-				<table class = "checkBoxTable">
-					<tr>
-						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Work-life balance conflict" %>
-						Work-life balance conflict </td>
-						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Personal values did not align with the company/work"%>
-						Personal values did not align with the company/work</td>
-					</tr>
-					<tr>
-						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Didn’t like who you were working with (your colleagues)"%>
-						Didn’t like who you were working with (your colleagues)) </td>
-						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Lack of service engagement through my job"%>
-						Lack of service engagement through my job</td>
-					</tr>
-					<tr>
-						<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Lack of service engagement outside of my job" %>
-						Lack of service engagement outside of my job</td>
-						<td><%= check_box_tag "careertransition_dissatisfaction_source_check", "Other" %>
-						Other <%= text_field_tag 'other_dissatisfaction_source', '', disabled: true %> </td>
-					</tr>
-				</table>
-			</li>
-	</ol>	
-	<%= f.submit :Submit %>
-	<% end %>
-</div>
-<div id = "EducationForm" class = "EventPopUp">
-	<p>Oh Education event!!!</p>
-	<%= form_for(:educationtransition, :url => {:controller => 'educationtransitions', :action => 'create'}) do |f| %>
-	<%= f.hidden_field :event_time, :id => 'event_time' %>
-
-	<ol class="questions">
-		<li><p>Your new education element is best characterized as: 
-				<%= f.select :new_education_field, [ "MS in an engineering related field", 
-				"PhD in an engineering related field", "BS/MS/PhD in non-engineering related field"],
-				:onClick => "updateActivity(this)"%></br></p>
-				If so, which field? <%= text_field_tag 'other_non_engineering_field', '', disabled: true %>
+				<%= f.radio_button :previous_dissatisfaction , "7" %> 7: Substantial
 		</li>
-		<li><p>Was this transition motivated by life or personal elements 
-				(i.e. moving for a spouse’s job, having children, family needs, etc.)?
+		<li>Which of the following elements best describe the source of your dissatisfaction 
+			that led to your transition (check the main factors) </br>
+			<table class = "checkBoxTable">
+				<tr>
+					<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Work-life balance conflict" %>
+					Work-life balance conflict </td>
+					<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Personal values did not align with the company/work"%>
+					Personal values did not align with the company/work</td>
+				</tr>
+				<tr>
+					<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Didn't like who you were working with (your colleagues)"%>
+					Didn't like who you were working with (your colleagues)) </td>
+					<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Lack of service engagement through my job"%>
+					Lack of service engagement through my job</td>
+				</tr>
+				<tr>
+					<td><%= check_box_tag "careertransition[dissatisfaction_source][]", "Lack of service engagement outside of my job" %>
+					Lack of service engagement outside of my job</td>
+					<td><%= check_box_tag "careertransition_dissatisfaction_source_check", "Other" %>
+					Other <%= f.text_field 'other_dissatisfaction_source', :id => 'other_dissatisfaction_source', disabled: true %> </td>
+				</tr>
+			</table>
+		</li>
+	</ol>	
+	<%= f.submit "Submit" ,:name => 'submit'%>
+	<%= f.submit "Cancel" %>
+	<% end %>
+	</div>
+	<div id = "EducationForm" class = "EventPopUp">
+		<p>
+			Please enter details for your education event:
+		</p>
+		<%= form_for(:educationtransition, :url => {:controller => 'educationtransitions', :action => 'create'}) do |f| %>
+		<%= f.hidden_field :event_time, :id => 'ed_event_time' %>
+
+		<ol class="questions">
+			<li>
+				Your new education element is best characterized as:
+				<%= f.select :new_education_field, options_for_select([ "MS in an engineering related field",
+            		"PhD in an engineering related field", "BS/MS/PhD in non-engineering related field"]), {},
+            		:include_blank => true, :onchange => "updateActivity(this.value)" %></br>
+				If so, which field? <%= f.text_field 'other_non_engineering_field', :id => 'other_non_engineering_field', disabled: true %>
+			</li>
+			<li>
+				Was this transition motivated by life or personal elements
+				(i.e. moving for a spouse's job, having children, family needs, etc.)?</br>
 				<%= f.radio_button :motivation , "Not at all" %> Not at all
 				<%= f.radio_button :motivation , "One of many factors" %> One of many factors
-				<%= f.radio_button :motivation , "A main factor" %> A main factor </p>
-		</li>
-		<li><p>Did you participate in engineering service while in school through this program 
-			(Service-learning, development oriented studies, etc.)?
+				<%= f.radio_button :motivation , "A main factor" %> A main factor
+			</li>
+			<li>
+				Did you participate in engineering service while in school through this program
+				(Service-learning, development oriented studies, etc.)?</br>
 				<%= f.radio_button :eng_service_through_program , "Yes" %> Yes
-				<%= f.radio_button :eng_service_through_program , "No" %> No </p>
-		</li>		
-		<li><p>Did you participate in engineering service while at this school 
-			through extracurricular activities (EWB, etc.)??
+				<%= f.radio_button :eng_service_through_program , "No" %> No
+			</li>
+			<li>
+				Did you participate in engineering service while at this school
+				through extracurricular activities (EWB, etc.)??</br>
 				<%= f.radio_button :eng_service_through_extra , "Yes" %> Yes
-				<%= f.radio_button :eng_service_through_extra , "No" %> No </p>
-		</li>			
-		<li><p>How satisfied were you with your ability to engage in service through your previous career/job or 
-				educational element at the end, right before this transition?				
+				<%= f.radio_button :eng_service_through_extra , "No" %> No
+			</li>
+			<li>
+				How satisfied were you with your ability to engage in service through your previous career/job or
+				educational element at the end, right before this transition?</br>
 				<%= f.radio_button :education_service_satisfaction , "1" %> 1: Very Dissatisfied
 				<%= f.radio_button :education_service_satisfaction , "2" %> 2
 				<%= f.radio_button :education_service_satisfaction , "3" %> 3
 				<%= f.radio_button :education_service_satisfaction , "4" %> 4: Neutral
 				<%= f.radio_button :education_service_satisfaction , "5" %> 5
 				<%= f.radio_button :education_service_satisfaction , "6" %> 6
-				<%= f.radio_button :education_service_satisfaction , "7" %> 7: Satisfied </p>
-		</li>
-		<li><p>How satisfied were you with your ability to engage in service, initially, 
-				in your new educational element?				
+				<%= f.radio_button :education_service_satisfaction , "7" %> 7: Satisfied
+			</li>
+			<li>
+				How satisfied were you with your ability to engage in service, initially,
+				in your new educational element?</br>
 				<%= f.radio_button :initial_new_education_service_satisfaction , "1" %> 1: Very Dissatisfied
 				<%= f.radio_button :initial_new_education_service_satisfaction , "2" %> 2
 				<%= f.radio_button :initial_new_education_service_satisfaction , "3" %> 3
 				<%= f.radio_button :initial_new_education_service_satisfaction , "4" %> 4: Neutral
 				<%= f.radio_button :initial_new_education_service_satisfaction , "5" %> 5
 				<%= f.radio_button :initial_new_education_service_satisfaction , "6" %> 6
-				<%= f.radio_button :initial_new_education_service_satisfaction , "7" %> 7: Satisfied </p>
-		</li>
-		<li><p>How much was this education transition due to dissatisfaction with your 
-				previous career/job or educational element?				
+				<%= f.radio_button :initial_new_education_service_satisfaction , "7" %> 7: Satisfied
+			</li>
+			<li>
+				How much was this education transition due to dissatisfaction with your
+				previous career/job or educational element?</br>
 				<%= f.radio_button :previous_dissatisfaction , "1" %> 1: None
 				<%= f.radio_button :previous_dissatisfaction , "2" %> 2
 				<%= f.radio_button :previous_dissatisfaction , "3" %> 3
 				<%= f.radio_button :previous_dissatisfaction , "4" %> 4
 				<%= f.radio_button :previous_dissatisfaction , "5" %> 5
 				<%= f.radio_button :previous_dissatisfaction , "6" %> 6
-				<%= f.radio_button :previous_dissatisfaction , "7" %> 7: Substantial </p>
-		</li>
-		<li>Which of the following elements best describe the source of your dissatisfaction 
-				that led to your transition (check the main factors)
+				<%= f.radio_button :previous_dissatisfaction , "7" %> 7: Substantial
+			</li>
+			<li>
+				Which of the following elements best describe the source of your dissatisfaction
+				that led to your transition (check the main factors)</br>
 				<table class = "checkBoxTable">
 					<tr>
 						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Work-life balance conflict" %>
@@ -197,8 +215,8 @@
 						Personal values did not align with the company/work</td>
 					</tr>
 					<tr>
-						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Didn’t like who you were working with (your colleagues)"%>
-						Didn’t like who you were working with (your colleagues)) </td>
+						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Didn't like who you were working with (your colleagues)"%>
+						Didn't like who you were working with (your colleagues)) </td>
 						<td><%= check_box_tag "educationtransition[dissatisfaction_source][]", "Lack of service engagement through my job"%>
 						Lack of service engagement through my job</td>
 					</tr>
@@ -209,31 +227,30 @@
 						Other <%= text_field_tag 'ed_other_dissatisfaction_source', '', disabled: true %> </td>
 					</tr>
 				</table>
-		</li>
-	</ol>	
-	<%= f.submit :Submit %>
-	<% end %>
+			</li>
+		</ol>
+		<%= f.submit "Submit" ,:name => 'submit'%>
+		<%= f.submit "Cancel" %>
+		<% end %>
+	</div>
 </div>
-
-
 <script type="text/javascript">
-	
-	var modified;
+
+    var modified,id;
 	var count = 1;
     var startDate = '<%= @current_user.undergrad_end %>' ;
 	document.getElementById("Sign_Up").style.display = "none";
 	document.getElementById("CareerForm").style.display = "none";
 	document.getElementById("EducationForm").style.display = "none";
-
-  	var groups = new vis.DataSet([
+	
+	var groups = new vis.DataSet([
     	{id: 1, content: 'Career'},
     	{id: 2, content: 'Education'},
     ]);
-	// note that months are zero-based in the JavaScript Date object, so month 3 is April
-	var items = new vis.DataSet([
+    
+    var items = new vis.DataSet([
 		{id : 1, group: 2, content : 'Undergrad', start : startDate, type: 'point'}
 	]);
-	
 	
 	<% if @current_user.careertransitions.exists? %>
 	<% for item in @current_user.careertransitions %>
@@ -249,10 +266,9 @@
 	<% end %>
 	<% end %>
 	
-	
- 	$(function() {
- 		
-    	$("input[name=careertransition_dissatisfaction_source_check]").click(function() {
+	$(function() {
+		
+		$("input[name=careertransition_dissatisfaction_source_check]").click(function() {
 			if (document.getElementById("other_dissatisfaction_source").disabled)
 				document.getElementById("other_dissatisfaction_source").disabled = false;
 			else {
@@ -271,8 +287,8 @@
 				document.getElementById("ed_other_dissatisfaction_source").disabled = true;
 			}
 		});
- 		
-    	$('.datepicker').datepicker({
+		
+		$('.datepicker').datepicker({
     	changeMonth: true,
     	changeYear: true,
     	onSelect: function() {
@@ -281,11 +297,13 @@
 			items.add({id : count, content : 'Loading...', start: goToDate});
 			displayRequiredDiv("Sign_Up");
 			modified = formatDate(goToDate);
-			document.getElementById("mytext").value = modified;		
+			document.getElementById("mytext").value = modified;
+			document.getElementById("career_event_time").value = modified;			
+			document.getElementById("ed_event_time").value = modified;
         	$('.datepicker').val('');
     	}});
-  	});
-  	
+	});
+	
 	var container = document.getElementById('visualization');
 	var options = {
 		editable : true,
@@ -295,8 +313,9 @@
 			document.getElementById("EducationForm").style.display = "none";
 			displayRequiredDiv("Sign_Up");			
 			modified = formatDate(item.start);
-			document.getElementById("mytext").value = modified;			
-			document.getElementById("event_time").value = modified;
+			document.getElementById("mytext").value = modified;
+			document.getElementById("career_event_time").value = modified;			
+			document.getElementById("ed_event_time").value = modified;
 			item.content = "Loading...";
 			if (item.content != null) {
 				callback(item);
@@ -321,6 +340,16 @@
 		onUpdate : function(item, callback) {
 			item.content = prompt('Edit items text:', item.content);
 			if (item.content != null) {
+				$.ajax({
+					data: {item: item},
+					dataType: 'json',
+  					type: 'POST',
+  					url: '/sessions_controller/editItem'
+				});
+				if(item.group == "1")
+					displayRequiredDiv("CareerForm");
+				else if(item.group == "2")
+					displayRequiredDiv("EducationForm");
 				callback(item);
 				// send back adjusted item
 			} else {
@@ -346,8 +375,8 @@
 		}
 	};
 	var timeline = new vis.Timeline(container, null, options);
-  timeline.setGroups(groups);
-  timeline.setItems(items);
+  	timeline.setGroups(groups);
+  	timeline.setItems(items);
 	var start = new Date(startDate);
 	start.setMonth(start.getMonth() - 1);
 	var end = new Date();
@@ -383,17 +412,12 @@
 		obj.style.display = 'block';
 	}
 	
-	function getMouseXPosition(item)
+	function updateActivity(value) 
 	{
-		var window = timeline.getWindow();
-		var ratio = (item.start - window.start) / (window.end - window.start);
-		x = ratio * container.offsetWidth;
-		return x;
-	}
-	
-	function updateActivity(oSelect) {
-		if (oSelect.options[oSelect.selectedIndex].value == 'BS/MS/PhD in non-engineering related field') {
+		if (value == 'BS/MS/PhD in non-engineering related field') {
 			document.getElementById("other_non_engineering_field").disabled = false;
-		}
+		}else if (value == ''){
+	    	alert("Please select a valid option to proceed!!!");
+	    }
 	}
 </script>

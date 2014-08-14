@@ -29,9 +29,10 @@
 		</tr>
 		<tr>
 			<td>Completed surveys</td>
-			<td><%= User.where(:is_admin => false, :current_page => "thank_you").count %></td>
+			<td><%= User.where(:is_admin => false, :completed => true).count %></td>
 		</tr>
 	</table>
+	<td><%= link_to "Download to Excel", download_xls_path(format: "xls")  %></td>
 	<p>
 		List of all users
 	</p>
@@ -43,7 +44,6 @@
 			<th>Status</th>
 			<th>Date created</th>
 			<th>Is Admin?</th>
-			<th>Excel</th>
 			<th>Delete</th>
 		</tr>
 		<% @users.each do | user | %>
@@ -51,14 +51,13 @@
 			<td><%= user.username %></td>
 			<td><%= user.email %></td>
 			<td><%= user.accepted %></td>
-			<% if user.current_page == "thank_you" or user.current_page == "admin_page"%>
+			<% if user.completed %>
 			<td> <%= "Completed"%></td>
 			<% else %>
 			<td> <%= "In Progress"%></td>
 			<% end %>
 			<td><%= user.created_at.strftime("%m/%d/%Y") %></td>
 			<td><%= user.is_admin %></td>
-			<td><%= link_to "Download", download_xls_path( format: "xls", :id => user.id)  %></td>
 			<% if user.is_admin %>
 			<td><%= "" %></td>
 			<% else %>
