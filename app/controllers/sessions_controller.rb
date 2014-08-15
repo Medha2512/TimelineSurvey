@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   before_filter :save_login_state, :only => [:index, :login, :login_attempt]
   before_filter :current_user, :only => [:likertItems, :ed_exp_response, :likert_response,
     :trigger_startdate, :consent_decision]
-
+  respond_to :html, :js
   helper_method :destroyItem
   def consent
     #Consent Form Page
@@ -15,6 +15,8 @@ class SessionsController < ApplicationController
   end
 
   def timeline
+    @educationtransition = Educationtransition.new
+    @careertransition = Careertransition.new
   end
 
   def login
@@ -158,9 +160,13 @@ class SessionsController < ApplicationController
   end
 
   def trigger_startdate
+
     @user = current_user
     @user.update_attributes(profile_params)
-    redirect_to :action => 'timeline'
+    @user.update_attributes(:current_page => 'timeline')
+
+    redirect_to(:action => 'timeline')
+
   end
 
   def consent_decision
@@ -189,19 +195,6 @@ class SessionsController < ApplicationController
     elsif @item[:group] == "2"
       Educationtransition.delete_all(["event_time = ? AND content = ? AND user_id = ?",
         @item[:start], @item[:content], @user.id])
-    end
-    render :json => { :success => "success", :status_code => "200" }
-  end
-
-  def editItem
-    @user = current_user
-    @item = params[:item]
-    if @item[:group] == "1"
-      @careertransition = Careertransition.where(:event_time => @item[:start], :content => @item[:content],
-      :user_id => @user.id).first
-    elsif @item[:group] == "2"
-      @educationtransition = Educationtransition.find(:event_time => @item[:start], :content => @item[:content],
-      :user_id => @user.id)
     end
     render :json => { :success => "success", :status_code => "200" }
   end

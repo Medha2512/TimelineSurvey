@@ -14,11 +14,12 @@ Rails.application.routes.draw do
   match "consent", :to => "sessions#consent", via: :get
   match "profile", :to => "sessions#profile", via: :get
   match "profile", :to => "sessions#profile", via: :post
-
-  match "timeline", :to => "sessions#timeline", via: :get
   match "login_attempt", :to => "sessions#login_attempt", via: :post
   match "consent_decision", :to => "sessions#consent_decision", via: :post
-  match "trigger_startdate", :to => "sessions#trigger_startdate", via: :post
+  match "timeline", :to => "sessions#timeline", via: :get
+  match "timeline", :to => "sessions#timeline", via: :post
+    match "trigger_startdate", :to => "sessions#trigger_startdate", via: :post
+
   match "create", :to => "users#create", via: :post
   match "careercreate", :to => "careertransitions#create", via: :post
   match "educationcreate", :to => "educationtransitions#create", via: :post
@@ -26,8 +27,7 @@ Rails.application.routes.draw do
   match "likert", :to => "sessions#likertItems", via: :get
   match "likert_response", :to => "sessions#likert_response", via: :post
   match "sessions_controller/destroyItem", :to => "sessions#destroyItem", via: :post
-  match "sessions_controller/editItem", :to => "sessions#editItem", via: :post
-
+  match "sessions_controller/update", :to => "sessions#update", via: :post
   match "ed_experience", :to => "sessions#ed_experience", via: :get
   match "ed_exp_response", :to => "sessions#ed_exp_response", via: :post
   match "thank_you", :to => "sessions#thank_you", via: :get
@@ -36,8 +36,6 @@ Rails.application.routes.draw do
   match "demographics", :to => "sessions#demographics", via: :get
   match "demographic_response", :to => "sessions#demographic_response", via: :post
   match "sign_in_guest", :to => "sessions#sign_in_guest", via: :get
-
-
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".

@@ -91,6 +91,19 @@ class UsersController < ApplicationController
                 career.other_dissatisfaction_source, career.event_time
               }
             end
+            if user.educationtransitions.exists?
+              timelinelist.row(0).concat %w{New_Education_Field Motivation Eng_service_through_program 
+              Eng_service_through_extra Education_service_satisfaction Initial_new_education_service_satisfaction
+              Previous_dissatisfaction Dissatisfaction_source Other_dissatisfaction_source Event_time}
+              @educationtransitions = user.educationtransitions
+              @educationtransitions.each { |education|
+                timelinelist.row(i).push education.new_education_field, education.motivation,
+                education.eng_service_through_program, education.eng_service_through_extra,
+                education.education_service_satisfaction, education.initial_new_education_service_satisfaction,
+                education.previous_dissatisfaction , education.dissatisfaction_source.join(","),
+                education.ed_other_dissatisfaction_source, education.event_time
+              }
+            end
           end
         end
         bg_color = Spreadsheet::Format.new({

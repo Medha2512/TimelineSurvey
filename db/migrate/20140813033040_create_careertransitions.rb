@@ -4,7 +4,7 @@ class CreateCareertransitions < ActiveRecord::Migration
       t.integer  :user_id
       t.string   :new_career_field , :default => ""
       t.string   :motivation, :default => ""
-      t.integer  :service_throughe
+      t.integer  :service_through
       t.string   :ways_service_through, :default => ""
       t.integer  :service_outside
       t.string   :ways_service_outside, :default => ""

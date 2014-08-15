@@ -31,7 +31,7 @@
 	</div>
 	<div id = "CareerForm" class = "EventPopUp">
 	<p>Please enter details for your career transition: </p>
-	<%= form_for(:careertransition, :url => {:controller => 'careertransitions', :action => 'create'}) do |f| %>
+	<%= form_for(:careertransition,:url => {:controller => 'careertransitions', :action => 'create'}) do |f| %>
 	<%= f.hidden_field :event_time, :id => 'career_event_time' %>
 	
 	<ol class="questions">
@@ -325,38 +325,6 @@
 			} else {
 				callback(null);
 				// cancel item creation
-			}
-		},
-
-		onMove : function(item, callback) {
-			if (confirm('Do you really want to move the item to\n' + 'start: ' + item.start + '\n' + 'end: ' + item.end + '?')) {
-				
-				callback(item);
-				// send back item as confirmation (can be changed
-			} else {
-				callback(null);
-				// cancel editing item
-			}
-		},
-
-		onUpdate : function(item, callback) {
-			item.content = prompt('Edit items text:', item.content);
-			if (item.content != null) {
-				$.ajax({
-					data: {item: item},
-					dataType: 'json',
-  					type: 'POST',
-  					url: '/sessions_controller/editItem'
-				});
-				if(item.group == "1")
-					displayRequiredDiv("CareerForm");
-				else if(item.group == "2")
-					displayRequiredDiv("EducationForm");
-				callback(item);
-				// send back adjusted item
-			} else {
-				callback(null);
-				// cancel updating the item
 			}
 		},
 
