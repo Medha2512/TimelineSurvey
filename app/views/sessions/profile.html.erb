@@ -1,8 +1,8 @@
 <% @page_title = "Alumni Survey | Ed Bg" -%>
 
-<h3 class = "User_Header"> Educational Backgroud : <%= @current_user.username%></h3>
+<h3>Please enter your educational background details:</h3>
 <div class= "Ed_Bg">
-	<%= form_for(:user, :url => {:controller => 'sessions', :action => 'trigger_startdate'}) do |f| %>
+	<%= form_for(:user,:html => { :id => "profileForm" },  :url => {:controller => 'sessions', :action => 'trigger_startdate'}) do |f| %>
 	<ol class="questions">
 		<li>
 			<p>
@@ -14,10 +14,10 @@
 		<li>
 			<p>
 				What was your primary major?:
-				<%= f.select :undergrad_major, [ "Aerospace", "Architectural", "Biological/Biomedical",
+				<%= f.select :undergrad_major, [ ["--Select One--",nil], "Aerospace", "Architectural", "Biological/Biomedical",
             "Biomechanical","Chemical","Chem/Bio","Civil","Computer/Computer Science/ Software","Construction Management",
             "Electrical","Environmental","Mechanical","Math or Natural Science related","Humanities or social science related",
-            "Other" ],:include_blank => true, :onchange => "updateActivity(this.value)"%></br>
+            "Other" ]%></br>
 				If other, Please specify : <%= f.text_field :other_undergrad_major, :id=> 'other_undergrad_major', :disabled => true %>
 			</p>
 		</li>
@@ -36,22 +36,31 @@
 			dateFormat : "yy-mm-dd",
 			changeMonth : true,
 			changeYear : true,
-			minDate: -6010,
-			yearRange: "-20:+0",
-			maxDate: 'today',
-			onSelect : function() {
-				var selectedDate = new Date($(this).val());
-				var todayDate = new Date();
+			minDate : -6010,
+			yearRange : "-20:+0",
+			maxDate : 'today'
+		});
+
+		$('#profileForm').submit(function(e) {
+			alert($("select[name='user[undergrad_major]'] option:selected").val());
+			if ($("input[name='user[undergrad_end]']").val() == "") {
+				alert('Please enter valid undergrad finish date');
+				e.preventDefault();
+			}
+			if ($("select[name='user[undergrad_major]'] option:selected").val() == "") {
+				alert('Please enter your undergrad major subject');
+				e.preventDefault();
+			}
+		});
+
+		$('select').on('change', function() {
+			if (this.value == 'Other')
+				document.getElementById("other_undergrad_major").disabled = false;
+			else {
+				document.getElementById("other_undergrad_major").value = "";
+				document.getElementById("other_undergrad_major").disabled = true;
 			}
 		});
 	});
 
-	function updateActivity(value) {
-		if (value == 'Other')
-			document.getElementById("other_undergrad_major").disabled = false;
-		else {
-			document.getElementById("other_undergrad_major").value = "";
-			document.getElementById("other_undergrad_major").disabled = true;
-		}
-	}
 </script>

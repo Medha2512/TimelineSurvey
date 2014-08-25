@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :encrypted_password
       t.boolean  :completed, :default => false
       t.boolean  :accepted, :default => false
-      t.datetime :undergrad_end
+      t.date :undergrad_end
       t.string   :current_page, :default => "consent"
       t.string   :undergrad_major, :default => ""
       t.string   :other_undergrad_major

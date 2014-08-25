@@ -1,18 +1,17 @@
-<% @page_title = "Alumni Survey | Demographics" -%> 
+<% @page_title = "Alumni Survey | Demographics" -%>
 
-<h3 class = "User_Header"> Demographics  : <%= @current_user.username%></h3>
 <div class= "DemographicsPage">
 
-	<p>
+	<h4>
 		Please enter the below information -
-	</p>
+	</h4>
 
 	<%= form_for(:demographic, :html => {:id => 'demoForm'}, :url => {:controller => 'sessions', :action => 'demographic_response'}) do |f| %>
 	<ol class="questions">
 		<li>
 			Gender : </br>
-			<%= f.radio_button :gender , "Male" %> Male
-			<%= f.radio_button :gender , "Female" %> Female
+			<%= f.radio_button :gender , "Male" %> Male</br>
+			<%= f.radio_button :gender , "Female" %> Female </br>
 			<%= f.radio_button :gender , "Prefer not to say" %> Prefer not to say
 		</li>
 		<li>
@@ -38,36 +37,36 @@
 		</li>
 		<li>
 			How would you describe your religious preference? </br>
-			<table>
-				<tr>
-					<td><%= f.radio_button :religious , "Religious and affiliated" %> Religious, affiliated with an organized religion (i.e. Christian, Muslim, Jewish, Hindu, Buddhist, etc.)</td>
-					<td><%= f.radio_button :religious , "Spiritual but not affiliated" %> Spiritual but not affiliated with an organized religion (i.e. Humanist, Agnostic, etc.)</td>
-				</tr>
-				<tr>
-					<td><%= f.radio_button :religious , "Atheist" %> Atheist</td>
-					<td><%= f.radio_button :religious , "Indifferent or not religious" %> Indifferent or not religious</td>
-				</tr>
-			</table>
+			<%= f.radio_button :religious , "Religious and affiliated" %> Religious, affiliated with an organized
+			religion (i.e. Christian, Muslim, Jewish, Hindu, Buddhist, etc.)</br>
+			<%= f.radio_button :religious , "Spiritual but not affiliated" %> Spiritual but not affiliated with an
+			organized religion (i.e. Humanist, Agnostic, etc.)</br>
+			<%= f.radio_button :religious , "Atheist" %> Atheist</br>
+			<%= f.radio_button :religious , "Indifferent or not religious" %> Indifferent or not religious
 		</li>
-		<li>
-			How active do you consider yourself in the practice of your religious preference? </br>
-			<%= f.radio_button :religious_active , "Very active" %> Very active
-			<%= f.radio_button :religious_active , "Somewhat active" %> Somewhat active
-			<%= f.radio_button :religious_active , "Not very active" %> Not very active
-			<%= f.radio_button :religious_active , "Not active" %> Not active
-			<%= f.radio_button :religious_active , "Does not apply/Prefer not to say" %> Does not apply/Prefer not to say
-		</li>
+		<div id = 'ReligiousActiveDiv'>
+			<li>
+				How active do you consider yourself in the practice of your religious preference? </br>
+				<%= f.radio_button :religious_active , "Very active" %> Very active</br>
+				<%= f.radio_button :religious_active , "Somewhat active" %> Somewhat active</br>
+				<%= f.radio_button :religious_active , "Not very active" %> Not very active</br>
+				<%= f.radio_button :religious_active , "Not active" %> Not active</br>
+				<%= f.radio_button :religious_active , "Does not apply/Prefer not to say" %> Does not apply/Prefer not to say
+			</li>
+		</div>
 	</ol>
 </div>
 
 <%= f.submit "<< Back" , :name => 'back', class: "submit" %>
-<%= f.submit "Continue >>"  , class: "submit"  %>
+<%= f.submit "Continue >>", :name => 'next'  , class: "submit"  %>
 <% end %>
 
 </div>
 
 <script>
 	$(document).ready(function() {
+		document.getElementById("ReligiousActiveDiv").style.display = "none";
+
 		$("input[name='demographic[race]']").click(function() {
 			if (this.id == 'demographic_race_other')
 				document.getElementById("other_race").disabled = false;
@@ -76,15 +75,22 @@
 				document.getElementById("other_race").disabled = true;
 			}
 		});
-		$('#demoForm').on('submit', function(e) {
-			var noneFilled = checkFields($(this));
+		$("input[name='next']").click(function(e) {
+			var noneFilled = checkFields($(this.form));
 			if (noneFilled) {
 				alert('Please fill atleast one field to proceed');
 				e.preventDefault();
 			}
 		});
-	}); 
-	
+
+		$("input[name='demographic[religious]']").click(function() {
+			if (this.id == 'demographic_religious_religious_and_affiliated')
+				document.getElementById("ReligiousActiveDiv").style.display = "block";
+			else
+				document.getElementById("ReligiousActiveDiv").style.display = "none";
+		});
+	});
+
 	function checkFields(form) {
 		var checks_radios = form.find(':radio');
 		var checked = checks_radios.filter(':checked');

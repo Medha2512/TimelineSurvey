@@ -165,21 +165,20 @@
 		</tr>
 	</table>
 	<%= f.submit "<< Back" , :name => 'back', class: "submit" %>
-	<%= f.submit "Next >>" , class: "submit"  %>
+	<%= f.submit "Next >>" , :name => 'next',class: "submit"  %>
 	<% end %>
 
 </div>
 <script type="text/javascript">
 	$(function() {
-		$('#likertForm').on('submit', function(e) {
-			var noneFilled = checkFields($(this));
+		$('[name="next"]').click(function(e) {
+			var noneFilled = checkFields($(this.form));
 			if (noneFilled) {
 				alert('Please fill atleast one field to proceed');
 				e.preventDefault();
 			}
 		});
 	});
-
 	function checkFields(form) {
 		var checks_radios = form.find(':radio');
 		var checked = checks_radios.filter(':checked');

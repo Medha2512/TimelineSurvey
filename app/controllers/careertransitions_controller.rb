@@ -13,7 +13,7 @@ class CareertransitionsController < ApplicationController
       @career.content = set_career_content(@career.new_career_field)
 
       if not @career.save
-        flash[:notice] = "Career event : " + @career.errors.full_messages.join(",") + " for that date"
+        flash[:notice] = "Error : " + @career.errors.full_messages.join(",") + " for that date"
         flash[:color]= "invalid"
       end
     end
@@ -49,8 +49,8 @@ class CareertransitionsController < ApplicationController
       return "Academic"
     elsif new_career_field == "Unemployed"
       return "Unemployed"
-    elsif new_career_field == "Working at the same company, but moved from full time to part time/part time to full time"
-      return "Same Co."
+    elsif new_career_field == "Same company, but full time to part time/part time to full time"
+      return "Same Company"
     elsif new_career_field == "Environmental"
       return "Environmental"
     elsif new_career_field == "Leaving work to take care of family"

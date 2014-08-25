@@ -199,6 +199,19 @@ class SessionsController < ApplicationController
     render :json => { :success => "success", :status_code => "200" }
   end
 
+  def moveItem
+    @user = current_user
+    @item = params[:item]
+    @modified = params[:modified]
+    @oldItemStart = params[:oldItemStart]
+    if @item[:group] == "1"
+      Careertransition.where({content: @item[:content] , event_time: @oldItemStart , user_id: @user.id}).first.update(event_time: @modified)
+    elsif @item[:group] == "2"
+      Educationtransition.where({content: @item[:content] , event_time: @oldItemStart , user_id: @user.id}).first.update(event_time: @modified)
+    end
+    render :json => { :success => "success", :status_code => "200" }
+  end
+
   private
 
   def convert_date(hash, date_symbol_or_string)

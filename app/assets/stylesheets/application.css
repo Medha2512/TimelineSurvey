@@ -82,7 +82,7 @@ body {
 	padding: 5px 15px;
 	cursor: pointer;
 	border-radius: 5px;
-	background-color: rgba(0, 0, 0, .2);	
+	background-color: rgba(0, 0, 0, .2);
 	float: left;
 	display: inline;
 }
@@ -93,6 +93,12 @@ body {
 	margin-top: 15px;
 	margin-right: 15px;
 	text-decoration: underline;
+}
+.logged_in {
+	color: #C4C1BD;
+	float: right;
+	margin-top: 15px;
+	margin-right: 15px;
 }
 
 .notice, .valid_notice, .invalid_notice {

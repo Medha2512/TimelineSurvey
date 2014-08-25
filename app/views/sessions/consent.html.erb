@@ -81,21 +81,22 @@ professor (Bielefeldt).
 This research is being funded by the National Science Foundation.
 </textarea>
 <div class="consent">
-	<%= form_tag(:action => 'consent_decision', remote: true) do %>
+	<%= form_tag({:action => 'consent_decision'}, {:id => 'consent'}) do %>
 	</br>
 	<%= radio_button_tag(:decision , "accept") %> <%= label_tag(:decision_accept , "By checking this box, I give my permission to take part in this research.")%> </br>
 	<%= radio_button_tag(:decision , "decline") %> <%= label_tag(:decision_decline, "By checking this box, I do not give my permission to take part in this research and wish to exit the survey.")%> </br>
 	</br>
-	<%= submit_tag("Submit" , class: "submit", disabled: "true", :id => "submit_button", :onClick => 'updateActivity()')%>
+	<%= submit_tag("Submit" , class: "submit", disabled: "true", :id => "submit_button")%>
 	<% end %>
 </div>
 <script>
-	function updateActivity() {
-		if (document.getElementById('decision_decline').checked) {
-			window.confirm("Do you really want to leave?");
-		}
-	}
 	$(document).ready(function() {
+		$('#consent').submit(function(evt) {
+			if (($('input[name=decision]:checked').val()) == 'decline') {
+				if (!window.confirm("Do you really want to exit?"))
+					evt.preventDefault();
+			}
+		});
 		$("input[name=decision]").click(function() {
 			document.getElementById("submit_button").disabled = false;
 		});

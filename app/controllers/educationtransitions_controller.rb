@@ -11,7 +11,7 @@ class EducationtransitionsController < ApplicationController
       @education = @user.educationtransitions.build(education_params)
       @education.content = set_education_content(@education.new_education_field)
       if not @education.save
-        flash[:notice] = "Education event : " + @education.errors.full_messages.join(",") + " for that date"
+        flash[:notice] = "Error : " + @education.errors.full_messages.join(",") + " for that date"
         flash[:color]= "invalid"
       end
     end

@@ -1,17 +1,14 @@
 <% @page_title = "Alumni Survey | Ed Exp" -%>
 
-<h3 class = "User_Header"> Educational Experience Classification  : <%= @current_user.username%></h3>
+<h3 class = "User_Header"> Educational Experience Classification</h3>
 <div class= "EdExperiencePage">
-
-	<p>
-		Characterize your engineering service experience(s) that you engaged in as a student
-	</p>
+	<h4>Characterize your engineering service experience(s) that you engaged in as a student</h4>
 
 	<%= form_for(:ed_exp_classification, :url => {:controller => 'sessions', :action => 'ed_exp_response'}) do |f| %>
 	<ol class="questions">
 		<li>
-			Did you engage in any forms of service through engineering as a student (undergrad or grad)?</br>
-			<%= f.radio_button :service_as_student , "Yes" %> Yes
+			Did you engage in any forms of service through ENGINEERING as a student (undergrad or grad)?</br>
+			<%= f.radio_button :service_as_student , "Yes" %> Yes </br>
 			<%= f.radio_button :service_as_student , "No" %> No
 		</li>
 		<div id = "ServiceDiv">
@@ -41,40 +38,40 @@
 			</li>
 			<li>
 				Did you participate as an undergrad, graduate student or both?</br>
-				<%= f.radio_button :participate_as , "Undergraduate" %> Undergraduate
-				<%= f.radio_button :participate_as , "Graduate" %> Graduate
+				<%= f.radio_button :participate_as , "Undergraduate" %> Undergraduate</br>
+				<%= f.radio_button :participate_as , "Graduate" %> Graduate</br>
 				<%= f.radio_button :participate_as , "Both undergraduate and graduate" %> Both
 			</li>
 			<li>
 				Did you travel (multi-day experience outside of your local community) as part of one of these projects?</br>
-				<%= f.radio_button :travel , "Yes" %> Yes
+				<%= f.radio_button :travel , "Yes" %> Yes</br>
 				<%= f.radio_button :travel , "No" %> No
 			</li>
 
 			<div id = "TravelDiv">
 				<li>
 					Was the travel domestic or international or both?</br>
-					<%= f.radio_button :travel_type , "domestic" %> Domestic
-					<%= f.radio_button :travel_type , "international" %> International
+					<%= f.radio_button :travel_type , "domestic" %> Domestic</br>
+					<%= f.radio_button :travel_type , "international" %> International</br>
 					<%= f.radio_button :travel_type , "both domestic and international" %> Both
 				</li>
 				<li>
 					Was that travel short term (2 weeks or less) or longer term (more than 2 weeks)?</br>
-					<%= f.radio_button :travel_term , "short" %> Short Term (2 weeks or less)
+					<%= f.radio_button :travel_term , "short" %> Short Term (2 weeks or less)</br>
 					<%= f.radio_button :travel_term , "long" %> Longer Term (more than 2 weeks)
 				</li>
 			</div>
 
 			<li>
 				Did you hold a formal leadership role in the service project?</br>
-				<%= f.radio_button :formal_leadership , "Yes" %> Yes
+				<%= f.radio_button :formal_leadership , "Yes" %> Yes</br>
 				<%= f.radio_button :formal_leadership , "No" %> No
 			</li>
 			<li>
 				How long were you involved, collectively across your engineering service experiences?</br>
-				<%= f.radio_button :engg_service_length , "Less than one quarter/semester" %> Less than one quarter/semester
-				<%= f.radio_button :engg_service_length , "One quarter/semester" %> One quarter/semester
-				<%= f.radio_button :engg_service_length , "More than one quarter/semester, up to one year" %> More than one quarter/semester, up to one year
+				<%= f.radio_button :engg_service_length , "Less than one quarter/semester" %> Less than one quarter/semester</br>
+				<%= f.radio_button :engg_service_length , "One quarter/semester" %> One quarter/semester</br>
+				<%= f.radio_button :engg_service_length , "More than one quarter/semester, up to one year" %> More than one quarter/semester, up to one year</br>
 				<%= f.radio_button :engg_service_length , "More than one year" %> More than one year
 			</li>
 			<li>
@@ -83,8 +80,8 @@
 			</li>
 		</div>
 		<li>
-			Did you engage in any forms of Non-engineering service as a student (undergrad or grad)? </br>
-			<%= f.radio_button :nonengg_service_as_student , "Yes" %> Yes
+			Did you engage in any forms of NON-ENGINEERING service as a student (undergrad or grad)? </br>
+			<%= f.radio_button :nonengg_service_as_student , "Yes" %> Yes </br>
 			<%= f.radio_button :nonengg_service_as_student , "No" %> No
 		</li>
 		<div id = "NonEnggService">

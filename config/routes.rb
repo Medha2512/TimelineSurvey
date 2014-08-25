@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   match "likert", :to => "sessions#likertItems", via: :get
   match "likert_response", :to => "sessions#likert_response", via: :post
   match "sessions_controller/destroyItem", :to => "sessions#destroyItem", via: :post
-  match "sessions_controller/update", :to => "sessions#update", via: :post
+  match "sessions_controller/moveItem", :to => "sessions#moveItem", via: :post
+
   match "ed_experience", :to => "sessions#ed_experience", via: :get
   match "ed_exp_response", :to => "sessions#ed_exp_response", via: :post
   match "thank_you", :to => "sessions#thank_you", via: :get
