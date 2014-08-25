@@ -23,6 +23,11 @@
 </p>
 <div id="visualization"></div>
 <div id="log"  style="position:relative">
+	
+
+	<%= button_to "<< Back", {:action => "profile"} , {:class => "submit"}%>
+	<%= button_to "Next >>", {:action => "likertItems"} , {:class => "submit"} %>
+	</br> </br>
 	<div id= "First_Option_For_Select" class = "EventPopUp">
 		<p>
 			Please select a date: <%= text_field_tag 'firstDatepickerData', nil, :class => 'firstdatepicker' %>
@@ -32,11 +37,6 @@
 			<%= select_tag "event", options_for_select(["Career", "Education"]),:include_blank => true, :onchange => "populateFirstData(this.value)"%></br>
 		</p>
 	</div>
-	</br>
-
-	<%= button_to "<< Back", {:action => "profile"} , {:class => "submit"}%>
-	<%= button_to "Next >>", {:action => "likertItems"} , {:class => "submit"} %>
-	</br> </br>
 	<div id= "Option_For_Select" class = "EventPopUp">
 		<p>
 			On
@@ -329,6 +329,8 @@ items.add({id : count, group: 2, content : '<%= item.content %>', start: '<%= it
 					content : 'Loading...',
 					start : goToDate
 				});
+				document.getElementById("First_Option_For_Select").style.display = "none";
+
 				displayRequiredDiv("Option_For_Select");
 				modified = formatDate(goToDate);
 				document.getElementById("mytext").value = modified;
@@ -373,6 +375,8 @@ items.add({id : count, group: 2, content : '<%= item.content %>', start: '<%= it
 		onAdd : function(item, callback) {
 			document.getElementById("CareerForm").style.display = "none";
 			document.getElementById("EducationForm").style.display = "none";
+			document.getElementById("First_Option_For_Select").style.display = "none";
+
 			displayRequiredDiv("Option_For_Select");
 			modified = formatDate(item.start);
 			document.getElementById("mytext").value = modified;
