@@ -1,6 +1,5 @@
 <% @page_title = "Alumni Survey | Timeline" -%>
 
-<h3 class='User_Header'> Likert Items from EPRA : <%= @current_user.username%></h3>
 <style type="text/css">
 	table {
 		border: 1px solid black;
@@ -24,11 +23,8 @@
 		width: 650px;
 	}
 </style>
-
+<h3> Rate the level to which you agree/disagree with the following statements using the following scale: </h3>
 <div class= "LikeRT_Page">
-	<p>
-		Rate the level to which you agree/disagree with the following statements using the following scale:
-	</p>
 
 	<%= form_for(:like_rt_response,:html => { :id => "likertForm" } ,:url => {:controller => 'sessions', :action => 'likert_response'}) do |f| %>
 

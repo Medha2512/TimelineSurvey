@@ -42,7 +42,6 @@
 		});
 
 		$('#profileForm').submit(function(e) {
-			alert($("select[name='user[undergrad_major]'] option:selected").val());
 			if ($("input[name='user[undergrad_end]']").val() == "") {
 				alert('Please enter valid undergrad finish date');
 				e.preventDefault();

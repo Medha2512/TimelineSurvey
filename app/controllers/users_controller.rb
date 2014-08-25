@@ -79,11 +79,13 @@ class UsersController < ApplicationController
           if not user.is_admin
             timelinelist.row(i).push user.username, user.email, user.accepted, user.completed, user.current_page
             if user.careertransitions.exists?
-              timelinelist.row(0).concat %w{New_Career_Field Motivation Service_through Ways_service_through
-              Service_outside Ways_service_outside Job_length Service_job_satisfaction Initial_job_satisfaction
-              Previous_dissatisfaction Dissatisfaction_source Other_dissatisfaction_source Event_time}
+
               @careertransitions = user.careertransitions
               @careertransitions.each { |career|
+                timelinelist.row(0).concat %w{New_Career_Field Motivation Service_through Ways_service_through
+                Service_outside Ways_service_outside Job_length Service_job_satisfaction Initial_job_satisfaction
+                Previous_dissatisfaction Dissatisfaction_source Other_dissatisfaction_source Event_time}
+
                 timelinelist.row(i).push career.new_career_field, career.motivation, career.service_through,
                 career.ways_service_through, career.service_outside, career.ways_service_outside,
                 career.job_length , career.service_job_satisfaction, career.initial_job_satisfaction,
@@ -92,11 +94,13 @@ class UsersController < ApplicationController
               }
             end
             if user.educationtransitions.exists?
-              timelinelist.row(0).concat %w{New_Education_Field Motivation Eng_service_through_program 
-              Eng_service_through_extra Education_service_satisfaction Initial_new_education_service_satisfaction
-              Previous_dissatisfaction Dissatisfaction_source Other_dissatisfaction_source Event_time}
               @educationtransitions = user.educationtransitions
               @educationtransitions.each { |education|
+
+                timelinelist.row(0).concat %w{New_Education_Field Motivation Eng_service_through_program
+                Eng_service_through_extra Education_service_satisfaction Initial_new_education_service_satisfaction
+                Previous_dissatisfaction Dissatisfaction_source Other_dissatisfaction_source Event_time}
+                
                 timelinelist.row(i).push education.new_education_field, education.motivation,
                 education.eng_service_through_program, education.eng_service_through_extra,
                 education.education_service_satisfaction, education.initial_new_education_service_satisfaction,
