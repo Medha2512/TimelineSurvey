@@ -43,7 +43,7 @@
 				<%= f.radio_button :participate_as , "Both undergraduate and graduate" %> Both
 			</li>
 			<li>
-				Did you travel (multi-day experience outside of your local community) as part of one of these projects?</br>
+				Did you travel (multi-day experience outside of your local community) as part of any of these projects?</br>
 				<%= f.radio_button :travel , "Yes" %> Yes</br>
 				<%= f.radio_button :travel , "No" %> No
 			</li>
@@ -58,7 +58,9 @@
 				<li>
 					Was that travel short term (2 weeks or less) or longer term (more than 2 weeks)?</br>
 					<%= f.radio_button :travel_term , "short" %> Short Term (2 weeks or less)</br>
-					<%= f.radio_button :travel_term , "long" %> Longer Term (more than 2 weeks)
+					<%= f.radio_button :travel_term , "long" %> Longer Term (more than 2 weeks)</br>
+					<%= f.radio_button :travel_term , "both short and long" %> Both</br>
+
 				</li>
 			</div>
 
@@ -128,11 +130,13 @@
 			document.getElementById("other_service_exp_check").checked = true;
 			document.getElementById("other_service_exp").disabled = false;
 		}
+		
 		if (document.getElementById("other_non_engg_services").value != "") {
 			document.getElementById("other_non_engg_service_check").checked = true;
 			document.getElementById("other_non_engg_services").disabled = false;
 
 		}
+		
 		$("input[name=other_service_exp_check").click(function() {
 			if (document.getElementById("other_service_exp").disabled)
 				document.getElementById("other_service_exp").disabled = false;
@@ -141,6 +145,7 @@
 				document.getElementById("other_service_exp").disabled = true;
 			}
 		});
+		
 		$("input[name=other_non_engg_service_check]").click(function() {
 			if (document.getElementById("other_non_engg_services").disabled)
 				document.getElementById("other_non_engg_services").disabled = false;
@@ -157,6 +162,7 @@
 			else
 				document.getElementById("ServiceDiv").style.display = "none";
 		});
+		
 		$("input[name='ed_exp_classification[travel]']").click(function() {
 			if (this.id == 'ed_exp_classification_travel_yes')
 				document.getElementById("TravelDiv").style.display = "block";

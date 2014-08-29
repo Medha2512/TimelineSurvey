@@ -4,6 +4,7 @@ class CreateDemographics < ActiveRecord::Migration
       t.integer  :user_id
       t.string :gender , :default => ""
       t.string :race, :default =>  ""
+      t.string :other_race, :default =>  ""
       t.string :religious, :default =>  ""
       t.string :religious_active, :default =>  ""
       t.timestamps

@@ -7,7 +7,7 @@ class CareertransitionsController < ApplicationController
 
   def create
 
-    if params[:submit]
+    if params[:career_submit]
       @user = current_user
       @career = @user.careertransitions.build(career_params)
       @career.content = set_career_content(@career.new_career_field)

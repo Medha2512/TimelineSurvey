@@ -77,6 +77,11 @@ body {
 	text-decoration: underline;
 }
 
+.reenter_date {
+	color: blue;
+	text-decoration: underline;
+}
+
 .submit {
 	font-size: 15px;
 	padding: 5px 15px;
@@ -163,11 +168,68 @@ body {
 	width: auto;
 }
 
-.tooltip {
-	width: 25px;
-	height: 25px;
-}
 #consent-textarea {
 	width: 1000px;
 	height: 150px;
 }
+
+.tooltipImg {
+	width: 25px;
+	height: 25px;
+}
+
+.black_content {
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index: 1001;
+	-moz-opacity: 0.8;
+	opacity: .80;
+	filter: alpha(opacity=80);
+}
+.white_content {
+	font-size: 14px;
+	display: none;
+	position: absolute;
+	padding: 10px;
+	top: 25%;
+	left: 25%;
+	width: 50%;
+	height: auto;
+	box-shadow: 5px 5px 5px #888888;
+	border-radius: 18px;
+	background-color: #C4C1BD;
+	z-index: 1002;
+	overflow: auto;
+}
+
+.white_content_form {
+	font-size: 14px;
+	display: none;
+	position: absolute;
+	padding: 10px;
+	top: 0%;
+	left: 20%;
+	width: 60%;
+	height: auto;
+	box-shadow: 5px 5px 5px #888888;
+	border-radius: 18px;
+	background-color: #C4C1BD;
+	z-index: 1002;
+	overflow: auto;
+}
+
+.secondoptionok {
+	font-size: 15px;
+	padding: 5px 15px;
+	cursor: pointer;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, .2);
+	display: inline;
+	margin-left: 45%;
+}
+

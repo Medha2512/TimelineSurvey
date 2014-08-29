@@ -2,9 +2,7 @@
 
 <div class= "DemographicsPage">
 
-	<h4>
-		Please enter the below information -
-	</h4>
+	<h4> Please enter the below information - </h4>
 
 	<%= form_for(:demographic, :html => {:id => 'demoForm'}, :url => {:controller => 'sessions', :action => 'demographic_response'}) do |f| %>
 	<ol class="questions">
@@ -65,7 +63,18 @@
 
 <script>
 	$(document).ready(function() {
-		document.getElementById("ReligiousActiveDiv").style.display = "none";
+		radioValueForReligious($("input[name='demographic[religious]']:radio:checked").val());
+
+		function radioValueForReligious(value) {
+			if (value == "Religious and affiliated")
+				document.getElementById("ReligiousActiveDiv").style.display = "block";
+			else
+				document.getElementById("ReligiousActiveDiv").style.display = "none";
+		}
+
+		if (document.getElementById("other_race").value != "") {
+			document.getElementById("other_race").disabled = false;
+		}
 
 		$("input[name='demographic[race]']").click(function() {
 			if (this.id == 'demographic_race_other')

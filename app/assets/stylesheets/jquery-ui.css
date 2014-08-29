@@ -824,6 +824,7 @@ button.ui-button::-moz-focus-inner {
 	box-shadow: 0 0 5px #aaa;
 }
 body .ui-tooltip {
+	font-size: 11px;
 	border-width: 2px;
 }
 

@@ -6,7 +6,7 @@ class EducationtransitionsController < ApplicationController
   end
 
   def create
-    if params[:submit]
+    if params[:education_submit]
       @user = current_user
       @education = @user.educationtransitions.build(education_params)
       @education.content = set_education_content(@education.new_education_field)
@@ -22,7 +22,7 @@ class EducationtransitionsController < ApplicationController
   private
 
   def education_params
-    params.require(:educationtransition).permit(:new_education_field, :motivation,
+    params.require(:educationtransition).permit(:new_education_field, :other_non_engineering_field,:motivation,
     :eng_service_through_program, :eng_service_through_extra, :education_service_satisfaction,
     :initial_new_education_service_satisfaction, :previous_dissatisfaction,
     :ed_other_dissatisfaction_source, :event_time, :dissatisfaction_source => [])

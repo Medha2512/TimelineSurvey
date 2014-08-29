@@ -44,7 +44,7 @@ class UsersController < ApplicationController
         Incorporate_societal Call_by_society pro_brono_work Serve_others Positive_volunteering Extra_time
         Service_as_student Separate_service_exp Engg_service_exp Other_service_exp Participate_as Travel Travel_type Travel_term
         Formal_leadership Engg_service_length Engg_service_beneficial Nonengg_service_as_student
-        Nonengg_service_exp other_non_engg_services Nonengg_service_beneficial Gender Race Religious Religious_preference}
+        Nonengg_service_exp other_non_engg_services Nonengg_service_beneficial Gender Race Other_Race Religious Religious_preference}
 
         @users.each.with_index(1) do |user, i|
 
@@ -66,46 +66,39 @@ class UsersController < ApplicationController
             user.ed_exp_classification.other_non_engg_services, user.ed_exp_classification.nonengg_service_beneficial
             end
             if not user.demographic.nil?
-            list.row(i).push user.demographic.gender, user.demographic.race, user.demographic.religious, user.demographic.religious_active
+            list.row(i).push user.demographic.gender, user.demographic.race, user.demographic.other_race, user.demographic.religious, user.demographic.religious_active
             end
           end
         end
 
         timelinelist = users.create_worksheet :name => "Timeline"
 
-        timelinelist.row(0).concat %w{Username Email Consent Completed Current_Page}
+        timelinelist.row(0).concat %w{Username Email}
 
         @users.each.with_index(1) do  |user, i|
           if not user.is_admin
-            timelinelist.row(i).push user.username, user.email, user.accepted, user.completed, user.current_page
+            timelinelist.row(i).push user.username, user.email
             if user.careertransitions.exists?
 
               @careertransitions = user.careertransitions
               @careertransitions.each { |career|
-                timelinelist.row(0).concat %w{New_Career_Field Motivation Service_through Ways_service_through
-                Service_outside Ways_service_outside Job_length Service_job_satisfaction Initial_job_satisfaction
-                Previous_dissatisfaction Dissatisfaction_source Other_dissatisfaction_source Event_time}
 
-                timelinelist.row(i).push career.new_career_field, career.motivation, career.service_through,
-                career.ways_service_through, career.service_outside, career.ways_service_outside,
-                career.job_length , career.service_job_satisfaction, career.initial_job_satisfaction,
-                career.previous_dissatisfaction , career.dissatisfaction_source.join(","),
-                career.other_dissatisfaction_source, career.event_time
+                timelinelist.row(i).push "Career", career.event_time, career.new_career_field, career.motivation,
+                career.service_through, career.ways_service_through, career.service_outside,
+                career.ways_service_outside, career.job_length , career.service_job_satisfaction,
+                career.initial_job_satisfaction, career.previous_dissatisfaction,
+                career.dissatisfaction_source.join(","), career.other_dissatisfaction_source , "" , "End"
               }
             end
             if user.educationtransitions.exists?
               @educationtransitions = user.educationtransitions
               @educationtransitions.each { |education|
 
-                timelinelist.row(0).concat %w{New_Education_Field Motivation Eng_service_through_program
-                Eng_service_through_extra Education_service_satisfaction Initial_new_education_service_satisfaction
-                Previous_dissatisfaction Dissatisfaction_source Other_dissatisfaction_source Event_time}
-                
-                timelinelist.row(i).push education.new_education_field, education.motivation,
-                education.eng_service_through_program, education.eng_service_through_extra,
+                timelinelist.row(i).push "Education", education.event_time, education.new_education_field,
+                education.motivation, education.eng_service_through_program, education.eng_service_through_extra,
                 education.education_service_satisfaction, education.initial_new_education_service_satisfaction,
                 education.previous_dissatisfaction , education.dissatisfaction_source.join(","),
-                education.ed_other_dissatisfaction_source, education.event_time
+                "","","",education.ed_other_dissatisfaction_source, education.other_non_engineering_field , "End"
               }
             end
           end

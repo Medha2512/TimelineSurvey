@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140813180034) do
     t.integer  "user_id"
     t.string   "gender",           default: ""
     t.string   "race",             default: ""
+    t.string   "other_race",       default: ""
     t.string   "religious",        default: ""
     t.string   "religious_active", default: ""
     t.datetime "created_at"
@@ -105,7 +106,7 @@ ActiveRecord::Schema.define(version: 20140813180034) do
     t.string   "email"
     t.string   "encrypted_password"
     t.boolean  "accepted",               default: false
-    t.date     "undergrad_end"
+    t.string   "undergrad_end",          default: ""
     t.boolean  "completed",              default: false
     t.string   "current_page",           default: "consent"
     t.string   "undergrad_major",        default: ""

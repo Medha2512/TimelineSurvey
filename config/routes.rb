@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   match "admin_page", :to => "sessions#admin_page", via: :get
   match "download_xls", :to => "users#download_xls", via: :get
   match "demographics", :to => "sessions#demographics", via: :get
+  match "demographics", :to => "sessions#demographics", via: :post
   match "demographic_response", :to => "sessions#demographic_response", via: :post
   match "sign_in_guest", :to => "sessions#sign_in_guest", via: :get
 

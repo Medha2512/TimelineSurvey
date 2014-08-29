@@ -6,9 +6,10 @@
 	<ol class="questions">
 		<li>
 			<p>
-				When did you finish your undergraduate degree?</br>
-				<%= f.text_field :undergrad_end, :class => 'datepicker' %>
-				<img src="/assets/question.png" class="tooltip" title="In case of date uncertainity, please select 1st of that month" />
+				When did you finish your undergraduate degree?
+				<%= image_tag("/assets/question.png" , class: "tooltipImg" ,title: "In case you don't remember the exact date, just use the first of your graduation month and year")%>
+				</br>
+				<%= f.text_field :undergrad_end, :class => 'datepicker'%>
 			</p>
 		</li>
 		<li>
@@ -23,17 +24,17 @@
 		</li>
 	</ol>
 
-	<%= f.submit "Next >>", class: "submit" , :onClick => 'updateSubmit()'%>
+	<%= f.submit "Next >>", class: "submit"%>
 	<% end %>
 </div>
 <script>
 	$(document).ready(function() {
-
+		$(document).tooltip();
 		if (document.getElementById("other_undergrad_major").value != "")
 			document.getElementById("other_undergrad_major").disabled = false;
 
 		$('.datepicker').datepicker({
-			dateFormat : "yy-mm-dd",
+			dateFormat : "d MM, yy",
 			changeMonth : true,
 			changeYear : true,
 			minDate : -6010,

@@ -14,6 +14,11 @@ class SessionsController < ApplicationController
     @user = current_user
   end
 
+  def demographics  
+    @user = current_user
+    @demographic = @user.demographic
+  end
+
   def timeline
     @educationtransition = Educationtransition.new
     @careertransition = Careertransition.new
@@ -204,6 +209,7 @@ class SessionsController < ApplicationController
     @item = params[:item]
     @modified = params[:modified]
     @oldItemStart = params[:oldItemStart]
+    
     if @item[:group] == "1"
       Careertransition.where({content: @item[:content] , event_time: @oldItemStart , user_id: @user.id}).first.update(event_time: @modified)
     elsif @item[:group] == "2"
@@ -230,7 +236,7 @@ class SessionsController < ApplicationController
   end
 
   def demographic_params
-    params.require(:demographic).permit(:gender, :race, :religious, :religious_active)
+    params.require(:demographic).permit(:gender, :race, :other_race , :religious, :religious_active)
   end
 
   def ed_exp_response_params
