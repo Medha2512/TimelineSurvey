@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_one :ed_exp_classification, :dependent => :destroy
   has_one :demographic, :dependent => :destroy
 
-  before_save :encrypt_password
+  before_save :encrypt_password, :to_lower 
   after_save :clear_password
 
   EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
@@ -39,10 +39,11 @@ class User < ActiveRecord::Base
   
   def self.authenticate(username_or_email="", login_password="")
 
+
     if  EMAIL_REGEX.match(username_or_email)
-      user = User.find_by_email(username_or_email)
+      user = User.find_by_email(username_or_email.downcase)
     else
-      user = User.find_by_username(username_or_email)
+      user = User.find_by_username(username_or_email.downcase)
     end
     if user && user.match_password(login_password)
     return user
@@ -60,5 +61,10 @@ class User < ActiveRecord::Base
 
   def match_password(login_password="")
     encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
+  end
+  
+  def to_lower
+      self.username = self.username.downcase
+      self.email = self.email.downcase
   end
 end
