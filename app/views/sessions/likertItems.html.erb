@@ -42,17 +42,7 @@
 			<th>Strongly Agree</th>
 		</tr>
 		<tr>
-			<td>1. I would not change my engineering design because it conflicted with community feedback </td>
-			<td><%= f.radio_button :conflicted_community , "Strongly Disagree" %> </td>
-			<td><%= f.radio_button :conflicted_community , "Disagree" %> </td>
-			<td><%= f.radio_button :conflicted_community , "Slightly Disagree" %> </td>
-			<td><%= f.radio_button :conflicted_community , "Neutral" %> </td>
-			<td><%= f.radio_button :conflicted_community , "Slightly Agree" %> </td>
-			<td><%= f.radio_button :conflicted_community , "Agree" %> </td>
-			<td><%= f.radio_button :conflicted_community , "Strongly Agree" %> </td>
-		</tr>
-		<tr>
-			<td>2. It is important to me personally to have a career that involves helping people</td>
+			<td>1. It is important to me personally to have a career that involves helping people</td>
 			<td><%= f.radio_button :helping_people , "Strongly Disagree" %> </td>
 			<td><%= f.radio_button :helping_people , "Disagree" %> </td>
 			<td><%= f.radio_button :helping_people , "Slightly Disagree" %> </td>
@@ -62,7 +52,7 @@
 			<td><%= f.radio_button :helping_people , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
-			<td>3. It is important for engineers to consider the potential broader impacts of technical solutions to problems </td>
+			<td>2. It is important for engineers to consider the potential broader impacts of technical solutions to problems </td>
 			<td><%= f.radio_button :technical_soln_impact , "Strongly Disagree" %> </td>
 			<td><%= f.radio_button :technical_soln_impact , "Disagree" %> </td>
 			<td><%= f.radio_button :technical_soln_impact , "Slightly Disagree" %> </td>
@@ -72,7 +62,7 @@
 			<td><%= f.radio_button :technical_soln_impact , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
-			<td>4. Service should not be an expected part of the engineering profession </td>
+			<td>3. Service should not be an expected part of the engineering profession </td>
 			<td><%= f.radio_button :service_not_part , "Strongly Disagree" %> </td>
 			<td><%= f.radio_button :service_not_part , "Disagree" %> </td>
 			<td><%= f.radio_button :service_not_part , "Slightly Disagree" %> </td>
@@ -82,7 +72,7 @@
 			<td><%= f.radio_button :service_not_part , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
-			<td>5. I would be willing to have a career that earns less money if I were serving society </td>
+			<td>4. I would be willing to have a career that earns less money if I were serving society </td>
 			<td><%= f.radio_button :less_money_for_society , "Strongly Disagree" %> </td>
 			<td><%= f.radio_button :less_money_for_society , "Disagree" %> </td>
 			<td><%= f.radio_button :less_money_for_society , "Slightly Disagree" %> </td>
@@ -92,7 +82,7 @@
 			<td><%= f.radio_button :less_money_for_society , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
-			<td>6. I view engineering and community service work as unconnected </td>
+			<td>5. I view engineering and community service work as unconnected </td>
 			<td><%= f.radio_button :unconnected , "Strongly Disagree" %> </td>
 			<td><%= f.radio_button :unconnected , "Disagree" %> </td>
 			<td><%= f.radio_button :unconnected , "Slightly Disagree" %> </td>
@@ -102,7 +92,7 @@
 			<td><%= f.radio_button :unconnected , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
-			<td>7. It is important to incorporate societal constraints into engineering decisions </td>
+			<td>6. It is important to incorporate societal constraints into engineering decisions </td>
 			<td><%= f.radio_button :incorporate_societal , "Strongly Disagree" %> </td>
 			<td><%= f.radio_button :incorporate_societal , "Disagree" %> </td>
 			<td><%= f.radio_button :incorporate_societal , "Slightly Disagree" %> </td>
@@ -112,7 +102,7 @@
 			<td><%= f.radio_button :incorporate_societal , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
-			<td>8. I felt called by the needs of society to pursue a career in engineering </td>
+			<td>7. I felt called by the needs of society to pursue a career in engineering </td>
 			<td><%= f.radio_button :call_by_society , "Strongly Disagree" %> </td>
 			<td><%= f.radio_button :call_by_society , "Disagree" %> </td>
 			<td><%= f.radio_button :call_by_society , "Slightly Disagree" %> </td>
@@ -122,7 +112,7 @@
 			<td><%= f.radio_button :call_by_society , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
-			<td>9. Engineering firms should take on some pro bono work </td>
+			<td>8. Engineering firms should take on some pro bono work </td>
 			<td><%= f.radio_button :pro_brono_work , "Strongly Disagree" %> </td>
 			<td><%= f.radio_button :pro_brono_work , "Disagree" %> </td>
 			<td><%= f.radio_button :pro_brono_work , "Slightly Disagree" %> </td>
@@ -130,6 +120,16 @@
 			<td><%= f.radio_button :pro_brono_work , "Slightly Agree" %> </td>
 			<td><%= f.radio_button :pro_brono_work , "Agree" %> </td>
 			<td><%= f.radio_button :pro_brono_work , "Strongly Agree" %> </td>
+		</tr>		
+		<tr>
+			<td>9. I would not change my engineering design because it conflicted with community feedback </td>
+			<td><%= f.radio_button :conflicted_community , "Strongly Disagree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Disagree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Slightly Disagree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Neutral" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Slightly Agree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Agree" %> </td>
+			<td><%= f.radio_button :conflicted_community , "Strongly Agree" %> </td>
 		</tr>
 		<tr>
 			<td>10. I think it is important to use my engineering to serve others </td>
