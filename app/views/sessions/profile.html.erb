@@ -47,7 +47,7 @@
 				alert('Please enter valid undergrad finish date');
 				e.preventDefault();
 			}
-			if ($("select[name='user[undergrad_major]'] option:selected").val() == "") {
+			else if ($("select[name='user[undergrad_major]'] option:selected").val() == "") {
 				alert('Please enter your undergrad major subject');
 				e.preventDefault();
 			}
