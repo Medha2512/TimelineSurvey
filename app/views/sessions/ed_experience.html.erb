@@ -12,9 +12,14 @@
 			<%= f.radio_button :service_as_student , "No" %> No
 		</li>
 		<div id = "ServiceDiv">
+			<ol>
 			<li>
-				How many separate engineering service experiences did you have? (Type in a number)
-				<%= f.text_field :no_of_engg_service %>
+				How many separate engineering service experiences did you have?</br>
+				<%= f.radio_button :no_of_engg_service , "1-2" %> 1-2 </br>
+				<%= f.radio_button :no_of_engg_service , "3-5" %> 3-5 </br>
+				<%= f.radio_button :no_of_engg_service , "6-10" %> 6-10 </br>
+				<%= f.radio_button :no_of_engg_service , "11-20" %> 11-20 </br>
+				<%= f.radio_button :no_of_engg_service , ">20" %> >20 
 			</li>
 			<li>
 				Your engineering service experience(s) as a college student could be best described as (check all that apply): </br>
@@ -29,8 +34,6 @@
 					<tr>
 						<%end%>
 						<%end%>
-					</tr>
-					<tr>
 						<td><%= check_box_tag "other_service_exp_check" , "Other" %> Other
 						<%= f.text_field :other_service_exp, :id => 'other_service_exp', disabled: true %> </td>
 					</tr>
@@ -70,7 +73,7 @@
 				<%= f.radio_button :formal_leadership , "No" %> No
 			</li>
 			<li>
-				How long were you involved, collectively across your engineering service experiences?</br>
+				Indicate the number of academic years participated : </br>
 				<%= f.radio_button :engg_service_length , "Less than one quarter/semester" %> Less than one quarter/semester</br>
 				<%= f.radio_button :engg_service_length , "One quarter/semester" %> One quarter/semester</br>
 				<%= f.radio_button :engg_service_length , "More than one quarter/semester, up to one year" %> More than one quarter/semester, up to one year</br>
@@ -78,8 +81,9 @@
 			</li>
 			<li>
 				In what ways, if any, was your college-based engineering service experience beneficial to you personally or in your work? </br>
-				<%= f.text_area :engg_service_beneficial %>
+				<%= f.text_area :engg_service_beneficial, :id => "message_area"  %>
 			</li>
+			</ol>
 		</div>
 		<li>
 			Did you engage in any forms of NON-ENGINEERING service as a student (undergrad or grad)? </br>
@@ -87,6 +91,7 @@
 			<%= f.radio_button :nonengg_service_as_student , "No" %> No
 		</li>
 		<div id = "NonEnggService">
+			<ol>
 			<li>
 				Your Non-engineering service experience(s) as a college student could best be described as (check all that apply):
 				<table class = "checkBoxTable">
@@ -100,8 +105,6 @@
 					<tr>
 						<%end%>
 						<%end%>
-					</tr>
-					<tr>
 						<td><%= check_box_tag "other_non_engg_service_check", "Other" %>
 						Other <%= f.text_field :other_non_engg_services, :id => 'other_non_engg_services' , disabled: true %> </td>
 					</tr>
@@ -109,8 +112,9 @@
 			</li>
 			<li>
 				In what ways, if any, was your college-based non-engineering service experience beneficial to you personally or in your work? </br>
-				<%= f.text_area :nonengg_service_beneficial  %>
+				<%= f.text_area :nonengg_service_beneficial, :id => "message_area"   %>
 			</li>
+			</ol>
 		</div>
 	</ol>
 	<%= f.submit "<< Back" , :name => 'back', class: "submit" %>

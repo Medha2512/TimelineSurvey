@@ -15,6 +15,7 @@
 		text-align: center;
 		text-decoration: underline;
 		font-weight: bold;
+		color: white;
 		background-color: #555555;
 	}
 	td:first-child {
@@ -172,7 +173,7 @@
 		$('[name="next"]').click(function(e) {
 			var noneFilled = checkFields($(this.form));
 			if (noneFilled) {
-				alert('Please fill atleast one field to proceed');
+				alert('Please fill at least one field to proceed');
 				e.preventDefault();
 			}
 		});

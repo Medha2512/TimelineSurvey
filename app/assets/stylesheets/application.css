@@ -233,3 +233,7 @@ body {
 	margin-left: 45%;
 }
 
+textarea#message_area {
+  width: 500px;
+  height: 100px;
+}

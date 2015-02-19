@@ -103,7 +103,7 @@
 			<%= f.radio_button :initial_job_satisfaction , "4" %> 4: Neutral
 			<%= f.radio_button :initial_job_satisfaction , "5" %> 5
 			<%= f.radio_button :initial_job_satisfaction , "6" %> 6
-			<%= f.radio_button :initial_job_satisfaction , "7" %> 7: Satisfied
+			<%= f.radio_button :initial_job_satisfaction , "7" %> 7: Very Satisfied
 		</li>
 		</span>
 		
@@ -127,7 +127,7 @@
 				<%= f.radio_button :service_job_satisfaction , "4" %> 4: Neutral
 				<%= f.radio_button :service_job_satisfaction , "5" %> 5
 				<%= f.radio_button :service_job_satisfaction , "6" %> 6
-				<%= f.radio_button :service_job_satisfaction , "7" %> 7: Satisfied
+				<%= f.radio_button :service_job_satisfaction , "7" %> 7: Very Satisfied
 			</li>
 			<li>
 				How much was this career transition due to dissatisfaction with your previous job/career? </br>
@@ -212,7 +212,7 @@
 			<%= f.radio_button :initial_new_education_service_satisfaction , "4" %> 4: Neutral
 			<%= f.radio_button :initial_new_education_service_satisfaction , "5" %> 5
 			<%= f.radio_button :initial_new_education_service_satisfaction , "6" %> 6
-			<%= f.radio_button :initial_new_education_service_satisfaction , "7" %> 7: Satisfied
+			<%= f.radio_button :initial_new_education_service_satisfaction , "7" %> 7: Very Satisfied
 		</li>
 
 		<span id="previous_ed">
@@ -225,7 +225,7 @@
 				<%= f.radio_button :education_service_satisfaction , "4" %> 4: Neutral
 				<%= f.radio_button :education_service_satisfaction , "5" %> 5
 				<%= f.radio_button :education_service_satisfaction , "6" %> 6
-				<%= f.radio_button :education_service_satisfaction , "7" %> 7: Satisfied
+				<%= f.radio_button :education_service_satisfaction , "7" %> 7: Very Satisfied
 			</li>
 			<li>
 				How much was this education transition due to dissatisfaction with your
@@ -293,7 +293,7 @@
 <script type="text/javascript">
 	var count = 1;
 	var startDate =    "<%= @current_user.undergrad_end %>" ;
-
+	startDate = '01-' + startDate;
 	var groups = new vis.DataSet([{id: 1, content: 'Career'},{id: 2, content: 'Education'}]);
 
 	var items = new vis.DataSet([{id : 1, group: 2, content : 'Undergrad complete', start : startDate, type: 'point', editable : false}]);

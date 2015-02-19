@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
       "Certificate Program (series of related classes, such as Engineering in Developing Communities)",
       "Service-Learning (in-class service experience tied to engineering content)",
       "Integrated Degree Program (engineering service was in many classes for your degree)",
-      "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)"]
+      "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)", "Unpaid Tutoring"]
 
     @all_non_engg_service_exp = ["Service-learning in Non-engineering courses",
       "Habitat for Humanity Build","Tutoring elementary or secondary children", "Donated Blood",
@@ -142,7 +142,8 @@ class SessionsController < ApplicationController
       "Certificate Program (series of related classes, such as Engineering in Developing Communities)",
       "Service-Learning (in-class service experience tied to engineering content)",
       "Integrated Degree Program (engineering service was in many classes for your degree)",
-      "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)"]
+      "Service provided through professional societies (ASME, ASCE, AAEE, IEEE, etc.)",
+      "Unpaid Tutoring"]
 
       @all_non_engg_service_exp = ["Service-learning in Non-engineering courses",
       "Habitat for Humanity Build","Tutoring elementary or secondary children", "Donated Blood",

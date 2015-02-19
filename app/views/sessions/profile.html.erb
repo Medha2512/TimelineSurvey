@@ -6,19 +6,19 @@
 	<ol class="questions">
 		<li>
 			<p>
-				When did you finish your undergraduate degree?
+				When did you finish your undergraduate degree? (mm/yyyy)
 				<%= image_tag("/assets/question.png" , class: "tooltipImg" ,title: "In case you don't remember the exact date, just use the first of your graduation month and year")%>
 				</br>
-				<%= f.text_field :undergrad_end, :class => 'datepicker'%>
+  				<%=  f.text_field :undergrad_end %>
 			</p>
 		</li>
 		<li>
 			<p>
 				What was your primary major?:
-				<%= f.select :undergrad_major, [ ["--Select One--",nil], "Aerospace", "Architectural", "Biological/Biomedical",
+				<%= f.select :undergrad_major, [ ["--Select One--",nil], "Aerospace", "Agricultural", "Architectural", "Biological/Biomedical",
             "Biomechanical","Chemical","Chem/Bio","Civil","Computer/Computer Science/ Software","Construction Management",
-            "Electrical","Environmental","Mechanical","Math or Natural Science related","Humanities or social science related",
-            "Other" ]%></br>
+            "Electrical","Environmental", "Industrial" ,"Mechanical", "Materials", "Math or Natural Science related",
+            "Humanities or social science related","Other" ]%></br>
 				If other, Please specify : <%= f.text_field :other_undergrad_major, :id=> 'other_undergrad_major', :disabled => true %>
 			</p>
 		</li>
@@ -33,23 +33,34 @@
 		if (document.getElementById("other_undergrad_major").value != "")
 			document.getElementById("other_undergrad_major").disabled = false;
 
-		$('.datepicker').datepicker({
-			dateFormat : "d MM, yy",
-			changeMonth : true,
-			changeYear : true,
-			minDate : -6010,
-			yearRange : "-20:+0",
-			maxDate : 'today'
-		});
-
 		$('#profileForm').submit(function(e) {
-			if ($("input[name='user[undergrad_end]']").val() == "") {
+			if ($("input[name='user[undergrad_end]']").val() == "") {			
 				alert('Please enter valid undergrad finish date');
 				e.preventDefault();
 			}
 			else if ($("select[name='user[undergrad_major]'] option:selected").val() == "") {
 				alert('Please enter your undergrad major subject');
 				e.preventDefault();
+			}
+			else
+			{
+				var input = $("input[name='user[undergrad_end]']").val();
+				var validformat=/^\d{2}\-\d{4}$/; //Basic check for format validity
+				if (!validformat.test(input)){
+					alert("Invalid Date Format. Please correct and submit again.");
+					e.preventDefault();
+				}
+				else{ //Detailed check for valid date ranges
+					var month=input.split("/")[0];
+					var year=input.split("/")[1];
+				
+					var currentDate = new Date();
+					var selectedDate = new Date(year, month - 1, currentDate.getDate());
+					if(currentDate < selectedDate){
+    					alert("Invalid Year Range. Please correct and submit again.");
+						e.preventDefault();
+					}				
+				}
 			}
 		});
 

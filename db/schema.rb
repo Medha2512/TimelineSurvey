@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20140813180034) do
   create_table "ed_exp_classifications", force: true do |t|
     t.integer  "user_id"
     t.string   "service_as_student",         default: ""
-    t.integer  "no_of_engg_service"
+    t.text  "no_of_engg_service"
     t.text     "engg_service_exp",           default: "---\n- None\n"
     t.string   "other_service_exp"
     t.string   "participate_as",             default: ""
