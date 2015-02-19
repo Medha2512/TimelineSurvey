@@ -8,7 +8,7 @@
 			<p>
 				When did you finish your undergraduate degree? (mm-yyyy)
 				</br>
-  				<%=  f.text_field :undergrad_end %>
+				<%= f.text_field :undergrad_end %>
 			</p>
 		</li>
 		<li>
@@ -33,32 +33,34 @@
 			document.getElementById("other_undergrad_major").disabled = false;
 
 		$('#profileForm').submit(function(e) {
-			if ($("input[name='user[undergrad_end]']").val() == "") {			
+			if ($("input[name='user[undergrad_end]']").val() == "") {
 				alert('Please enter valid undergrad finish date');
 				e.preventDefault();
-			}
-			else if ($("select[name='user[undergrad_major]'] option:selected").val() == "") {
+			} else if ($("select[name='user[undergrad_major]'] option:selected").val() == "") {
 				alert('Please enter your undergrad major subject');
 				e.preventDefault();
-			}
-			else
-			{
+			} else {
 				var input = $("input[name='user[undergrad_end]']").val();
-				var validformat=/^\d{2}\-\d{4}$/; //Basic check for format validity
-				if (!validformat.test(input)){
+				var validformat = /^\d{2}\-\d{4}$/;
+				//Basic check for format validity
+				if (!validformat.test(input)) {
 					alert("Invalid Date Format. Please correct and submit again.");
 					e.preventDefault();
-				}
-				else{ //Detailed check for valid date ranges
-					var month=input.split("/")[0];
-					var year=input.split("/")[1];
-				
+				} else {//Detailed check for valid date ranges
+					
+					var month = input.split("-")[0];
+					if (month < 1 || month > 31) {
+						alert("Invalid Month Range. Please correct and submit again.");
+						e.preventDefault();
+					}
+					var year = input.split("-")[1];
+
 					var currentDate = new Date();
 					var selectedDate = new Date(year, month - 1, currentDate.getDate());
-					if(currentDate < selectedDate){
-    					alert("Invalid Year Range. Please correct and submit again.");
+					if (currentDate < selectedDate) {
+						alert("Invalid Year Range. Please correct and submit again.");
 						e.preventDefault();
-					}				
+					}
 				}
 			}
 		});

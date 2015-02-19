@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   match "login", :to => "sessions#login", via: :get
   match "logout", :to => "sessions#logout", via: :get
+  match "logout", :to => "sessions#logout", via: :post
   match "delete", :to => "users#delete", via: :get
   match "consent", :to => "sessions#consent", via: :get
   match "profile", :to => "sessions#profile", via: :get
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   match "consent_decision", :to => "sessions#consent_decision", via: :post
   match "timeline", :to => "sessions#timeline", via: :get
   match "timeline", :to => "sessions#timeline", via: :post
-    match "trigger_startdate", :to => "sessions#trigger_startdate", via: :post
+  match "trigger_startdate", :to => "sessions#trigger_startdate", via: :post
 
   match "create", :to => "users#create", via: :post
   match "careercreate", :to => "careertransitions#create", via: :post
