@@ -1,5 +1,9 @@
 <% @page_title = "Alumni Survey | Timeline" -%>
-
+<style type="text/css">
+	.form-inline {
+		display: inline;
+	}
+</style>
 <h3>Timeline</h3>
 <%#=Contents of first transition block after graduating from undergrad%>
 <div id= "first_transition" class = "white_content">
@@ -25,12 +29,12 @@
 <%#=Instruction Manual to use timeline%>
 <div id= "timeline_instruction" class = "white_content">
 	<span id= "second_transition">You have successfully added your first transition.</br></span></br>
-	Questions about each transition focus, generally, on what you transitioned <b><u>to</u></b>. You can add 
-	as many as you like, but you cannot add two transitions on the same date, with the same career field. If your life has gone through 
+	Questions about each transition focus, generally, on what you transitioned <b><u>to</u></b>. You can add
+	as many as you like, but you cannot add two transitions on the same date, with the same career field. If your life has gone through
 	many transitions, please give up to five significant transitions.</br></br>
-	Add events by typing in the date of the transition in the "Go To Date" provided. If you don't remember 
-	the exact day, simply use the first of the month and year.  These transitions can be deleted by clicking on 
-	that transition in the timeline and can even be moved across to change transition dates. 
+	Add events by typing in the date of the transition in the "Go To Date" provided. If you don't remember
+	the exact day, simply use the first of the month and year.  These transitions can be deleted by clicking on
+	that transition in the timeline and can even be moved across to change transition dates.
 	<%= button_to "Ok", {} , {:class => "secondoptionok"}%>
 
 </div>
@@ -60,53 +64,48 @@
 			<%= f.radio_button :motivation , "One of many factors" %> One of many factors
 			<%= f.radio_button :motivation , "A main factor" %> A main factor
 		</li>
-		
+
 		<span id="new_career_option">
-		<li>
-			To what degree did you engage in service through this new career/job?: </br>
-			<%= f.radio_button :service_through , "1" %> 1: None
-			<%= f.radio_button :service_through , "2" %> 2
-			<%= f.radio_button :service_through , "3" %> 3
-			<%= f.radio_button :service_through , "4" %> 4
-			<%= f.radio_button :service_through , "5" %> 5
-			<%= f.radio_button :service_through , "6" %> 6
-			<%= f.radio_button :service_through , "7" %> 7: Substantial
-		</li>
-		<span id="engage_through">
 			<li>
-				Describe the ways in which you engage in service through this new career/job.: </br>
-				<%= f.text_area :ways_service_through %>
-			</li> 
-		</span>
-		<li>
-			To what degree did you engage in service outside of this new career/job?:  </br>
-			<%= f.radio_button :service_outside , "1" %> 1: None
-			<%= f.radio_button :service_outside , "2" %> 2
-			<%= f.radio_button :service_outside , "3" %> 3
-			<%= f.radio_button :service_outside , "4" %> 4
-			<%= f.radio_button :service_outside , "5" %> 5
-			<%= f.radio_button :service_outside , "6" %> 6
-			<%= f.radio_button :service_outside , "7" %> 7: Substantial
-		</li>
-		<span id="engage_outside">
+				To what degree did you engage in service through this new career/job?: </br>
+				<%= f.radio_button :service_through , "1" %> 1: None
+				<%= f.radio_button :service_through , "2" %> 2
+				<%= f.radio_button :service_through , "3" %> 3
+				<%= f.radio_button :service_through , "4" %> 4
+				<%= f.radio_button :service_through , "5" %> 5
+				<%= f.radio_button :service_through , "6" %> 6
+				<%= f.radio_button :service_through , "7" %> 7: Substantial
+			</li> <span id="engage_through">
+				<li>
+					Describe the ways in which you engage in service through this new career/job.: </br>
+					<%= f.text_area :ways_service_through %>
+				</li> </span>
 			<li>
-				Describe the ways in which you engage in service outside of this new career/job.: </br>
-				<%= f.text_area :ways_service_outside %>
-			</li>
-		</span>
-		<li>
-			How satisfied were you with your ability to engage in service, initially,
-			in your new job/career? </br>
-			<%= f.radio_button :initial_job_satisfaction , "1" %> 1: Very Dissatisfied
-			<%= f.radio_button :initial_job_satisfaction , "2" %> 2
-			<%= f.radio_button :initial_job_satisfaction , "3" %> 3
-			<%= f.radio_button :initial_job_satisfaction , "4" %> 4: Neutral
-			<%= f.radio_button :initial_job_satisfaction , "5" %> 5
-			<%= f.radio_button :initial_job_satisfaction , "6" %> 6
-			<%= f.radio_button :initial_job_satisfaction , "7" %> 7: Very Satisfied
-		</li>
-		</span>
-		
+				To what degree did you engage in service outside of this new career/job?:  </br>
+				<%= f.radio_button :service_outside , "1" %> 1: None
+				<%= f.radio_button :service_outside , "2" %> 2
+				<%= f.radio_button :service_outside , "3" %> 3
+				<%= f.radio_button :service_outside , "4" %> 4
+				<%= f.radio_button :service_outside , "5" %> 5
+				<%= f.radio_button :service_outside , "6" %> 6
+				<%= f.radio_button :service_outside , "7" %> 7: Substantial
+			</li> <span id="engage_outside">
+				<li>
+					Describe the ways in which you engage in service outside of this new career/job.: </br>
+					<%= f.text_area :ways_service_outside %>
+				</li> </span>
+			<li>
+				How satisfied were you with your ability to engage in service, initially,
+				in your new job/career? </br>
+				<%= f.radio_button :initial_job_satisfaction , "1" %> 1: Very Dissatisfied
+				<%= f.radio_button :initial_job_satisfaction , "2" %> 2
+				<%= f.radio_button :initial_job_satisfaction , "3" %> 3
+				<%= f.radio_button :initial_job_satisfaction , "4" %> 4: Neutral
+				<%= f.radio_button :initial_job_satisfaction , "5" %> 5
+				<%= f.radio_button :initial_job_satisfaction , "6" %> 6
+				<%= f.radio_button :initial_job_satisfaction , "7" %> 7: Very Satisfied
+			</li> </span>
+
 		<li>
 			<span id="new_ques">How long did you stay in this career/job?</span></br>
 			<%= f.radio_button :job_length , "less than 3 months" %> less than 3 months
@@ -275,9 +274,14 @@
 <div id="date_selection">
 	<%= link_to "Open Instructions" , "" , class: "nav_links"%>
 	</br>
-	Date: <%= text_field_tag 'datepickerData'%>
-	<%= button_to "Go!", {}, {class: "goButton"}%>
-	</br></br>
+	<table>
+		<tr>
+		<td>Date (mm-yyyy): </td>
+		<td><%= text_field_tag 'datepickerData'%></td>
+		<td><%= button_to "Go!", {}, {class: "goButton"}%></td>
+		</tr>
+	</table>
+	</br>
 </div>
 
 <%#=Actual Timeline%>
@@ -292,7 +296,7 @@
 
 <script type="text/javascript">
 	var count = 1;
-	var startDate =    "<%= @current_user.undergrad_end %>" ;
+	var startDate = "<%= @current_user.undergrad_end %>" ;
 	startDate = '01-' + startDate;
 	var groups = new vis.DataSet([{id: 1, content: 'Career'},{id: 2, content: 'Education'}]);
 
@@ -312,8 +316,7 @@
 			items.add({id : count, group: 2, content : '<%= item.content %>', start: '<%= item.event_time %>', type: 'point'});
 		<% end %>
 	<% end %>
-	
-	displayRequiredDivs();
+			displayRequiredDivs();
 
 	$(function() {
 
@@ -347,14 +350,14 @@
 			document.getElementById("fade").style.display = "none";
 			event.preventDefault();
 		});
-		
+
 		$(".goButton").on("click", function(e) {
-			
+
 			//validations
-			
+
 			var input = $("input[name='datepickerData']").val();
 			var validformat = /^\d{2}\-\d{4}$/;
-				//Basic check for format validity
+			//Basic check for format validity
 			if (!validformat.test(input)) {
 				alert("Invalid Date Format. Please correct and submit again.");
 			} else {//Detailed check for valid date ranges
@@ -363,12 +366,11 @@
 					alert("Invalid Month Range. Please correct and submit again.");
 				var year = input.split("-")[1];
 				var currentDate = new Date();
-				var undergradStartDate = new Date(input.split("-")[2],input.split("-")[1],input.split("-")[0]);
+				var undergradStartDate = new Date(input.split("-")[2], input.split("-")[1], input.split("-")[0]);
 				var selectedDate = new Date(year, month - 1, currentDate.getDate());
-				if (currentDate < selectedDate && undergradStartDate < selectedDate) 
+				if (currentDate < selectedDate && undergradStartDate < selectedDate)
 					alert("Invalid Year Range. Please correct and submit again.");
-				else
-				{
+				else {
 					var goToDate = "01-" + month + "-" + year;
 					count++;
 					items.add({
@@ -384,7 +386,7 @@
 					document.getElementById("fade").style.display = "block";
 					document.getElementById("datepickerData").value = "";
 					e.preventDefault();
-				}		
+				}
 			}
 		});
 
@@ -393,30 +395,26 @@
 			document.getElementById("first_transition").style.display = "none";
 			document.getElementById("timeline_instruction").style.display = "none";
 
-			if (this.value == "Career") 
+			if (this.value == "Career")
 				document.getElementById("career_form").style.display = "block";
-			else if (this.value == "Education") 
+			else if (this.value == "Education")
 				document.getElementById("education_form").style.display = "block";
-			
+
 		});
-		
+
 		$('.job_option').on('change', function() {
 
-			if (this.value == "Unemployed" || this.value == "Leaving work to take care of family" ||
-			 this.value == "Leaving work for other reasons")
-			 { 
+			if (this.value == "Unemployed" || this.value == "Leaving work to take care of family" || this.value == "Leaving work for other reasons") {
 				document.getElementById("new_career_option").style.display = "none";
-				document.getElementById("new_ques").innerHTML = "How long were you away from a job/career or school?";				
-			}
-			else 
+				document.getElementById("new_ques").innerHTML = "How long were you away from a job/career or school?";
+			} else
 				document.getElementById("new_career_option").style.display = "block";
 		});
 
 		$('.engg_option').on('change', function() {
-			if (this.value == 'BS/MS/PhD in non-engineering related field') 
+			if (this.value == 'BS/MS/PhD in non-engineering related field')
 				document.getElementById("other_non_engineering_field").disabled = false;
-			else
-			{
+			else {
 				document.getElementById("other_non_engineering_field").disabled = true;
 				document.getElementById("other_non_engineering_field").value = "";
 			}
@@ -474,7 +472,7 @@
 				e.preventDefault();
 			}
 		});
-		
+
 		$('[name="education_submit"]').click(function(e) {
 			if ($("select[name='educationtransition[new_education_field]'] option:selected").val() == "") {
 				alert('Sorry, but you cannot proceed without entering your new education transition field');
