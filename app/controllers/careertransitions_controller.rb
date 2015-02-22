@@ -18,7 +18,6 @@ class CareertransitionsController < ApplicationController
       end
     end
     redirect_to(:controller => 'sessions', :action => 'timeline')
-
   end
 
   private

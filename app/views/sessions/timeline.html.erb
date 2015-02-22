@@ -275,8 +275,8 @@
 <div id="date_selection">
 	<%= link_to "Open Instructions" , "" , class: "nav_links"%>
 	</br>
-	Go To Date: <%= text_field_tag 'datepickerData', nil, :class => 'datepicker' %>
-	<%= image_tag("/assets/question.png" , class: "tooltipImg" ,title: "In case you don't remember the exact date, just use the first of your graduation month and year")%>
+	Date: <%= text_field_tag 'datepickerData'%>
+	<%= button_to "Go!", {}, {class: "goButton"}%>
 	</br></br>
 </div>
 
@@ -299,16 +299,23 @@
 	var items = new vis.DataSet([{id : 1, group: 2, content : 'Undergrad complete', start : startDate, type: 'point', editable : false}]);
 
 	//Check if there are any career transitions
-<% if @current_user.careertransitions.exists? %><% for item in @current_user.careertransitions %>
-	count++;
-items.add({id : count, group: 1, content : '<%= item.content %>', start: '<%= item.event_time %>', type: 'point'});<% end %><% end %>//Check if there are any education transitions<% if @current_user.educationtransitions.exists? %><% for item in @current_user.educationtransitions %>
-	count++;
-items.add({id : count, group: 2, content : '<%= item.content %>', start: '<%= item.event_time %>', type: 'point'});<% end %><% end %>
+	<% if @current_user.careertransitions.exists? %>
+		<% for item in @current_user.careertransitions %>
+			count++;
+			items.add({id : count, group: 1, content : '<%= item.content %>', start: '<%= item.event_time %>', type: 'point'});
+		<% end %>
+	<% end %>
+	//Check if there are any education transitions
+	<% if @current_user.educationtransitions.exists? %>
+		<% for item in @current_user.educationtransitions %>
+			count++;
+			items.add({id : count, group: 2, content : '<%= item.content %>', start: '<%= item.event_time %>', type: 'point'});
+		<% end %>
+	<% end %>
+	
 	displayRequiredDivs();
 
 	$(function() {
-
-		$(document).tooltip();
 
 		$(".reenter_date").hover(function() {
 			$(".reenter_date").css("color", "red");
@@ -339,6 +346,46 @@ items.add({id : count, group: 2, content : '<%= item.content %>', start: '<%= it
 			document.getElementById("timeline_instruction").style.display = "none";
 			document.getElementById("fade").style.display = "none";
 			event.preventDefault();
+		});
+		
+		$(".goButton").on("click", function(e) {
+			
+			//validations
+			
+			var input = $("input[name='datepickerData']").val();
+			var validformat = /^\d{2}\-\d{4}$/;
+				//Basic check for format validity
+			if (!validformat.test(input)) {
+				alert("Invalid Date Format. Please correct and submit again.");
+			} else {//Detailed check for valid date ranges
+				var month = input.split("-")[0];
+				if (month < 1 || month > 31)
+					alert("Invalid Month Range. Please correct and submit again.");
+				var year = input.split("-")[1];
+				var currentDate = new Date();
+				var undergradStartDate = new Date(input.split("-")[2],input.split("-")[1],input.split("-")[0]);
+				var selectedDate = new Date(year, month - 1, currentDate.getDate());
+				if (currentDate < selectedDate && undergradStartDate < selectedDate) 
+					alert("Invalid Year Range. Please correct and submit again.");
+				else
+				{
+					var goToDate = "01-" + month + "-" + year;
+					count++;
+					items.add({
+						id : count,
+						group : 1,
+						content : 'Loading...',
+						start : goToDate
+					});
+					document.getElementById("event_time").innerHTML = goToDate;
+					document.getElementById("career_event_time").value = goToDate;
+					document.getElementById("ed_event_time").value = goToDate;
+					document.getElementById("next_transition").style.display = "block";
+					document.getElementById("fade").style.display = "block";
+					document.getElementById("datepickerData").value = "";
+					e.preventDefault();
+				}		
+			}
 		});
 
 		$('.optionSelect').on('change', function() {
@@ -432,30 +479,6 @@ items.add({id : count, group: 2, content : '<%= item.content %>', start: '<%= it
 			if ($("select[name='educationtransition[new_education_field]'] option:selected").val() == "") {
 				alert('Sorry, but you cannot proceed without entering your new education transition field');
 				e.preventDefault();
-			}
-		});
-		$('.datepicker').datepicker({
-
-			dateFormat : "d MM, yy",
-			changeMonth : true,
-			changeYear : true,
-			minDate : new Date(startDate),
-			maxDate : 'today',
-			onSelect : function() {
-				var goToDate = $(this).val();
-				count++;
-				items.add({
-					id : count,
-					group : 1,
-					content : 'Loading...',
-					start : goToDate
-				});
-				document.getElementById("event_time").innerHTML = goToDate;
-				document.getElementById("career_event_time").value = goToDate;
-				document.getElementById("ed_event_time").value = goToDate;
-				document.getElementById("next_transition").style.display = "block";
-				document.getElementById("fade").style.display = "block";
-				$('.datepicker').val('');
 			}
 		});
 	});
