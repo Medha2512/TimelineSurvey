@@ -32,9 +32,9 @@
 	Questions about each transition focus, generally, on what you transitioned <b><u>to</u></b>. You can add
 	as many as you like, but you cannot add two transitions on the same date, with the same career field. If your life has gone through
 	many transitions, please give up to five significant transitions.</br></br>
-	Add events by typing in the date of the transition in the "Go To Date" provided. If you don't remember
-	the exact day, simply use the first of the month and year.  These transitions can be deleted by clicking on
-	that transition in the timeline and can even be moved across to change transition dates.
+	Add events by typing in the month and year that the transition occurred (mm-yyyy), then you will be prompted 
+	with questions about that transition. These transitions can be deleted by clicking on that transition in the 
+	timeline and can even be moved across to change transition dates.
 	<%= button_to "Ok", {} , {:class => "secondoptionok"}%>
 
 </div>
@@ -381,7 +381,7 @@
 					e.preventDefault();
 				}
 				else {
-					var goToDate = "01-" + month + "-" + year;
+					var goToDate = month + "-" + year;
 					count++;
 					items.add({
 						id : count,
@@ -390,6 +390,7 @@
 						start : goToDate
 					});
 					document.getElementById("event_time").innerHTML = goToDate;
+					goToDate = "01-" + goToDate;
 					document.getElementById("career_event_time").value = goToDate;
 					document.getElementById("ed_event_time").value = goToDate;
 					document.getElementById("next_transition").style.display = "block";
